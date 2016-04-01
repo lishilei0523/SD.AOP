@@ -1,7 +1,8 @@
-﻿using System.Data.Entity;
+﻿using System.Configuration;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
-using SD.AOP.LogSite.Migrations;
+using Configuration = SD.AOP.LogSite.Migrations.Configuration;
 
 namespace SD.AOP.LogSite.Model.Base
 {
@@ -79,7 +80,7 @@ namespace SD.AOP.LogSite.Model.Base
                 {
                     IsLink = false,
                     Level = 0,
-                    MenuName = "六月版日志管理后台",
+                    MenuName = string.Format("{0}日志管理后台", ConfigurationManager.AppSettings["WebName"]),
                     PId = 0,
                     Sort = int.MaxValue
                 };

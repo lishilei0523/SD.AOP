@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>六月版项目日志管理 - 后台首页</title>
+    <title>@ViewBag.WebName 日志管理 - 后台首页</title>
     <link type="text/css" href="~/Content/css/Home.css" rel="stylesheet" />
     <link type="text/css" href="~/EasyUI/themes/default/easyui.css" rel="stylesheet" />
     <link type="text/css" href="~/EasyUI/themes/icon.css" rel="stylesheet" />
@@ -26,7 +26,7 @@
     <!-------------------------------------------网站头部--------------------------------------------->
     <div data-options="region:'north',split:false,border:false" id="dvHeader">
         <!--左边logo-->
-        <div class="logo">六月版项目日志管理后台</div>
+        <div class="logo">@ViewBag.WebName 日志管理后台</div>
         <!--左边logo-->
         <!--右边内容-->
         <div class="rightBtns">
@@ -59,7 +59,7 @@
     <div data-options="region:'south',border:false" id="dvFooter">
         <div class="currentUser">当前登录用户：@*@Model.UserName*@</div>
         <div class="service">
-            <span>开发及技术支持&nbsp;——&nbsp;</span><a href="http://www.shanhesoftware.com" target="_blank">哈尔滨山河软件有限公司</a>&nbsp;&nbsp;<span id="nowDate"></span>
+            <span>开发及技术支持&nbsp;——&nbsp;</span><a href="http://www.shanhesoftware.com" target="_blank">@ViewBag.TechSupport</a>&nbsp;&nbsp;<span id="nowDate"></span>
         </div>
     </div>
     <!-------------------------------------------网站底部--------------------------------------------->

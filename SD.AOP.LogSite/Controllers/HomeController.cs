@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Configuration;
+using System.Web.Mvc;
 
 namespace SD.AOP.LogSite.Controllers
 {
@@ -14,6 +15,8 @@ namespace SD.AOP.LogSite.Controllers
         /// <returns>视图</returns>
         public ActionResult Index()
         {
+            this.ViewBag.WebName = ConfigurationManager.AppSettings["WebName"];
+            this.ViewBag.TechSupport = ConfigurationManager.AppSettings["TechSupport"];
             return this.View();
         }
         #endregion
