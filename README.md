@@ -1,10 +1,13 @@
 #AOP组件
 
+
 主要功能：
+
 	统一异常处理，记录程序运行日志，简化事务处理代码。
 
 
 使用方式：
+
 	1、新建个空库或使用现有数据库
 
 	2、在App.config文件中配置key为"LogConnection"的连接字符串name
@@ -15,6 +18,7 @@
 
 
 Ps：
+
 	使用前需安装PostSharp-tool-4.1.13.exe，在解决方案根目录下
 
 	依赖NuGet包：PostSharp、Json.NET
