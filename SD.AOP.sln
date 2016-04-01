@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.AOP.LogSite", "SD.AOP.Lo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{40838124-4283-45E5-930E-F03B45C907FA}"
 	ProjectSection(SolutionItems) = preProject
-		C:\Users\Lee\AppData\Local\Temp\Rar$DRa0.728\PostSharp-tool-4.1.13.exe = C:\Users\Lee\AppData\Local\Temp\Rar$DRa0.728\PostSharp-tool-4.1.13.exe
+		tools\PostSharp-tool-4.1.13.exe = tools\PostSharp-tool-4.1.13.exe
 	EndProjectSection
 EndProject
 Global
