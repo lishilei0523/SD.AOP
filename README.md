@@ -1,17 +1,17 @@
-#AOP×é¼þ
+#AOPç»„ä»¶
 
-Ö÷Òª¹¦ÄÜ£º
-	Í³Ò»Òì³£´¦Àí£¬¼ÇÂ¼³ÌÐòÔËÐÐÈÕÖ¾£¬¼ò»¯ÊÂÎñ´¦Àí´úÂë¡£
+ä¸»è¦åŠŸèƒ½ï¼š
+	ç»Ÿä¸€å¼‚å¸¸å¤„ç†ï¼Œè®°å½•ç¨‹åºè¿è¡Œæ—¥å¿—ï¼Œç®€åŒ–äº‹åŠ¡å¤„ç†ä»£ç ã€‚\n
 
-Ê¹ÓÃ·½Ê½£º
-	1¡¢ÐÂ½¨¸ö¿Õ¿â»òÊ¹ÓÃÏÖÓÐÊý¾Ý¿â
-	2¡¢ÔÚApp.configÎÄ¼þÖÐÅäÖÃkeyÎª"LogConnection"µÄÁ¬½Ó×Ö·û´®name
-	3¡¢ÔËÐÐ²âÊÔ
-	4¡¢²é¿´Êý¾Ý¿âµÄRunningLogs±íÓëExceptionLogs±í
+ä½¿ç”¨æ–¹å¼ï¼š
+	1ã€æ–°å»ºä¸ªç©ºåº“æˆ–ä½¿ç”¨çŽ°æœ‰æ•°æ®åº“
+	2ã€åœ¨App.configæ–‡ä»¶ä¸­é…ç½®keyä¸º"LogConnection"çš„è¿žæŽ¥å­—ç¬¦ä¸²name
+	3ã€è¿è¡Œæµ‹è¯•
+	4ã€æŸ¥çœ‹æ•°æ®åº“çš„RunningLogsè¡¨ä¸ŽExceptionLogsè¡¨
 
-Ps£º
-	Ê¹ÓÃÇ°Ðè°²×°PostSharp-tool-4.1.13.exe£¬ÔÚ½â¾ö·½°¸¸ùÄ¿Â¼ÏÂ
-	ÒÀÀµNuGet°ü£ºPostSharp¡¢Json.NET
-	µ±±àÒëÊ±³öÏÖPostSharpÌáÊ¾¶Ô»°¿òÊ±£¬ÇëÑ¡ÔñInstall
-	Òì³£¹ýÂËÌØÐÔ±êÇ©¿ÉÒÔ´òÔÚ³ÌÐò¼¯¡¢Àà¡¢¹¹ÔìÆ÷¡¢·½·¨µÈÈÎÒâ¿ÉÒÔ´ò±êÇ©µÄ³ÉÔ±ÉÏ
-	ÔËÐÐÈÕÖ¾ÌØÐÔ±êÇ©Ö»ÄÜ´òÔÚ¹¹ÔìÆ÷»ò·½·¨ÉÏ
+Psï¼š
+	ä½¿ç”¨å‰éœ€å®‰è£…PostSharp-tool-4.1.13.exeï¼Œåœ¨è§£å†³æ–¹æ¡ˆæ ¹ç›®å½•ä¸‹
+	ä¾èµ–NuGetåŒ…ï¼šPostSharpã€Json.NET
+	å½“ç¼–è¯‘æ—¶å‡ºçŽ°PostSharpæç¤ºå¯¹è¯æ¡†æ—¶ï¼Œè¯·é€‰æ‹©Install
+	å¼‚å¸¸è¿‡æ»¤ç‰¹æ€§æ ‡ç­¾å¯ä»¥æ‰“åœ¨ç¨‹åºé›†ã€ç±»ã€æž„é€ å™¨ã€æ–¹æ³•ç­‰ä»»æ„å¯ä»¥æ‰“æ ‡ç­¾çš„æˆå‘˜ä¸Š
+	è¿è¡Œæ—¥å¿—ç‰¹æ€§æ ‡ç­¾åªèƒ½æ‰“åœ¨æž„é€ å™¨æˆ–æ–¹æ³•ä¸Š
