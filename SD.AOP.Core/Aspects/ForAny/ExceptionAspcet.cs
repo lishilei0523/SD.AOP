@@ -47,7 +47,7 @@ namespace SD.AOP.Core.Aspects.ForAny
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
             {
                 //插入数据库
-                Guid newId = LogStorer.InsertIntoDb(this._exceptionLog);
+                Guid newId = LogWriter.Error(this._exceptionLog);
 
                 scope.Complete();
 

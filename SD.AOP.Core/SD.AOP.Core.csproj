@@ -71,7 +71,6 @@
     <Compile Include="Toolkits\Common.cs" />
     <Compile Include="Toolkits\LogBuilder.cs" />
     <Compile Include="Toolkits\LogWriter.cs" />
-    <Compile Include="Toolkits\LogStorer.cs" />
     <Compile Include="Toolkits\SqlHelper.cs" />
   </ItemGroup>
   <ItemGroup>

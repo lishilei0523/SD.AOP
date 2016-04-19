@@ -9,7 +9,7 @@ namespace SD.AOP.Core.Toolkits
     /// <summary>
     /// 日志记录者
     /// </summary>
-    internal static class LogWriter
+    public static class LogWriter
     {
         #region # 常量、字段及构造器
 

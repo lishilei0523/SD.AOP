@@ -26,7 +26,7 @@ namespace SD.AOP.Core.Aspects.ForAny
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
             {
                 //02.插入数据库
-                LogStorer.InsertIntoDb(base._exceptionLog);
+                LogWriter.Error(base._exceptionLog);
 
                 scope.Complete();
             }
