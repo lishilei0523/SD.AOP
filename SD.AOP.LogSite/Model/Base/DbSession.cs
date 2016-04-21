@@ -2,7 +2,6 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
-using Configuration = SD.AOP.LogSite.Migrations.Configuration;
 
 namespace SD.AOP.LogSite.Model.Base
 {
@@ -18,7 +17,7 @@ namespace SD.AOP.LogSite.Model.Base
         /// </summary>
         static DbSession()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DbSession, Configuration>());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<DbSession, Configuration>());
         }
 
         /// <summary>
