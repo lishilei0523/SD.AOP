@@ -46,6 +46,9 @@ namespace SD.AOP.Core.Toolkits
         /// <returns>日志Id</returns>
         public static Guid Error(ExceptionLog log)
         {
+            //初始化日志数据表
+            InitTable();
+
             //01.构造sql语句
             string sql = "INSERT INTO ExceptionLogs (Id, Namespace, ClassName, MethodName, MethodType, ArgsJson, ExceptionType, ExceptionMessage, ExceptionInfo, InnerException, OccurredTime, IPAddress) OUTPUT inserted.Id VALUES (NEWID(), @Namespace, @ClassName, @MethodName, @MethodType, @ArgsJson, @ExceptionType, @ExceptionMessage, @ExceptionInfo, @InnerException, @OccurredTime, @IPAddress)";
 
@@ -78,6 +81,9 @@ namespace SD.AOP.Core.Toolkits
         /// <returns>日志Id</returns>
         public static Guid Info(RunningLog log)
         {
+            //初始化日志数据表
+            InitTable();
+
             //01.构造SQL语句
             string sql = "INSERT INTO RunningLogs (Id, Namespace, ClassName, MethodName, MethodType, ArgsJson, ReturnValue, ReturnValueType, UserId, UserName, StartTime, EndTime, IPAddress) OUTPUT inserted.Id VALUES (NEWID(), @Namespace, @ClassName, @MethodName, @MethodType, @ArgsJson, @ReturnValue, @ReturnValueType, @UserId, @UserName, @StartTime, @EndTime, @IPAddress)";
 
