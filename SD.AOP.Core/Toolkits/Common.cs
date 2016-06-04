@@ -10,14 +10,14 @@ namespace SD.AOP.Core.Toolkits
     /// <summary>
     /// 工具类
     /// </summary>
-    public static class Common
+    internal static class Common
     {
         #region # 获取本机IP地址 —— static string GetLocalIPAddress()
         /// <summary>
         /// 获取本机IP地址
         /// </summary>
         /// <returns>本机IP</returns>
-        internal static string GetLocalIPAddress()
+        public static string GetLocalIPAddress()
         {
             StringBuilder buid = new StringBuilder();
 
@@ -71,7 +71,7 @@ namespace SD.AOP.Core.Toolkits
         /// </summary>
         /// <param name="value">C#值</param>
         /// <returns>处理后的数据库值</returns>
-        internal static object ToDbValue(this object value)
+        public static object ToDbValue(this object value)
         {
             return value ?? DBNull.Value;
         }
@@ -83,7 +83,7 @@ namespace SD.AOP.Core.Toolkits
         /// </summary>
         /// <param name="sourceInstance">源实例</param>
         /// <param name="targetInstance">目标实例</param>
-        internal static void Fill<TSource, TTarget>(this TSource sourceInstance, TTarget targetInstance)
+        public static void Fill<TSource, TTarget>(this TSource sourceInstance, TTarget targetInstance)
         {
             //01.获取源对象与目标对象的类型
             Type sourceType = sourceInstance.GetType();

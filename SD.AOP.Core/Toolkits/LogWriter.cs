@@ -113,7 +113,7 @@ namespace SD.AOP.Core.Toolkits
         /// <summary>
         /// 初始化日志数据表
         /// </summary>
-        internal static void InitTable()
+        private static void InitTable()
         {
             //构造sql语句
             StringBuilder sqlBuilder = new StringBuilder();
