@@ -10,7 +10,7 @@ namespace SD.AOP.Core.Toolkits
     /// <summary>
     /// 工具类
     /// </summary>
-    internal static class Common
+    public static class Common
     {
         #region # 获取本机IP地址 —— static string GetLocalIPAddress()
         /// <summary>
