@@ -50,7 +50,7 @@ namespace SD.AOP.Core.Aspects.ForMethod
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
             {
                 //持久化
-                Task.Factory.StartNew(() => LogWriter.Info(this._runningLog));
+                Task.Run(() => LogWriter.Info(this._runningLog));
 
                 scope.Complete();
             }

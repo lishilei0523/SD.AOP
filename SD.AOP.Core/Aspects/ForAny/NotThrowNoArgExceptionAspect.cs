@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Transactions;
 using PostSharp.Aspects;
 using SD.AOP.Core.Toolkits;
@@ -26,7 +27,7 @@ namespace SD.AOP.Core.Aspects.ForAny
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
             {
                 //02.插入数据库
-                LogWriter.Error(base._exceptionLog);
+                Task.Run(() => LogWriter.Error(base._exceptionLog));
 
                 scope.Complete();
             }

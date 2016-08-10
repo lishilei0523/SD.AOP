@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Transactions;
 using PostSharp.Aspects;
 using SD.AOP.Core.Models.Entities;
@@ -47,7 +48,7 @@ namespace SD.AOP.Core.Aspects.ForAny
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
             {
                 //插入数据库
-                Guid newId = LogWriter.Error(this._exceptionLog);
+                Guid newId = Task.Run(() => LogWriter.Error(this._exceptionLog)).Result;
 
                 scope.Complete();
 
