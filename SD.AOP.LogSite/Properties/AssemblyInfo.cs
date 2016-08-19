@@ -8,8 +8,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("SD - 日志网站")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SD")]
-[assembly: AssemblyProduct("SD.AOP")]
-[assembly: AssemblyCopyright("版权所有(C) ShSoft 2015")]
+[assembly: AssemblyProduct("SD.AOP.LogSite")]
+[assembly: AssemblyCopyright("版权所有(C) SD 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
