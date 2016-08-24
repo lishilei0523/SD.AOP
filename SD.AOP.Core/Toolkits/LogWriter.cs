@@ -30,10 +30,29 @@ namespace SD.AOP.Core.Toolkits
         {
             //初始化连接字符串
             string defaultConnectionStringName = ConfigurationManager.AppSettings[DefaultConnectionStringAppSettingKey];
-            string connectionString = ConfigurationManager.ConnectionStrings[defaultConnectionStringName].ConnectionString;
+
+            #region # 验证
+
+            if (string.IsNullOrWhiteSpace(defaultConnectionStringName))
+            {
+                throw new NullReferenceException("日志连接字符串AppSetting未配置！Key：LogConnection，Value：连接字符串name");
+            }
+
+            #endregion
+
+            ConnectionStringSettings connectionStringSetting = ConfigurationManager.ConnectionStrings[defaultConnectionStringName];
+
+            #region # 验证
+
+            if (connectionStringSetting == null)
+            {
+                throw new NullReferenceException(string.Format("未找到name为\"{0}\"的连接字符串！", defaultConnectionStringName));
+            }
+
+            #endregion
 
             //初始化SQL工具
-            _SqlHelper = new SqlHelper(connectionString);
+            _SqlHelper = new SqlHelper(connectionStringSetting.ConnectionString);
         }
 
         #endregion
