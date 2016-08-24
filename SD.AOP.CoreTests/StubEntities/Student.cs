@@ -23,7 +23,13 @@ namespace SD.AOP.CoreTests.StubEntities
 
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException("name", @"姓名不可为空！");
+                InvalidOperationException innerException1 = new InvalidOperationException("内部异常第一层");
+                InvalidOperationException innerException2 = new InvalidOperationException("内部异常第二层", innerException1);
+                InvalidOperationException innerException3 = new InvalidOperationException("内部异常第三层", innerException2);
+
+                ArgumentNullException exception = new ArgumentNullException(@"姓名不可为空！", innerException2);
+
+                throw exception;
             }
 
             this.Name = name;

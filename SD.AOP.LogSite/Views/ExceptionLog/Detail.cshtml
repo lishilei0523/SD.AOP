@@ -55,7 +55,7 @@
         <tr>
             <td class="tdTitle">内部异常：</td>
             <td class="tdContent">
-                <div class="exText">@Model.InnerException</div>
+                <div class="exText">@Html.Raw(Model.InnerException.Replace(@"\r\n", "<hr />"))</div>
             </td>
         </tr>
     </table>

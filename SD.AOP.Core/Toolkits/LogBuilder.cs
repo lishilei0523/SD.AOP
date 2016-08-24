@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text;
 using PostSharp.Aspects;
 using SD.AOP.Core.Models.Entities;
 using SD.AOP.Core.Models.ValueObjects;
@@ -64,8 +65,10 @@ namespace SD.AOP.Core.Toolkits
             log.ExceptionType = eventArgs.Exception.GetType().Name;
             log.ExceptionMessage = eventArgs.Exception.Message;
             log.ExceptionInfo = eventArgs.Exception.ToString();
-            log.InnerException = eventArgs.Exception.InnerException == null ? null : eventArgs.Exception.InnerException.ToString();
             log.OccurredTime = DateTime.Now;
+
+            StringBuilder exceptionBuilder = new StringBuilder();
+            log.InnerException = BuildInnerException(exceptionBuilder, eventArgs.Exception);
         }
         #endregion
 
@@ -110,6 +113,25 @@ namespace SD.AOP.Core.Toolkits
             {
                 log.ReturnValue = eventArgs.Exception.ToString();
             }
+        }
+        #endregion
+
+        #region # 建造内部异常 —— static string BuildInnerException(StringBuilder...
+        /// <summary>
+        /// 建造内部异常
+        /// </summary>
+        /// <param name="exBuilder">异常建造者</param>
+        /// <param name="exception">异常</param>
+        /// <returns>内部异常</returns>
+        private static string BuildInnerException(StringBuilder exBuilder, Exception exception)
+        {
+            if (exception.InnerException != null)
+            {
+                exBuilder.Append(exception.InnerException);
+                exBuilder.Append(@"\r\n");
+                BuildInnerException(exBuilder, exception.InnerException);
+            }
+            return exBuilder.ToString();
         }
         #endregion
     }

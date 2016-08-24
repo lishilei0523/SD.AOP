@@ -78,6 +78,7 @@ namespace SD.AOP.LogSite.Controllers
         public ActionResult Detail(Guid id)
         {
             ExceptionLog model = this._exceptionLogBll.GetModel(id);
+
             return this.View(model);
         }
         #endregion
