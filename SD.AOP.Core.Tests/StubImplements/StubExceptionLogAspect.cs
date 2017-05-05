@@ -1,8 +1,8 @@
-﻿using System;
-using PostSharp.Aspects;
+﻿using PostSharp.Aspects;
 using SD.AOP.Core.Aspects.ForAny;
+using System;
 
-namespace SD.AOP.CoreTests.StubImplements
+namespace SD.AOP.Core.Tests.StubImplements
 {
     /// <summary>
     /// 具体异常AOP特性类

@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SD.AOP.CoreTests.StubEntities;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SD.AOP.Core.Tests.StubEntities;
+using System;
 
-namespace SD.AOP.CoreTests.TestCases
+namespace SD.AOP.Core.Tests.TestCases
 {
     [TestClass]
     public class StudentTests

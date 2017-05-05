@@ -1,8 +1,8 @@
-﻿using System;
-using SD.AOP.Core.Aspects.ForMethod;
-using SD.AOP.CoreTests.StubImplements;
+﻿using SD.AOP.Core.Aspects.ForMethod;
+using SD.AOP.Core.Tests.StubImplements;
+using System;
 
-namespace SD.AOP.CoreTests.StubEntities
+namespace SD.AOP.Core.Tests.StubEntities
 {
     /// <summary>
     /// 学生

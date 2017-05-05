@@ -525,12 +525,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\RunningLog\Index.cshtml" />
     <Content Include="Views\RunningLog\Detail.cshtml" />
-    <None Include="Web.Integration.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Test.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
