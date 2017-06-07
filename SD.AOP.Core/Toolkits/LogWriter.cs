@@ -1,8 +1,8 @@
-﻿using System;
+﻿using SD.AOP.Core.Models.Entities;
+using System;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Text;
-using SD.AOP.Core.Models.Entities;
 
 namespace SD.AOP.Core.Toolkits
 {

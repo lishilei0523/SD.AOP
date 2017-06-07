@@ -1,6 +1,6 @@
-﻿using System;
-using PostSharp.Aspects;
+﻿using PostSharp.Aspects;
 using SD.AOP.Core.Toolkits;
+using System;
 
 namespace SD.AOP.Core.Aspects.ForMethod
 {

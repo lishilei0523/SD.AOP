@@ -4,10 +4,10 @@
 // </Auto-Generated>
 //------------------------------------------------------------------------------
 
+using SD.AOP.LogSite.Model.Format;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using SD.AOP.LogSite.Model.Format;
 
 namespace SD.AOP.LogSite.Model
 {

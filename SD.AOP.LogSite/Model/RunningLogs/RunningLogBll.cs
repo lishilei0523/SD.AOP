@@ -4,10 +4,10 @@
 // </Auto-Generated>
 //------------------------------------------------------------------------------
 
+using SD.AOP.Core.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
-using SD.AOP.Core.Models.Entities;
 
 namespace SD.AOP.LogSite.Model.RunningLogs
 {
