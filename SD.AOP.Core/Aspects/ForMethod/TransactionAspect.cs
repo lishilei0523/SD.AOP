@@ -18,22 +18,12 @@ namespace SD.AOP.Core.Aspects.ForMethod
         private readonly TransactionScopeOption _scopeOption;
 
         /// <summary>
-        /// 事务选项
-        /// </summary>
-        private readonly TransactionOptions _transactionOptions;
-
-        /// <summary>
         /// 基础构造器
         /// </summary>
         /// <param name="scopeOption">事务范围选项</param>
-        /// <param name="isolationLevel">隔离级别</param>
-        public TransactionAspect(TransactionScopeOption scopeOption = TransactionScopeOption.Required, IsolationLevel isolationLevel = IsolationLevel.ReadCommitted)
+        public TransactionAspect(TransactionScopeOption scopeOption = TransactionScopeOption.Required)
         {
             this._scopeOption = scopeOption;
-            this._transactionOptions = new TransactionOptions
-            {
-                IsolationLevel = isolationLevel
-            };
         }
 
         /// <summary>
@@ -52,7 +42,7 @@ namespace SD.AOP.Core.Aspects.ForMethod
         /// <param name="eventArgs">方法元数据</param>
         public override void OnInvoke(MethodInterceptionArgs eventArgs)
         {
-            using (TransactionScope scope = new TransactionScope(this._scopeOption, this._transactionOptions))
+            using (TransactionScope scope = new TransactionScope(this._scopeOption))
             {
                 base.OnInvoke(eventArgs);
                 scope.Complete();
