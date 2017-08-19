@@ -160,7 +160,6 @@
     <Content Include="Content\scripts\Home\Index.js" />
     <Content Include="Content\scripts\Menu\Add.js" />
     <Content Include="Content\scripts\Menu\Index.js" />
-    <Content Include="Content\scripts\Menu\RelateAuthority.js" />
     <Content Include="Content\scripts\Menu\Update.js" />
     <Content Include="Content\scripts\RunningLog\Index.js" />
     <Content Include="Content\themes\black\accordion.css" />
