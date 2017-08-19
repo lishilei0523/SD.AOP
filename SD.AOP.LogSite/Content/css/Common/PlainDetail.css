@@ -1,0 +1,28 @@
+﻿table {
+    margin: 0 !important;
+}
+
+.tdTitle {
+    text-align: right;
+    width: 80px;
+    vertical-align: top;
+}
+
+.tdContent {
+    text-align: left;
+    width: 240px;
+    border: 1px solid #0094ff;
+    overflow-y: scroll;
+}
+
+.exText {
+    width: 100%;
+    -moz-word-break: break-all;
+    -o-word-break: break-all;
+    word-break: break-all;
+}
+
+.datagrid-cell {
+    word-break: break-all;
+    white-space: pre-line;
+}

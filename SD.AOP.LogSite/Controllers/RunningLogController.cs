@@ -1,110 +1,106 @@
 ﻿using SD.AOP.Core.Models.Entities;
-using SD.AOP.LogSite.Model.Format;
-using SD.AOP.LogSite.Model.RunningLogs;
+using SD.AOP.LogSite.Repositories;
+using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace SD.AOP.LogSite.Controllers
 {
     /// <summary>
-    /// 程序运行日志管理控制器
+    /// 运行日志控制器
     /// </summary>
     public class RunningLogController : Controller
     {
-        #region 00.字段及构造器
-
+        #region # 字段及构造器
         /// <summary>
-        /// 程序日志业务对象
+        /// 运行日志仓储接口
         /// </summary>
-        private readonly RunningLogBll _runningLogBll;
+        private readonly RunningLogRepository _runningLogRep;
 
         /// <summary>
         /// 构造器
         /// </summary>
         public RunningLogController()
         {
-            this._runningLogBll = RunningLogBll.CreateInstance();
+            this._runningLogRep = new RunningLogRepository();
         }
-
         #endregion
 
-        #region 01.程序日志视图 —— ActionResult Index()
+
+        //视图部分
+
+        #region # 获取运行日志列表视图 —— ViewResult Index()
         /// <summary>
-        /// 程序日志视图
+        /// 获取运行日志列表视图
         /// </summary>
-        /// <returns></returns>
-        public ActionResult Index()
+        /// <returns>运行日志列表视图</returns>
+        [HttpGet]
+        public ViewResult Index()
         {
             return this.View();
         }
         #endregion
 
-        #region 02.加载程序日志列表 —— ActionResult List()
+        #region # 获取运行日志查看视图 —— ViewResult Detail(Guid id)
         /// <summary>
-        /// 加载程序日志列表
+        /// 获取运行日志查看视图
         /// </summary>
-        /// <returns>程序日志列表</returns>
-        public ActionResult List()
+        /// <param name="id">运行日志Id</param>
+        /// <returns>运行日志查看视图</returns>
+        [HttpGet]
+        public ViewResult Detail(Guid id)
         {
-            //1.获取EasyUI请求的数据
-            int pageIndex = string.IsNullOrEmpty(this.Request["page"]) ? 1 : int.Parse(this.Request["page"]);
-            int pageSize = string.IsNullOrEmpty(this.Request["rows"]) ? 15 : int.Parse(this.Request["rows"]);
-            Guid logId = string.IsNullOrEmpty(this.Request["logId"]) ? Guid.Empty : Guid.Parse(this.Request["logId"]);
+            RunningLog model = this._runningLogRep.Single(id);
 
-            //2.查询参数处理
-            DateTime startDate, endDate;
-            string startTime = DateTime.TryParse(this.Request["startTime"], out startDate) ? this.Request["startTime"] : null;
-            string endTime = DateTime.TryParse(this.Request["endTime"], out endDate) ? this.Request["endTime"] : null;
-
-            //3.调用业务层查询数据并转换视图模型返回
-            int rowCount, pageCount;
-            List<RunningLog> list = this._runningLogBll.GetModelList(pageIndex, pageSize, out pageCount, out rowCount,
-                logId, startTime, endTime);
-
-            //4.封装EasyUI模型
-            GridModel gridModel = new GridModel(rowCount, list);
-
-            //5.返回客户端数据
-            return this.Json(gridModel, JsonRequestBehavior.AllowGet);
-        }
-        #endregion
-
-        #region 03.查看程序日志明细 —— ActionResult Detail(Guid id)
-        /// <summary>
-        /// 查看程序日志明细
-        /// </summary>
-        /// <param name="id">程序日志Id</param>
-        /// <returns>程序日志明细</returns>
-        public ActionResult Detail(Guid id)
-        {
-            RunningLog model = this._runningLogBll.GetModel(id);
             return this.View(model);
         }
         #endregion
 
-        #region 04.删除选中程序日志 —— ActionResult DeleteSelected(string selectedIds)
+
+        //命令部分
+
+        #region # 删除日志 —— void RemoveLog(Guid logId)
         /// <summary>
-        /// 删除选中程序日志
+        /// 删除日志
         /// </summary>
-        /// <param name="selectedIds">选中行的Id</param>
-        /// <returns>JsonModel</returns>
-        public ActionResult DeleteSelected(string selectedIds)
+        /// <param name="logId">日志Id</param>
+        [HttpPost]
+        public void RemoveLog(Guid logId)
         {
-            try                 //涉及多次类型转换等操作，应处理程序
-            {
-                //1.处理前台选中的所有要删除的实体Id信息
-                List<Guid> idList = selectedIds.Split(',').Select(x => Guid.Parse(x)).ToList();
-                //2.执行批量删除操作
-                idList.ForEach(x => this._runningLogBll.PhysicalDelete(x));
-                return OperationContext.Current.JsonModel(1, "删除成功！");
-            }
-            catch (Exception ex)
-            {
-                //返回程序信息
-                return OperationContext.Current.JsonModel(0, string.Format("删除失败，{0}", ex.Message));
-            }
+            this._runningLogRep.RemoveRunningLogs(new[] { logId });
+        }
+        #endregion
+
+        #region # 批量删除日志 —— void RemoveRunningLogs(IEnumerable<Guid> logIds)
+        /// <summary>
+        /// 批量删除日志
+        /// </summary>
+        /// <param name="logIds">日志Id集</param>
+        [HttpPost]
+        public void RemoveRunningLogs(IEnumerable<Guid> logIds)
+        {
+            this._runningLogRep.RemoveRunningLogs(logIds);
+        }
+        #endregion
+
+
+        //查询部分
+
+        #region # 获取运行日志列表 —— JsonResult GetRunningLogs(Guid? logId, DateTime? startTime...
+        /// <summary>
+        /// 获取运行日志列表
+        /// </summary>
+        /// <returns>运行日志列表</returns>
+        public JsonResult GetRunningLogs(Guid? logId, DateTime? startTime, DateTime? endTime, int page, int rows)
+        {
+            int rowCount, pageCount;
+
+            ICollection<RunningLog> runningLogs = this._runningLogRep.GetRunningLogs(logId, startTime, endTime, page, rows, out pageCount, out rowCount);
+
+            Grid<RunningLog> grid = new Grid<RunningLog>(rowCount, runningLogs);
+
+            return base.Json(grid, JsonRequestBehavior.AllowGet);
         }
         #endregion
     }

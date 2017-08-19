@@ -1,4 +1,4 @@
-using SD.AOP.LogSite.Model.Base;
+using SD.AOP.LogSite.Entities.Base;
 using System.Data.Entity.Migrations;
 
 namespace SD.AOP.LogSite.Migrations
