@@ -6,7 +6,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 
-namespace SD.AOP.LogSite.Managers
+namespace SD.AOP.LogSite.Repositories
 {
     /// <summary>
     /// 异常日志仓储接口
@@ -54,7 +54,7 @@ namespace SD.AOP.LogSite.Managers
 
             #endregion
 
-            string idsStr = Repositories.Common.GetIdsString(specIds);
+            string idsStr = Common.GetIdsString(specIds);
 
             string sql = "DELETE FROM ExceptionLogs WHERE Id IN (@Id)";
             SqlParameter arg = new SqlParameter("@Id", idsStr);
@@ -197,18 +197,18 @@ namespace SD.AOP.LogSite.Managers
         {
             ExceptionLog exceptionLog = new ExceptionLog
             {
-                Id = (Guid)Repositories.Common.ToNetValue(reader, "Id"),
-                Namespace = (string)Repositories.Common.ToNetValue(reader, "Namespace"),
-                ClassName = (string)Repositories.Common.ToNetValue(reader, "ClassName"),
-                MethodName = (string)Repositories.Common.ToNetValue(reader, "MethodName"),
-                ArgsJson = (string)Repositories.Common.ToNetValue(reader, "ArgsJson"),
-                ExceptionType = (string)Repositories.Common.ToNetValue(reader, "ExceptionType"),
-                ExceptionMessage = (string)Repositories.Common.ToNetValue(reader, "ExceptionMessage"),
-                ExceptionInfo = (string)Repositories.Common.ToNetValue(reader, "ExceptionInfo"),
-                InnerException = (string)Repositories.Common.ToNetValue(reader, "InnerException"),
-                OccurredTime = (DateTime)Repositories.Common.ToNetValue(reader, "OccurredTime"),
-                IPAddress = (string)Repositories.Common.ToNetValue(reader, "IPAddress"),
-                OccurredTimeString = Convert.ToDateTime(Repositories.Common.ToNetValue(reader, "OccurredTime")).ToString("yyyy-MM-dd HH:mm:ss")
+                Id = (Guid)Common.ToNetValue(reader, "Id"),
+                Namespace = (string)Common.ToNetValue(reader, "Namespace"),
+                ClassName = (string)Common.ToNetValue(reader, "ClassName"),
+                MethodName = (string)Common.ToNetValue(reader, "MethodName"),
+                ArgsJson = (string)Common.ToNetValue(reader, "ArgsJson"),
+                ExceptionType = (string)Common.ToNetValue(reader, "ExceptionType"),
+                ExceptionMessage = (string)Common.ToNetValue(reader, "ExceptionMessage"),
+                ExceptionInfo = (string)Common.ToNetValue(reader, "ExceptionInfo"),
+                InnerException = (string)Common.ToNetValue(reader, "InnerException"),
+                OccurredTime = (DateTime)Common.ToNetValue(reader, "OccurredTime"),
+                IPAddress = (string)Common.ToNetValue(reader, "IPAddress"),
+                OccurredTimeString = Convert.ToDateTime(Common.ToNetValue(reader, "OccurredTime")).ToString("yyyy-MM-dd HH:mm:ss")
             };
             return exceptionLog;
         }

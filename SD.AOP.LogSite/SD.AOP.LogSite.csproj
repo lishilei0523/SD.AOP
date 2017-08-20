@@ -518,10 +518,6 @@
     <Content Include="Scripts\jquery.extensions.js" />
     <Content Include="Scripts\jquery.extensions.message.js" />
     <Content Include="Scripts\jquery.messageBox.js" />
-    <Content Include="Scripts\jquery.tmpl.js" />
-    <Content Include="Scripts\jquery_pf.js" />
-    <Content Include="Scripts\knockout-2.2.0.debug.js" />
-    <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\locale\easyui-lang-af.js" />
     <Content Include="Scripts\locale\easyui-lang-am.js" />
     <Content Include="Scripts\locale\easyui-lang-ar.js" />
@@ -546,8 +542,6 @@
     <Content Include="Scripts\locale\easyui-lang-tr.js" />
     <Content Include="Scripts\locale\easyui-lang-zh_CN.js" />
     <Content Include="Scripts\locale\easyui-lang-zh_TW.js" />
-    <Content Include="Scripts\messageBox.js" />
-    <Content Include="Scripts\pageBar.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

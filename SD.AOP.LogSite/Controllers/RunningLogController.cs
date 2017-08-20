@@ -1,6 +1,6 @@
 ﻿using SD.AOP.Core.Models.Entities;
 using SD.AOP.LogSite.Repositories;
-using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
+using SD.AOP.LogSite.ViewModels.Formats.EasyUI;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -60,15 +60,15 @@ namespace SD.AOP.LogSite.Controllers
 
         //命令部分
 
-        #region # 删除日志 —— void RemoveLog(Guid logId)
+        #region # 删除日志 —— void RemoveLog(Guid id)
         /// <summary>
         /// 删除日志
         /// </summary>
-        /// <param name="logId">日志Id</param>
+        /// <param name="id">日志Id</param>
         [HttpPost]
-        public void RemoveLog(Guid logId)
+        public void RemoveLog(Guid id)
         {
-            this._runningLogRep.RemoveRunningLogs(new[] { logId });
+            this._runningLogRep.RemoveRunningLogs(new[] { id });
         }
         #endregion
 

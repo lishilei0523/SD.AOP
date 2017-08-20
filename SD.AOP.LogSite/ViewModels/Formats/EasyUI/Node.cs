@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI
+namespace SD.AOP.LogSite.ViewModels.Formats.EasyUI
 {
     /// <summary>
     /// EasyUI 树节点格式化模型

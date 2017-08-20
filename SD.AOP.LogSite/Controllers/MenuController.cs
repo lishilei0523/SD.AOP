@@ -1,8 +1,8 @@
 ﻿using SD.AOP.LogSite.Entities;
 using SD.AOP.LogSite.Entities.Base;
 using SD.AOP.LogSite.Maps;
+using SD.AOP.LogSite.ViewModels.Formats.EasyUI;
 using SD.AOP.LogSite.ViewModels.Outputs;
-using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.Infrastructure.Attributes;
 using System;
 using System.Collections.Generic;

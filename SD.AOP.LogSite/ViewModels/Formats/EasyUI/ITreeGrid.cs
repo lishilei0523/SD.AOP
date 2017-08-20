@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI
+namespace SD.AOP.LogSite.ViewModels.Formats.EasyUI
 {
     /// <summary>
     /// EasyUI TreeGrid接口

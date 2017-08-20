@@ -1,4 +1,4 @@
-﻿using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
+﻿using SD.AOP.LogSite.ViewModels.Formats.EasyUI;
 using SD.Infrastructure.MVC;
 using System.Collections.Generic;
 

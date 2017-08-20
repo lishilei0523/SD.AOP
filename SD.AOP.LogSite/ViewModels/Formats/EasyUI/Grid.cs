@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI
+namespace SD.AOP.LogSite.ViewModels.Formats.EasyUI
 {
     /// <summary>
     /// EasyUI Grid格式化模型
