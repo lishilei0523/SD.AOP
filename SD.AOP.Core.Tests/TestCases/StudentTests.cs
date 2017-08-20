@@ -25,5 +25,16 @@ namespace SD.AOP.Core.Tests.TestCases
         {
             Student student = new Student("Tom", true, 20);
         }
+
+        /// <summary>
+        /// 修改学生测试 - 测试跳过异常日志
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void UpdateStudentTest_TestSkipException()
+        {
+            Student student = new Student("Tom", true, 20);
+            student.UpdateInfo(Guid.NewGuid(), null, false, 25);
+        }
     }
 }
