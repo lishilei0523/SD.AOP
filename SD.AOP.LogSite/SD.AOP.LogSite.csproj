@@ -563,9 +563,7 @@
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\Menu\Update.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\Inputs\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
