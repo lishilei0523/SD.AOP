@@ -1,22 +1,24 @@
-﻿using SD.AOP.Core.Models.Entities;
+﻿using SD.AOP.Core.Interfaces;
+using SD.AOP.Core.Models.Entities;
+using SD.AOP.Core.Toolkits;
 using System;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace SD.AOP.Core.Toolkits
+namespace SD.AOP.Core.Implements
 {
     /// <summary>
-    /// 日志记录者
+    /// 日志记录者默认实现
     /// </summary>
-    public static class LogWriter
+    public class DefaultLogger : ILoggger
     {
         #region # 常量、字段及构造器
 
         /// <summary>
         /// 日志数据库连接字符串名称AppSetting键
         /// </summary>
-        private const string DefaultConnectionStringAppSettingKey = "LogConnection";
+        private const string DefaultConnectionStringName = "LogConnection";
 
         /// <summary>
         /// SQL工具
@@ -26,27 +28,15 @@ namespace SD.AOP.Core.Toolkits
         /// <summary>
         /// 静态构造器
         /// </summary>
-        static LogWriter()
+        static DefaultLogger()
         {
-            //初始化连接字符串
-            string defaultConnectionStringName = ConfigurationManager.AppSettings[DefaultConnectionStringAppSettingKey];
-
-            #region # 验证
-
-            if (string.IsNullOrWhiteSpace(defaultConnectionStringName))
-            {
-                throw new NullReferenceException("日志连接字符串AppSetting未配置！Key：LogConnection，Value：连接字符串name");
-            }
-
-            #endregion
-
-            ConnectionStringSettings connectionStringSetting = ConfigurationManager.ConnectionStrings[defaultConnectionStringName];
+            ConnectionStringSettings connectionStringSetting = ConfigurationManager.ConnectionStrings[DefaultConnectionStringName];
 
             #region # 验证
 
             if (connectionStringSetting == null)
             {
-                throw new NullReferenceException(string.Format("未找到name为\"{0}\"的连接字符串！", defaultConnectionStringName));
+                throw new NullReferenceException(string.Format("未找到name为\"{0}\"的连接字符串！", DefaultConnectionStringName));
             }
 
             #endregion
@@ -57,13 +47,13 @@ namespace SD.AOP.Core.Toolkits
 
         #endregion
 
-        #region # 记录异常日志 —— static Guid Error(ExceptionLog log)
+        #region # 记录异常日志 —— Guid Write(ExceptionLog log)
         /// <summary>
         /// 记录异常日志
         /// </summary>
         /// <param name="log">异常日志</param>
         /// <returns>日志Id</returns>
-        public static Guid Error(ExceptionLog log)
+        public Guid Write(ExceptionLog log)
         {
             //初始化日志数据表
             InitTable();
@@ -92,13 +82,13 @@ namespace SD.AOP.Core.Toolkits
         }
         #endregion
 
-        #region # 记录运行日志 —— static Guid Info(RunningLog log)
+        #region # 记录运行日志 —— Guid Write(RunningLog log)
         /// <summary>
         /// 记录运行日志
         /// </summary>
         /// <param name="log">运行日志</param>
         /// <returns>日志Id</returns>
-        public static Guid Info(RunningLog log)
+        public Guid Write(RunningLog log)
         {
             //初始化日志数据表
             InitTable();

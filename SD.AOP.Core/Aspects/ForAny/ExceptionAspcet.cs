@@ -1,8 +1,11 @@
 ﻿using PostSharp.Aspects;
+using SD.AOP.Core.Attributes;
+using SD.AOP.Core.Interfaces;
 using SD.AOP.Core.Models.Entities;
 using SD.AOP.Core.Models.ValueObjects;
 using SD.AOP.Core.Toolkits;
 using System;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Transactions;
 
@@ -39,21 +42,29 @@ namespace SD.AOP.Core.Aspects.ForAny
         /// <param name="eventArgs">方法元数据</param>
         public override void OnException(MethodExecutionArgs eventArgs)
         {
-            //初始化异常日志
-            this._exceptionLog.BuildBasicInfo(eventArgs);
-            this._exceptionLog.BuildMethodArgsInfo(eventArgs);
-            this._exceptionLog.BuildExceptionInfo(eventArgs);
-
-            //无需事务
-            using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
+            if (!eventArgs.Method.IsDefined(typeof(SkipExceptionAttribute)))
             {
-                //插入数据库
-                Guid newId = Task.Run(() => LogWriter.Error(this._exceptionLog)).Result;
+                //初始化异常日志
+                this._exceptionLog.BuildBasicInfo(eventArgs);
+                this._exceptionLog.BuildMethodArgsInfo(eventArgs);
+                this._exceptionLog.BuildExceptionInfo(eventArgs);
 
-                scope.Complete();
+                //读取配置文件实例化日志记录提供者
+                Assembly impAssembly = Assembly.Load(LoggerProviderConfiguration.Setting.Assembly);
+                Type implType = impAssembly.GetType(LoggerProviderConfiguration.Setting.Type);
+                ILoggger loggger = (ILoggger)Activator.CreateInstance(implType);
 
-                //初始化异常消息
-                this._exceptionMessage = new ExceptionMessage(eventArgs.Exception.Message, newId);
+                //无需事务
+                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
+                {
+                    //插入数据库
+                    Guid newId = Task.Run(() => loggger.Write(this._exceptionLog)).Result;
+
+                    scope.Complete();
+
+                    //初始化异常消息
+                    this._exceptionMessage = new ExceptionMessage(eventArgs.Exception.Message, newId);
+                }
             }
         }
     }
