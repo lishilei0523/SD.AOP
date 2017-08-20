@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SD")]
 [assembly: AssemblyProduct("SD.AOP.LogSite")]
-[assembly: AssemblyCopyright("版权所有(C) SD 2015")]
+[assembly: AssemblyCopyright("版权所有(C) SD 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

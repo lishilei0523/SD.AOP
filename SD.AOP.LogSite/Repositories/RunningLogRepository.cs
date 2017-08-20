@@ -25,7 +25,7 @@ namespace SD.AOP.LogSite.Repositories
         /// </summary>
         static RunningLogRepository()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["LogConnection"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings[Common.DefaultConnectionStringName].ConnectionString;
 
             //初始化SQL工具
             _SqlHelper = new SqlHelper(connectionString);

@@ -3,7 +3,6 @@ using SD.Toolkits.Recursion.Tree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace SD.AOP.LogSite.Entities
 {
@@ -52,9 +51,6 @@ namespace SD.AOP.LogSite.Entities
             this.Icon = icon;
             this.ParentNode = parentNode;
             this.IsRoot = parentNode == null;
-
-            //初始化关键字
-            this.InitKeywords();
         }
         #endregion
 
@@ -141,22 +137,6 @@ namespace SD.AOP.LogSite.Entities
             this.Sort = sort;
             this.Url = url;
             this.Icon = icon;
-
-            //初始化关键字
-            this.InitKeywords();
-        }
-        #endregion
-
-        #region 初始化关键字 —— void InitKeywords()
-        /// <summary>
-        /// 初始化关键字
-        /// </summary>
-        private void InitKeywords()
-        {
-            StringBuilder keywordsBuilder = new StringBuilder();
-            keywordsBuilder.Append(this.GetTreePath());
-
-            base.SetKeywords(keywordsBuilder.ToString());
         }
         #endregion
 

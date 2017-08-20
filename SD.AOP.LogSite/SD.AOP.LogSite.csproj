@@ -131,8 +131,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Maps\MenuMap.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Entities\Base\DbSession.cs" />
+    <Compile Include="Repositories\DbSession.cs" />
     <Compile Include="Repositories\Common.cs" />
     <Compile Include="ViewModels\Formats\EasyUI\Grid.cs" />
     <Compile Include="ViewModels\Formats\EasyUI\ITreeGrid.cs" />

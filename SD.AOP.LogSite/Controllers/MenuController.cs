@@ -1,6 +1,6 @@
 ﻿using SD.AOP.LogSite.Entities;
-using SD.AOP.LogSite.Entities.Base;
 using SD.AOP.LogSite.Maps;
+using SD.AOP.LogSite.Repositories;
 using SD.AOP.LogSite.ViewModels.Formats.EasyUI;
 using SD.AOP.LogSite.ViewModels.Outputs;
 using SD.Infrastructure.Attributes;
@@ -173,7 +173,7 @@ namespace SD.AOP.LogSite.Controllers
         {
             using (this._dbSession)
             {
-                Menu[] menus = this._dbSession.Set<Menu>().ToArray();
+                Menu[] menus = this._dbSession.Set<Menu>().OrderBy(x => x.Sort).ToArray();
                 IEnumerable<MenuView> menuViews = menus.Select(x => x.ToViewModel());
 
                 IEnumerable<Node> menuTree = menuViews.ToTree(null);
@@ -199,7 +199,7 @@ namespace SD.AOP.LogSite.Controllers
                     x =>
                         (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords));
 
-                IEnumerable<Menu> menus = this._dbSession.Set<Menu>().Where(condition).ToArray();
+                IEnumerable<Menu> menus = this._dbSession.Set<Menu>().Where(condition).OrderBy(x => x.Sort).ToArray();
                 IEnumerable<MenuView> menuViews = menus.Select(x => x.ToViewModel());
                 menuViews = menuViews.ToTreeGrid();
 

@@ -16,7 +16,7 @@ namespace SD.AOP.Core.Implements
         #region # 常量、字段及构造器
 
         /// <summary>
-        /// 日志数据库连接字符串名称AppSetting键
+        /// 日志数据库连接字符串名称
         /// </summary>
         private const string DefaultConnectionStringName = "LogConnection";
 

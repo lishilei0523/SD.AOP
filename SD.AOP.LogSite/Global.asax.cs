@@ -1,4 +1,4 @@
-﻿using SD.AOP.LogSite.Entities.Base;
+﻿using SD.AOP.LogSite.Repositories;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -22,7 +22,7 @@ namespace SD.AOP.LogSite
 
             //初始化菜单
             DbSession dbSession = new DbSession();
-            dbSession.InitMenu();
+            dbSession.InitMenus();
         }
     }
 }

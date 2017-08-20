@@ -10,6 +10,11 @@ namespace SD.AOP.LogSite.Repositories
     /// </summary>
     public static class Common
     {
+        /// <summary>
+        /// 日志数据库连接字符串名称
+        /// </summary>
+        public const string DefaultConnectionStringName = "LogConnection";
+
         #region # 数据库值转C#值空值处理 —— static object ToNetValue(IDataReader reader...
         /// <summary>
         /// 数据库值转C#值空值处理
