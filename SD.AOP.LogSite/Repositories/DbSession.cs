@@ -78,7 +78,7 @@ namespace SD.AOP.LogSite.Repositories
                 this.Set<Menu>().Add(rootMenu);
                 this.Set<Menu>().Add(exceptionLogMenu);
                 this.Set<Menu>().Add(runningLogMenu);
-                this.Set<Menu>().Add(manageMenu);
+                //this.Set<Menu>().Add(manageMenu);
                 this.SaveChanges();
             }
 
