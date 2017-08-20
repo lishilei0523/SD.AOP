@@ -500,11 +500,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\material\images\Thumbs.db" />
-    <None Include="Properties\PublishProfiles\192.168.3.28.pubxml" />
-    <None Include="Properties\PublishProfiles\Local.pubxml" />
-    <None Include="Properties\PublishProfiles\TeamCity-DevService.pubxml" />
     <Content Include="Scripts\datetools.js" />
     <Content Include="Scripts\easyloader.js" />
+    <None Include="Properties\PublishProfiles\Default.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
