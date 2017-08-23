@@ -197,7 +197,7 @@ namespace SD.AOP.LogSite.Controllers
 
                 Expression<Func<Menu, bool>> condition =
                     x =>
-                        (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords));
+                        (string.IsNullOrEmpty(keywords) || x.Name.Contains(keywords));
 
                 IEnumerable<Menu> menus = this._dbSession.Set<Menu>().Where(condition).OrderBy(x => x.Sort).ToArray();
                 IEnumerable<MenuView> menuViews = menus.Select(x => x.ToViewModel());
