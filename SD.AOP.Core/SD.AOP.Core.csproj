@@ -75,6 +75,7 @@
     <Compile Include="Configurations\LoggerProviderConfiguration.cs" />
     <Compile Include="Implements\DefaultLogger.cs" />
     <Compile Include="Interfaces\ILoggger.cs" />
+    <Compile Include="Mediators\LogMediator.cs" />
     <Compile Include="Models\Entities\BaseLog.cs" />
     <Compile Include="Models\Entities\ExceptionLog.cs" />
     <Compile Include="Models\ValueObjects\ExceptionMessage.cs" />

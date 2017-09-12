@@ -1,9 +1,8 @@
 ﻿using PostSharp.Aspects;
-using SD.AOP.Core.Interfaces;
+using SD.AOP.Core.Mediators;
 using SD.AOP.Core.Models.Entities;
 using SD.AOP.Core.Toolkits;
 using System;
-using System.Reflection;
 using System.Threading.Tasks;
 using System.Transactions;
 
@@ -48,16 +47,11 @@ namespace SD.AOP.Core.Aspects.ForMethod
         {
             this._runningLog.BuildReturnValueInfo(eventArgs);
 
-            //读取配置文件实例化日志记录提供者
-            Assembly impAssembly = Assembly.Load(LoggerProviderConfiguration.Setting.Assembly);
-            Type implType = impAssembly.GetType(LoggerProviderConfiguration.Setting.Type);
-            ILoggger loggger = (ILoggger)Activator.CreateInstance(implType);
-
             //无需事务
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
             {
                 //持久化
-                Task.Run(() => loggger.Write(this._runningLog));
+                Task.Run(() => LogMediator.Write(this._runningLog));
 
                 scope.Complete();
             }
