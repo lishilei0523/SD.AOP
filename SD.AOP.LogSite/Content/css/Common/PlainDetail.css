@@ -13,6 +13,9 @@
     width: 240px;
     border: 1px solid #0094ff;
     overflow-y: scroll;
+    word-wrap: break-word;
+    white-space: normal;
+    word-break: break-all;
 }
 
 .exText {
