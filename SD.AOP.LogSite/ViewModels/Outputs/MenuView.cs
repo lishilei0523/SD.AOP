@@ -1,5 +1,5 @@
-﻿using SD.AOP.LogSite.ViewModels.Formats.EasyUI;
-using SD.Infrastructure.MVC;
+﻿using SD.FormatModel.EasyUI;
+using SD.Infrastructure.PresentationBase;
 using System.Collections.Generic;
 
 namespace SD.AOP.LogSite.ViewModels.Outputs

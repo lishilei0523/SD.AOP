@@ -1,6 +1,6 @@
 ﻿using SD.AOP.Core.Models.Entities;
 using SD.AOP.LogSite.Repositories;
-using SD.AOP.LogSite.ViewModels.Formats.EasyUI;
+using SD.FormatModel.EasyUI;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;

@@ -1,7 +1,7 @@
 ﻿using SD.AOP.LogSite.Entities;
-using SD.AOP.LogSite.ViewModels.Formats.EasyUI;
 using SD.AOP.LogSite.ViewModels.Outputs;
 using SD.Common.PoweredByLee;
+using SD.FormatModel.EasyUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
