@@ -10,11 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FF4ABE
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.AOP.Core", "SD.AOP.Core\SD.AOP.Core.csproj", "{DBB8D1A5-231C-49C8-9A6A-F2D137D5396F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.AOP.Core", "sources\SD.AOP.Core\SD.AOP.Core.csproj", "{DBB8D1A5-231C-49C8-9A6A-F2D137D5396F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.AOP.Core.Tests", "SD.AOP.Core.Tests\SD.AOP.Core.Tests.csproj", "{57BBBE8C-84EF-4605-8B96-83ABE9FA0AB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.AOP.Core.Tests", "tests\SD.AOP.Core.Tests\SD.AOP.Core.Tests.csproj", "{57BBBE8C-84EF-4605-8B96-83ABE9FA0AB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.AOP.LogSite", "SD.AOP.LogSite\SD.AOP.LogSite.csproj", "{559FB9AF-5323-4C1E-A67C-3700DDFF5CA3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.AOP.LogSite", "sources\SD.AOP.LogSite\SD.AOP.LogSite.csproj", "{559FB9AF-5323-4C1E-A67C-3700DDFF5CA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
