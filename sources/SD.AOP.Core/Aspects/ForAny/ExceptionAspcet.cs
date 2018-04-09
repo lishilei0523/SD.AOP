@@ -53,12 +53,12 @@ namespace SD.AOP.Core.Aspects.ForAny
                 using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
                 {
                     //插入数据库
-                    Guid newId = Task.Run(() => LogMediator.Write(this._exceptionLog)).Result;
+                    Task<Guid> newId = Task.Run(() => LogMediator.Write(this._exceptionLog));
 
                     scope.Complete();
 
                     //初始化异常消息
-                    this._exceptionMessage = new ExceptionMessage(eventArgs.Exception.Message, newId);
+                    this._exceptionMessage = new ExceptionMessage(eventArgs.Exception.Message, newId.Result);
                 }
             }
         }
