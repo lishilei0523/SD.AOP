@@ -3,7 +3,6 @@ using SD.AOP.Core.Mediators;
 using SD.AOP.Core.Models.Entities;
 using SD.AOP.Core.Toolkits;
 using System;
-using System.Threading.Tasks;
 using System.Transactions;
 
 namespace SD.AOP.Core.Aspects.ForMethod
@@ -43,7 +42,7 @@ namespace SD.AOP.Core.Aspects.ForMethod
         /// 执行方法结束事件
         /// </summary>
         /// <param name="eventArgs">方法元数据</param>
-        public override void OnExit(MethodExecutionArgs eventArgs)
+        public override async void OnExit(MethodExecutionArgs eventArgs)
         {
             this._runningLog.BuildReturnValueInfo(eventArgs);
 
@@ -51,7 +50,7 @@ namespace SD.AOP.Core.Aspects.ForMethod
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
             {
                 //持久化
-                Task.Run(() => LogMediator.Write(this._runningLog));
+                await LogMediator.WriteAsync(this._runningLog);
 
                 scope.Complete();
             }
