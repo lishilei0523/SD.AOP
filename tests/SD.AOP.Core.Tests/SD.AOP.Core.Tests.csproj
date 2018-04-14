@@ -76,7 +76,7 @@
     <Compile Include="TestCases\StudentTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\sources\SD.AOP.Core\SD.AOP.Core.csproj">
+    <ProjectReference Include="..\..\src\SD.AOP.Core\SD.AOP.Core.csproj">
       <Project>{dbb8d1a5-231c-49c8-9a6a-f2d137d5396f}</Project>
       <Name>SD.AOP.Core</Name>
     </ProjectReference>
