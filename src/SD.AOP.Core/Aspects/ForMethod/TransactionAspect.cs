@@ -42,10 +42,9 @@ namespace SD.AOP.Core.Aspects.ForMethod
         /// <param name="eventArgs">方法元数据</param>
         public override void OnInvoke(MethodInterceptionArgs eventArgs)
         {
-            TransactionOptions transactionOption = new TransactionOptions { IsolationLevel = IsolationLevel.Snapshot };
             TransactionScopeAsyncFlowOption asyncFlowOption = TransactionScopeAsyncFlowOption.Enabled;
 
-            using (TransactionScope scope = new TransactionScope(this._scopeOption, transactionOption, asyncFlowOption))
+            using (TransactionScope scope = new TransactionScope(this._scopeOption, asyncFlowOption))
             {
                 base.OnInvoke(eventArgs);
                 scope.Complete();
