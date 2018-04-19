@@ -1,6 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SD.AOP.Core.Aspects.ForMethod;
 using SD.AOP.Core.Tests.StubEntities;
 using System;
+using System.Diagnostics;
+using System.Transactions;
 
 namespace SD.AOP.Core.Tests.TestCases
 {
@@ -35,6 +38,16 @@ namespace SD.AOP.Core.Tests.TestCases
         {
             Student student = new Student("Tom", true, 20);
             student.UpdateInfo(Guid.NewGuid(), null, false, 25);
+        }
+
+        /// <summary>
+        /// 事务测试
+        /// </summary>
+        [TestMethod]
+        [TransactionAspect(TransactionScopeOption.RequiresNew)]
+        public void TransactionTest()
+        {
+            Trace.WriteLine("OK");
         }
     }
 }

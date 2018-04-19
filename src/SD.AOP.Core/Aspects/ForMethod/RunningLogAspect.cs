@@ -42,7 +42,7 @@ namespace SD.AOP.Core.Aspects.ForMethod
         /// 执行方法结束事件
         /// </summary>
         /// <param name="eventArgs">方法元数据</param>
-        public override async void OnExit(MethodExecutionArgs eventArgs)
+        public override void OnExit(MethodExecutionArgs eventArgs)
         {
             this._runningLog.BuildReturnValueInfo(eventArgs);
 
@@ -50,7 +50,7 @@ namespace SD.AOP.Core.Aspects.ForMethod
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
             {
                 //持久化
-                await LogMediator.WriteAsync(this._runningLog);
+                LogMediator.WriteAsync(this._runningLog).Wait();
 
                 scope.Complete();
             }
