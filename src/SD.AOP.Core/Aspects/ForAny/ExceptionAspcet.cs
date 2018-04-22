@@ -6,7 +6,6 @@ using SD.AOP.Core.Models.ValueObjects;
 using SD.AOP.Core.Toolkits;
 using System;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Transactions;
 
 namespace SD.AOP.Core.Aspects.ForAny
@@ -40,7 +39,7 @@ namespace SD.AOP.Core.Aspects.ForAny
         /// 异常过滤器
         /// </summary>
         /// <param name="eventArgs">方法元数据</param>
-        public override async void OnException(MethodExecutionArgs eventArgs)
+        public override void OnException(MethodExecutionArgs eventArgs)
         {
             if (!eventArgs.Method.IsDefined(typeof(SkipExceptionAttribute)))
             {
@@ -53,12 +52,12 @@ namespace SD.AOP.Core.Aspects.ForAny
                 using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
                 {
                     //插入数据库
-                    Task<Guid> newId = LogMediator.WriteAsync(this._exceptionLog);
+                    Guid newId = LogMediator.WriteAsync(this._exceptionLog).Result;
 
                     scope.Complete();
 
                     //初始化异常消息
-                    this._exceptionMessage = new ExceptionMessage(eventArgs.Exception.Message, await newId);
+                    this._exceptionMessage = new ExceptionMessage(eventArgs.Exception.Message, newId);
                 }
             }
         }

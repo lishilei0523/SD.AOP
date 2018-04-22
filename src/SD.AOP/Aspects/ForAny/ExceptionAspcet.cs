@@ -5,7 +5,6 @@ using SD.AOP.Models.Entities;
 using SD.AOP.Models.ValueObjects;
 using SD.AOP.Toolkits;
 using System;
-using System.Threading.Tasks;
 using System.Transactions;
 
 namespace SD.AOP.Aspects.ForAny
@@ -69,12 +68,12 @@ namespace SD.AOP.Aspects.ForAny
                 using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
                 {
                     //插入数据库
-                    Task<Guid> newId = LogMediator.WriteAsync(this._exceptionLog);
+                    Guid newId = LogMediator.WriteAsync(this._exceptionLog).Result;
 
                     scope.Complete();
 
                     //初始化异常消息
-                    this._exceptionMessage = new ExceptionMessage(exception.Message, newId.Result);
+                    this._exceptionMessage = new ExceptionMessage(exception.Message, newId);
                 }
             }
         }
