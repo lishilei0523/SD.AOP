@@ -595,15 +595,14 @@
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\Menu\Update.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="packages.config" />
+    <ProjectReference Include="..\SD.AOP.Core\SD.AOP.Core.csproj">
+      <Project>{b0c050dd-6f32-4fac-98d0-e06502927b16}</Project>
+      <Name>SD.AOP.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SD.AOP.PostSharp\SD.AOP.PostSharp.csproj">
-      <Project>{dbb8d1a5-231c-49c8-9a6a-f2d137d5396f}</Project>
-      <Name>SD.AOP.PostSharp</Name>
-    </ProjectReference>
+    <Content Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
