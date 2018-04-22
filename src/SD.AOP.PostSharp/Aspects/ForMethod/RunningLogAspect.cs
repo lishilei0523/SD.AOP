@@ -1,8 +1,9 @@
-﻿using ArxOne.MrAdvice.Advice;
+﻿using PostSharp.Aspects;
 using SD.AOP.Core.Mediators;
 using SD.AOP.Core.Models.Entities;
 using SD.AOP.Core.Toolkits;
 using System;
+using System.Transactions;
 
 namespace SD.AOP.Core.Aspects.ForMethod
 {
@@ -11,7 +12,7 @@ namespace SD.AOP.Core.Aspects.ForMethod
     /// </summary>
     [Serializable]
     [AttributeUsage(AttributeTargets.Constructor | AttributeTargets.Method, AllowMultiple = true)]
-    public class RunningLogAspect : Attribute, IMethodAdvice
+    public class RunningLogAspect : OnMethodBoundaryAspect
     {
         /// <summary>
         /// 程序日志字段
@@ -27,18 +28,23 @@ namespace SD.AOP.Core.Aspects.ForMethod
         }
 
         /// <summary>
-        /// 拦截方法
+        /// 执行方法开始事件
         /// </summary>
-        /// <param name="context">方法元数据</param>
-        public void Advise(MethodAdviceContext context)
+        /// <param name="eventArgs">方法元数据</param>
+        public override void OnEntry(MethodExecutionArgs eventArgs)
         {
-            this._runningLog.BuildRuningInfo(context);
-            this._runningLog.BuildBasicInfo(context);
-            this._runningLog.BuildMethodArgsInfo(context);
+            this._runningLog.BuildRuningInfo(eventArgs);
+            this._runningLog.BuildBasicInfo(eventArgs);
+            this._runningLog.BuildMethodArgsInfo(eventArgs);
+        }
 
-            context.Proceed();
-
-            this._runningLog.BuildReturnValueInfo(context);
+        /// <summary>
+        /// 执行方法结束事件
+        /// </summary>
+        /// <param name="eventArgs">方法元数据</param>
+        public override void OnExit(MethodExecutionArgs eventArgs)
+        {
+            this._runningLog.BuildReturnValueInfo(eventArgs);
 
             //无需事务
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))

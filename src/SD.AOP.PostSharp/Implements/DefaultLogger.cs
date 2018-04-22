@@ -1,6 +1,10 @@
 ﻿using SD.AOP.Core.Interfaces;
 using SD.AOP.Core.Models.Entities;
 using SD.AOP.Core.Toolkits;
+using System;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Text;
 
 namespace SD.AOP.Core.Implements
 {
@@ -26,19 +30,19 @@ namespace SD.AOP.Core.Implements
         /// </summary>
         static DefaultLogger()
         {
-            ConnectionStringSettings connectionStringSetting = ConfigurationManager.ConnectionStrings[DefaultLogger.DefaultConnectionStringName];
+            ConnectionStringSettings connectionStringSetting = ConfigurationManager.ConnectionStrings[DefaultConnectionStringName];
 
             #region # 验证
 
             if (connectionStringSetting == null)
             {
-                throw new NullReferenceException(string.Format("未找到name为\"{0}\"的连接字符串！", DefaultLogger.DefaultConnectionStringName));
+                throw new NullReferenceException(string.Format("未找到name为\"{0}\"的连接字符串！", DefaultConnectionStringName));
             }
 
             #endregion
 
             //初始化SQL工具
-            DefaultLogger._SqlHelper = new SqlHelper(connectionStringSetting.ConnectionString);
+            _SqlHelper = new SqlHelper(connectionStringSetting.ConnectionString);
         }
 
         #endregion
@@ -52,7 +56,7 @@ namespace SD.AOP.Core.Implements
         public Guid Write(ExceptionLog log)
         {
             //初始化日志数据表
-            DefaultLogger.InitTable();
+            InitTable();
 
             //01.构造sql语句
             string sql = "INSERT INTO ExceptionLogs (Id, Namespace, ClassName, MethodName, MethodType, ArgsJson, ExceptionType, ExceptionMessage, ExceptionInfo, InnerException, OccurredTime, IPAddress) OUTPUT inserted.Id VALUES (NEWID(), @Namespace, @ClassName, @MethodName, @MethodType, @ArgsJson, @ExceptionType, @ExceptionMessage, @ExceptionInfo, @InnerException, @OccurredTime, @IPAddress)";
@@ -73,7 +77,7 @@ namespace SD.AOP.Core.Implements
                 };
 
             //03.执行sql
-            Guid newId = (Guid)DefaultLogger._SqlHelper.ExecuteScalar(sql, parameters);
+            Guid newId = (Guid)_SqlHelper.ExecuteScalar(sql, parameters);
             return newId;
         }
         #endregion
@@ -87,7 +91,7 @@ namespace SD.AOP.Core.Implements
         public Guid Write(RunningLog log)
         {
             //初始化日志数据表
-            DefaultLogger.InitTable();
+            InitTable();
 
             //01.构造SQL语句
             string sql = "INSERT INTO RunningLogs (Id, Namespace, ClassName, MethodName, MethodType, ArgsJson, ReturnValue, ReturnValueType, OperatorAccount, StartTime, EndTime, IPAddress) OUTPUT inserted.Id VALUES (NEWID(), @Namespace, @ClassName, @MethodName, @MethodType, @ArgsJson, @ReturnValue, @ReturnValueType, @OperatorAccount, @StartTime, @EndTime, @IPAddress)";
@@ -108,7 +112,7 @@ namespace SD.AOP.Core.Implements
                 };
 
             //03.执行sql
-            Guid newId = (Guid)DefaultLogger._SqlHelper.ExecuteScalar(sql, parameters);
+            Guid newId = (Guid)_SqlHelper.ExecuteScalar(sql, parameters);
             return newId;
         }
         #endregion
@@ -135,7 +139,7 @@ namespace SD.AOP.Core.Implements
             sqlBuilder.Append("END ");
 
             //执行创建表
-            DefaultLogger._SqlHelper.ExecuteNonQuery(sqlBuilder.ToString());
+            _SqlHelper.ExecuteNonQuery(sqlBuilder.ToString());
         }
         #endregion
     }

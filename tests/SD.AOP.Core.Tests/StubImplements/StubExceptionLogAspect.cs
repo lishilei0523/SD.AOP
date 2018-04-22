@@ -1,4 +1,4 @@
-﻿using PostSharp.Aspects;
+﻿using ArxOne.MrAdvice.Advice;
 using SD.AOP.Core.Aspects.ForAny;
 using System;
 
@@ -11,15 +11,20 @@ namespace SD.AOP.Core.Tests.StubImplements
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
     public class StubExceptionLogAspect : ExceptionAspect
     {
-        /// <summary>
-        /// 异常过滤器
-        /// </summary>
-        /// <param name="eventArgs">方法元数据</param>
-        public override void OnException(MethodExecutionArgs eventArgs)
-        {
-            base.OnException(eventArgs);
+        #region Overrides of ExceptionAspect
 
-            throw eventArgs.Exception;
+        /// <summary>
+        /// 发生异常事件
+        /// </summary>
+        /// <param name="context">方法元数据</param>
+        /// <param name="exception">异常实例</param>
+        protected override void OnException(MethodAdviceContext context, Exception exception)
+        {
+            base.OnException(context, exception);
+
+            throw exception;
         }
+
+        #endregion
     }
 }

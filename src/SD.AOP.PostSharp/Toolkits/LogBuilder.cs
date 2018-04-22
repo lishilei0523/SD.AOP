@@ -1,4 +1,4 @@
-﻿using ArxOne.MrAdvice.Advice;
+﻿using PostSharp.Aspects;
 using SD.AOP.Core.Models.Entities;
 using SD.AOP.Core.Models.ValueObjects;
 using System;
@@ -13,32 +13,32 @@ namespace SD.AOP.Core.Toolkits
     /// </summary>
     internal static class LogBuilder
     {
-        #region # 建造基本信息 —— static void BuildBasicInfo(this BaseLog log, MethodAdviceContext context)
+        #region # 建造基本信息 —— static void BuildBasicInfo(this BaseLog log, MethodExecutionArgs eventArgs)
         /// <summary>
         /// 建造基本信息
         /// </summary>
         /// <param name="log">日志</param>
-        /// <param name="context">方法元数据</param>
-        public static void BuildBasicInfo(this BaseLog log, MethodAdviceContext context)
+        /// <param name="eventArgs">方法元数据</param>
+        public static void BuildBasicInfo(this BaseLog log, MethodExecutionArgs eventArgs)
         {
-            log.Namespace = context.TargetMethod.DeclaringType.Namespace;
-            log.ClassName = context.TargetMethod.DeclaringType.Name;
-            log.MethodName = context.TargetMethod.Name;
-            log.MethodType = context.TargetMethod.IsStatic ? "静态" : "实例";
+            log.Namespace = eventArgs.Method.DeclaringType.Namespace;
+            log.ClassName = eventArgs.Method.DeclaringType.Name;
+            log.MethodName = eventArgs.Method.Name;
+            log.MethodType = eventArgs.Method.IsStatic ? "静态" : "实例";
             log.IPAddress = Common.GetLocalIPAddress();
         }
         #endregion
 
-        #region # 建造方法参数信息 —— static void BuildMethodArgsInfo(this BaseLog log, MethodAdviceContext context)
+        #region # 建造方法参数信息 —— static void BuildMethodArgsInfo(this BaseLog log, MethodExecutionArgs eventArgs)
         /// <summary>
         /// 建造方法参数信息
         /// </summary>
         /// <param name="log">日志</param>
-        /// <param name="context">方法元数据</param>
-        public static void BuildMethodArgsInfo(this BaseLog log, MethodAdviceContext context)
+        /// <param name="eventArgs">方法元数据</param>
+        public static void BuildMethodArgsInfo(this BaseLog log, MethodExecutionArgs eventArgs)
         {
-            IList<object> arguments = context.Arguments;
-            ParameterInfo[] parameters = context.TargetMethod.GetParameters();
+            Arguments arguments = eventArgs.Arguments;
+            ParameterInfo[] parameters = eventArgs.Method.GetParameters();
 
             List<MethodArg> argList = new List<MethodArg>();
 
@@ -59,51 +59,58 @@ namespace SD.AOP.Core.Toolkits
         /// 建造异常信息
         /// </summary>
         /// <param name="log">异常日志</param>
-        /// <param name="exception">异常实例</param>
-        public static void BuildExceptionInfo(this ExceptionLog log, Exception exception)
+        /// <param name="eventArgs">方法元数据</param>
+        public static void BuildExceptionInfo(this ExceptionLog log, MethodExecutionArgs eventArgs)
         {
-            log.ExceptionType = exception.GetType().Name;
-            log.ExceptionMessage = exception.Message;
-            log.ExceptionInfo = exception.ToString();
+            log.ExceptionType = eventArgs.Exception.GetType().Name;
+            log.ExceptionMessage = eventArgs.Exception.Message;
+            log.ExceptionInfo = eventArgs.Exception.ToString();
             log.OccurredTime = DateTime.Now;
 
             StringBuilder exceptionBuilder = new StringBuilder();
-            log.InnerException = LogBuilder.BuildInnerException(exceptionBuilder, exception);
+            log.InnerException = BuildInnerException(exceptionBuilder, eventArgs.Exception);
         }
         #endregion
 
-        #region # 建造程序运行信息 —— static void BuildRuningInfo(this RunningLog log, MethodAdviceContext context)
+        #region # 建造程序运行信息 —— static void BuildRuningInfo(this RunningLog log, MethodExecutionArgs eventArgs)
         /// <summary>
         /// 建造程序运行信息
         /// </summary>
         /// <param name="log">程序运行日志</param>
-        /// <param name="context">方法元数据</param>
-        public static void BuildRuningInfo(this RunningLog log, MethodAdviceContext context)
+        /// <param name="eventArgs">方法元数据</param>
+        public static void BuildRuningInfo(this RunningLog log, MethodExecutionArgs eventArgs)
         {
             log.StartTime = DateTime.Now;
             log.OperatorAccount = null;
         }
         #endregion
 
-        #region # 建造返回值信息 —— static void BuildReturnValueInfo(this RunningLog log, MethodAdviceContext context)
+        #region # 建造返回值信息 —— static void BuildReturnValueInfo(this RunningLog log, MethodExecutionArgs eventArgs)
         /// <summary>
         /// 建造返回值信息
         /// </summary>
         /// <param name="log">程序运行日志</param>
-        /// <param name="context">方法元数据</param>
-        public static void BuildReturnValueInfo(this RunningLog log, MethodAdviceContext context)
+        /// <param name="eventArgs">方法元数据</param>
+        public static void BuildReturnValueInfo(this RunningLog log, MethodExecutionArgs eventArgs)
         {
             log.EndTime = DateTime.Now;
 
-            if (!context.HasReturnValue)
+            if (eventArgs.Exception == null)
             {
-                log.ReturnValue = null;
-                log.ReturnValueType = "void";
+                if (eventArgs.ReturnValue == null)
+                {
+                    log.ReturnValue = null;
+                    log.ReturnValueType = "void";
+                }
+                else
+                {
+                    log.ReturnValue = eventArgs.ReturnValue.ToJson();
+                    log.ReturnValueType = string.Format("{0}.{1}", eventArgs.ReturnValue.GetType().Namespace, eventArgs.ReturnValue.GetType().Name);
+                }
             }
             else
             {
-                log.ReturnValue = context.ReturnValue.ToJson();
-                log.ReturnValueType = string.Format("{0}.{1}", context.ReturnValue.GetType().Namespace, context.ReturnValue.GetType().Name);
+                log.ReturnValue = eventArgs.Exception.ToString();
             }
         }
         #endregion
@@ -121,7 +128,7 @@ namespace SD.AOP.Core.Toolkits
             {
                 exBuilder.Append(exception.InnerException);
                 exBuilder.Append(@"\r\n");
-                LogBuilder.BuildInnerException(exBuilder, exception.InnerException);
+                BuildInnerException(exBuilder, exception.InnerException);
             }
             return exBuilder.ToString();
         }

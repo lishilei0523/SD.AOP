@@ -1,4 +1,4 @@
-﻿using ArxOne.MrAdvice.Advice;
+﻿using PostSharp.Aspects;
 using System;
 using System.IO;
 using System.Text;
@@ -11,14 +11,13 @@ namespace SD.AOP.Core.Aspects.ForAny
     /// </summary>
     [Serializable]
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
-    public class WriteFileExceptionAspect : ExceptionAspect
+    public class WriteFileExceptionAspect : OnExceptionAspect
     {
         /// <summary>
-        /// 发生异常事件
+        /// 异常过滤器
         /// </summary>
-        /// <param name="context">方法元数据</param>
-        /// <param name="exception">异常实例</param>
-        protected override void OnException(MethodAdviceContext context, Exception exception)
+        /// <param name="eventArgs">方法元数据</param>
+        public override void OnException(MethodExecutionArgs eventArgs)
         {
             //日志记录到文件中
             string log = $"{AppDomain.CurrentDomain.BaseDirectory}Logs\\Log_{DateTime.Now.Date:yyyyMMdd}.txt";
@@ -27,13 +26,15 @@ namespace SD.AOP.Core.Aspects.ForAny
             {
                 this.WriteFile(log, "=============================发生异常, 详细信息如下==================================="
                                     + Environment.NewLine + "［异常时间］" + DateTime.Now
-                                    + Environment.NewLine + "［异常消息］" + exception.Message
-                                    + Environment.NewLine + "［内部异常］" + exception.InnerException
-                                    + Environment.NewLine + "［应用程序］" + exception.Source
-                                    + Environment.NewLine + "［当前方法］" + exception.TargetSite
-                                    + Environment.NewLine + "［堆栈信息］" + exception.StackTrace
+                                    + Environment.NewLine + "［异常消息］" + eventArgs.Exception.Message
+                                    + Environment.NewLine + "［内部异常］" + eventArgs.Exception.InnerException
+                                    + Environment.NewLine + "［应用程序］" + eventArgs.Exception.Source
+                                    + Environment.NewLine + "［当前方法］" + eventArgs.Exception.TargetSite
+                                    + Environment.NewLine + "［堆栈信息］" + eventArgs.Exception.StackTrace
                                     + Environment.NewLine, true);
             });
+
+            base.OnException(eventArgs);
         }
 
         /// <summary>

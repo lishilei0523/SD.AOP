@@ -1,7 +1,7 @@
 ﻿<configuration>
   <configSections>
     <!--日志记录者配置配置节点-->
-    <section name="loggerProviderConfiguration" type="SD.AOP.Core.LoggerProviderConfiguration, SD.AOP.Core"/>
+    <section name="loggerProviderConfiguration" type="SD.AOP.Core.LoggerProviderConfiguration,SD.AOP.Core"/>
   </configSections>
 
   <!--日志记录者配置配置，默认采用Sql Server记录-->

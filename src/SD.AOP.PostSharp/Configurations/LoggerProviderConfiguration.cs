@@ -1,4 +1,7 @@
-﻿// ReSharper disable once CheckNamespace
+﻿using System;
+using System.Configuration;
+
+// ReSharper disable once CheckNamespace
 namespace SD.AOP.Core
 {
     /// <summary>
@@ -18,11 +21,11 @@ namespace SD.AOP.Core
         /// </summary>
         static LoggerProviderConfiguration()
         {
-            LoggerProviderConfiguration._Setting = (LoggerProviderConfiguration)ConfigurationManager.GetSection("loggerProviderConfiguration");
+            _Setting = (LoggerProviderConfiguration)ConfigurationManager.GetSection("loggerProviderConfiguration");
 
             #region # 非空验证
 
-            if (LoggerProviderConfiguration._Setting == null)
+            if (_Setting == null)
             {
                 throw new ApplicationException("日志记录者节点未配置，请检查程序！");
             }
@@ -38,7 +41,7 @@ namespace SD.AOP.Core
         /// </summary>
         public static LoggerProviderConfiguration Setting
         {
-            get { return LoggerProviderConfiguration._Setting; }
+            get { return _Setting; }
         }
         #endregion
 

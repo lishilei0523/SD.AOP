@@ -1,5 +1,7 @@
-﻿using ArxOne.MrAdvice.Advice;
+﻿using PostSharp.Aspects;
+using PostSharp.Aspects.Configuration;
 using System;
+using System.Transactions;
 
 namespace SD.AOP.Core.Aspects.ForMethod
 {
@@ -8,7 +10,7 @@ namespace SD.AOP.Core.Aspects.ForMethod
     /// </summary>
     [Serializable]
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
-    public sealed class TransactionAspect : Attribute, IMethodAdvice
+    public sealed class TransactionAspect : MethodInterceptionAspect
     {
         /// <summary>
         /// 事务范围选项
@@ -25,16 +27,26 @@ namespace SD.AOP.Core.Aspects.ForMethod
         }
 
         /// <summary>
-        /// 拦截方法
+        /// 重写方面配置
         /// </summary>
-        /// <param name="context">方法元数据</param>
-        public void Advise(MethodAdviceContext context)
+        /// <returns>方面配置</returns>
+        protected override AspectConfiguration CreateAspectConfiguration()
+        {
+            base.AspectPriority = 100;
+            return base.CreateAspectConfiguration();
+        }
+
+        /// <summary>
+        /// 重写当方法被调用时执行事件
+        /// </summary>
+        /// <param name="eventArgs">方法元数据</param>
+        public override void OnInvoke(MethodInterceptionArgs eventArgs)
         {
             TransactionScopeAsyncFlowOption asyncFlowOption = TransactionScopeAsyncFlowOption.Enabled;
 
             using (TransactionScope scope = new TransactionScope(this._scopeOption, asyncFlowOption))
             {
-                context.Proceed();
+                base.OnInvoke(eventArgs);
                 scope.Complete();
             }
         }

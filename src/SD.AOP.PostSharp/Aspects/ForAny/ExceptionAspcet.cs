@@ -1,10 +1,12 @@
-﻿using ArxOne.MrAdvice.Advice;
+﻿using PostSharp.Aspects;
 using SD.AOP.Core.Attributes;
 using SD.AOP.Core.Mediators;
 using SD.AOP.Core.Models.Entities;
 using SD.AOP.Core.Models.ValueObjects;
 using SD.AOP.Core.Toolkits;
 using System;
+using System.Reflection;
+using System.Transactions;
 
 namespace SD.AOP.Core.Aspects.ForAny
 {
@@ -13,7 +15,7 @@ namespace SD.AOP.Core.Aspects.ForAny
     /// </summary>
     [Serializable]
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
-    public abstract class ExceptionAspect : Attribute, IMethodAdvice
+    public abstract class ExceptionAspect : OnExceptionAspect
     {
         /// <summary>
         /// 异常日志字段
@@ -34,34 +36,17 @@ namespace SD.AOP.Core.Aspects.ForAny
         }
 
         /// <summary>
-        /// 拦截方法
+        /// 异常过滤器
         /// </summary>
-        /// <param name="context">方法元数据</param>
-        public void Advise(MethodAdviceContext context)
+        /// <param name="eventArgs">方法元数据</param>
+        public override void OnException(MethodExecutionArgs eventArgs)
         {
-            try
-            {
-                context.Proceed();
-            }
-            catch (Exception exception)
-            {
-                this.OnException(context, exception);
-            }
-        }
-
-        /// <summary>
-        /// 发生异常事件
-        /// </summary>
-        /// <param name="context">方法元数据</param>
-        /// <param name="exception">异常实例</param>
-        protected virtual void OnException(MethodAdviceContext context, Exception exception)
-        {
-            if (!context.TargetMethod.IsDefined(typeof(SkipExceptionAttribute), true))
+            if (!eventArgs.Method.IsDefined(typeof(SkipExceptionAttribute)))
             {
                 //初始化异常日志
-                this._exceptionLog.BuildBasicInfo(context);
-                this._exceptionLog.BuildMethodArgsInfo(context);
-                this._exceptionLog.BuildExceptionInfo(exception);
+                this._exceptionLog.BuildBasicInfo(eventArgs);
+                this._exceptionLog.BuildMethodArgsInfo(eventArgs);
+                this._exceptionLog.BuildExceptionInfo(eventArgs);
 
                 //无需事务
                 using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
@@ -72,7 +57,7 @@ namespace SD.AOP.Core.Aspects.ForAny
                     scope.Complete();
 
                     //初始化异常消息
-                    this._exceptionMessage = new ExceptionMessage(exception.Message, newId);
+                    this._exceptionMessage = new ExceptionMessage(eventArgs.Exception.Message, newId);
                 }
             }
         }
