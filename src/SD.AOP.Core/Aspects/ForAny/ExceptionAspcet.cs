@@ -50,7 +50,7 @@ namespace SD.AOP.Core.Aspects.ForAny
                 this._exceptionLog.BuildExceptionInfo(eventArgs);
 
                 //无需事务
-                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
+                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
                 {
                     //插入数据库
                     Task<Guid> newId = LogMediator.WriteAsync(this._exceptionLog);
