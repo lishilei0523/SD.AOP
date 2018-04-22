@@ -14,10 +14,20 @@ namespace SD.AOP.Core.Tests.TestCases
         /// 创建学生测试 - 测试异常日志
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void CreateStudentTest_TestExceptionLog()
         {
-            Student student = new Student(null, true, 20);
+            for (int i = 0; i < 1000; i++)
+            {
+                try
+                {
+                    Student student = new Student(null, true, 20);
+                    Trace.WriteLine(student);
+                }
+                catch (Exception exception)
+                {
+                    Trace.WriteLine(exception);
+                }
+            }
         }
 
         /// <summary>
@@ -26,18 +36,31 @@ namespace SD.AOP.Core.Tests.TestCases
         [TestMethod]
         public void CreateStudentTest_TestRunningLog()
         {
-            Student student = new Student("Tom", true, 20);
+            for (int i = 0; i < 1000; i++)
+            {
+                Student student = new Student("Tom", true, 20);
+                Trace.WriteLine(student);
+            }
         }
 
         /// <summary>
         /// 修改学生测试 - 测试跳过异常日志
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void UpdateStudentTest_TestSkipException()
         {
-            Student student = new Student("Tom", true, 20);
-            student.UpdateInfo(Guid.NewGuid(), null, false, 25);
+            for (int i = 0; i < 1000; i++)
+            {
+                try
+                {
+                    Student student = new Student("Tom", true, 20);
+                    student.UpdateInfo(Guid.NewGuid(), null, false, 25);
+                }
+                catch (Exception exception)
+                {
+                    Trace.WriteLine(exception);
+                }
+            }
         }
 
         /// <summary>
