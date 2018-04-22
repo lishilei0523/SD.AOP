@@ -1,6 +1,10 @@
 ﻿using SD.AOP.Core.Interfaces;
 using SD.AOP.Core.Models.Entities;
 using SD.AOP.Core.Toolkits;
+using System;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Text;
 
 namespace SD.AOP.Core.Implements
 {

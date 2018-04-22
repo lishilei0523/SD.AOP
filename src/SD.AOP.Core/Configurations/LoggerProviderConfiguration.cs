@@ -1,4 +1,7 @@
-﻿// ReSharper disable once CheckNamespace
+﻿using System;
+using System.Configuration;
+
+// ReSharper disable once CheckNamespace
 namespace SD.AOP.Core
 {
     /// <summary>
