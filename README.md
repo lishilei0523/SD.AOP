@@ -1,12 +1,15 @@
 # AOP组件
 
+## 公告
+	
+	最新v2.0版本用.NET Standard 2.0重写，不再使用PostSharp，改用MrAdvice
+	MrAdvice项目地址 https://github.com/ArxOne/MrAdvice
 
-主要功能：
+#### 主要功能：
 
 	统一异常处理，记录程序运行日志，简化事务处理代码。
 
-
-使用方式：
+#### 使用方式：
 
 	1、新建个空库或使用现有数据库
 
@@ -17,13 +20,9 @@
 	4、查看数据库的RunningLogs表与ExceptionLogs表
 
 
-Ps：
+#### Ps：
 
-	使用前需安装PostSharp-tool-4.1.13.exe，在解决方案根目录下
-
-	依赖NuGet包：PostSharp、Json.NET
-
-	当编译时出现PostSharp提示对话框时，请选择Install
+	依赖NuGet包：MrAdvice、Newtonsoft.Json
 
 	异常过滤特性标签可以打在程序集、类、构造器、方法等任意可以打标签的成员上
 
