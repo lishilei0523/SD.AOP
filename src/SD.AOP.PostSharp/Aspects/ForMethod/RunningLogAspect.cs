@@ -50,7 +50,7 @@ namespace SD.AOP.Core.Aspects.ForMethod
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
             {
                 //持久化
-                LogMediator.WriteAsync(this._runningLog).Wait();
+                LogMediator.Write(this._runningLog);
 
                 scope.Complete();
             }

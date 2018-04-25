@@ -52,7 +52,7 @@ namespace SD.AOP.Core.Aspects.ForAny
                 using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
                 {
                     //插入数据库
-                    Guid newId = LogMediator.WriteAsync(this._exceptionLog).Result;
+                    Guid newId = LogMediator.Write(this._exceptionLog);
 
                     scope.Complete();
 
