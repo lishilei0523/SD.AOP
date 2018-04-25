@@ -1,8 +1,8 @@
 # AOP组件
 
-## 公告
+##### 2018.04 项目近期调整说明
 	
-	最新v2.0版本用.NET Standard 2.0重写，不再使用PostSharp，改用MrAdvice
+	v2.0版本用.NET Standard 2.0重写，不再使用PostSharp，改用MrAdvice
 
 	MrAdvice项目地址 https://github.com/ArxOne/MrAdvice
 
