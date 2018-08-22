@@ -192,3 +192,4 @@ ModelManifest.xml
 *.ide-shm
 *.ide-wal
 /.vs/config/applicationhost.config
+*.dtbcache
