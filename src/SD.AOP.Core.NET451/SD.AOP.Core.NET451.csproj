@@ -102,7 +102,9 @@
     <None Include="..\SD.AOP.Core\Web.config.transform">
       <Link>Web.config.transform</Link>
     </None>
-    <None Include="packages.config" />
+    <None Include="..\SD.AOP.Core.NET461\packages.config">
+      <Link>packages.config</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MrAdvice, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c0e7e6eab6f293d8, processorArchitecture=MSIL">
