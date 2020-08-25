@@ -17,12 +17,13 @@ namespace SD.AOP.LogSite
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             //初始化菜单
-            DbSession dbSession = new DbSession();
-            dbSession.InitMenus();
+            using (DbSession dbSession = new DbSession())
+            {
+                dbSession.InitMenus();
+            }
         }
     }
 }
