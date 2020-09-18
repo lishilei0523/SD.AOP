@@ -87,14 +87,8 @@
     <Compile Include="..\SD.AOP.Core\Models\ValueObjects\MethodArg.cs">
       <Link>Models\ValueObjects\MethodArg.cs</Link>
     </Compile>
-    <Compile Include="..\SD.AOP.Core\Toolkits\Common.cs">
-      <Link>Toolkits\Common.cs</Link>
-    </Compile>
     <Compile Include="..\SD.AOP.Core\Toolkits\LogBuilder.cs">
       <Link>Toolkits\LogBuilder.cs</Link>
-    </Compile>
-    <Compile Include="..\SD.AOP.Core\Toolkits\SqlHelper.cs">
-      <Link>Toolkits\SqlHelper.cs</Link>
     </Compile>
     <None Include="..\SD.AOP.Core\App.config">
       <Link>App.config</Link>
@@ -113,8 +107,11 @@
     <PackageReference Include="MrAdvice">
       <Version>2.8.11</Version>
     </PackageReference>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.3</Version>
+    <PackageReference Include="SD.Common">
+      <Version>3.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="SD.Toolkits.Json">
+      <Version>1.0.0</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

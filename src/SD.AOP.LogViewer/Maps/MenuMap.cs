@@ -1,7 +1,7 @@
 ﻿using SD.AOP.LogViewer.Entities;
 using SD.AOP.LogViewer.ViewModels.Outputs;
-using SD.Common.PoweredByLee;
 using SD.FormatModel.EasyUI;
+using SD.Toolkits.Mapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace SD.AOP.LogViewer.Maps
         /// <returns>菜单视图模型</returns>
         public static MenuView ToViewModel(this Menu menu)
         {
-            MenuView menuView = Transform<Menu, MenuView>.Map(menu);
+            MenuView menuView = menu.Map<Menu, MenuView>();
             menuView.Parent = menu.ParentNode?.ToViewModel();
 
             return menuView;

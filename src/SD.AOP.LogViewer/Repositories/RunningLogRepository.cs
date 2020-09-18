@@ -1,10 +1,10 @@
 ﻿using SD.AOP.Core.Models.Entities;
-using SD.Common.PoweredByLee;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using SD.Common;
 
 namespace SD.AOP.LogViewer.Repositories
 {

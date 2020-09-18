@@ -1,7 +1,7 @@
 ﻿using SD.AOP.Core.Models.Entities;
 using SD.AOP.LogViewer.ViewModels.Outputs;
-using SD.Common.PoweredByLee;
 using SD.Infrastructure.Constants;
+using SD.Toolkits.Mapper;
 
 namespace SD.AOP.LogViewer.Maps
 {

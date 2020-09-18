@@ -1,5 +1,5 @@
 ﻿using SD.AOP.LogViewer.Entities;
-using SD.Common.PoweredByLee;
+using SD.Common;
 using System.Configuration;
 using System.Data.Entity;
 using System.Linq;

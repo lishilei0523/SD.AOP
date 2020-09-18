@@ -24,7 +24,7 @@ namespace SD.AOP.Core.Mediators
         static LogMediator()
         {
             Assembly impAssembly = Assembly.Load(LoggerProviderConfiguration.Setting.Assembly);
-            LogMediator._LoggerImplType = impAssembly.GetType(LoggerProviderConfiguration.Setting.Type);
+            _LoggerImplType = impAssembly.GetType(LoggerProviderConfiguration.Setting.Type);
 
         }
 
@@ -38,7 +38,7 @@ namespace SD.AOP.Core.Mediators
         /// <returns>日志Id</returns>
         public static Guid Write(ExceptionLog log)
         {
-            ILoggger loggger = (ILoggger)Activator.CreateInstance(LogMediator._LoggerImplType);
+            ILoggger loggger = (ILoggger)Activator.CreateInstance(_LoggerImplType);
             Guid logId = loggger.Write(log);
 
             return logId;
@@ -53,7 +53,7 @@ namespace SD.AOP.Core.Mediators
         /// <returns>日志Id</returns>
         public static Guid Write(RunningLog log)
         {
-            ILoggger loggger = (ILoggger)Activator.CreateInstance(LogMediator._LoggerImplType);
+            ILoggger loggger = (ILoggger)Activator.CreateInstance(_LoggerImplType);
             Guid logId = loggger.Write(log);
 
             return logId;
@@ -68,7 +68,7 @@ namespace SD.AOP.Core.Mediators
         /// <returns>日志Id</returns>
         public static async Task<Guid> WriteAsync(ExceptionLog log)
         {
-            ILoggger loggger = (ILoggger)Activator.CreateInstance(LogMediator._LoggerImplType);
+            ILoggger loggger = (ILoggger)Activator.CreateInstance(_LoggerImplType);
             Task<Guid> logId = Task.Run(() => loggger.Write(log));
 
             return await logId;
@@ -83,7 +83,7 @@ namespace SD.AOP.Core.Mediators
         /// <returns>日志Id</returns>
         public static async Task<Guid> WriteAsync(RunningLog log)
         {
-            ILoggger loggger = (ILoggger)Activator.CreateInstance(LogMediator._LoggerImplType);
+            ILoggger loggger = (ILoggger)Activator.CreateInstance(_LoggerImplType);
             Task<Guid> logId = Task.Run(() => loggger.Write(log));
 
             return await logId;

@@ -1,6 +1,8 @@
 ﻿using ArxOne.MrAdvice.Advice;
 using SD.AOP.Core.Models.Entities;
 using SD.AOP.Core.Models.ValueObjects;
+using SD.Common;
+using SD.Toolkits.Json;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -21,11 +23,11 @@ namespace SD.AOP.Core.Toolkits
         /// <param name="context">方法元数据</param>
         public static void BuildBasicInfo(this BaseLog log, MethodAdviceContext context)
         {
-            log.Namespace = context.TargetMethod.DeclaringType.Namespace;
-            log.ClassName = context.TargetMethod.DeclaringType.Name;
+            log.Namespace = context.TargetMethod.DeclaringType?.Namespace;
+            log.ClassName = context.TargetMethod.DeclaringType?.Name;
             log.MethodName = context.TargetMethod.Name;
             log.MethodType = context.TargetMethod.IsStatic ? "静态" : "实例";
-            log.IPAddress = Common.GetLocalIPAddress();
+            log.IPAddress = CommonExtension.GetLocalIPAddress();
         }
         #endregion
 
@@ -44,7 +46,7 @@ namespace SD.AOP.Core.Toolkits
 
             for (int i = 0; arguments != null && i < arguments.Count; i++)
             {
-                string argTypeName = string.Format("{0}.{1}", parameters[i].ParameterType.Namespace, parameters[i].ParameterType.Name);
+                string argTypeName = $"{parameters[i].ParameterType.Namespace}.{parameters[i].ParameterType.Name}";
                 MethodArg arg = new MethodArg(parameters[i].Name, argTypeName, arguments[i].ToJson());
 
                 argList.Add(arg);
@@ -103,7 +105,7 @@ namespace SD.AOP.Core.Toolkits
             else
             {
                 log.ReturnValue = context.ReturnValue.ToJson();
-                log.ReturnValueType = string.Format("{0}.{1}", context.ReturnValue.GetType().Namespace, context.ReturnValue.GetType().Name);
+                log.ReturnValueType = $"{context.ReturnValue.GetType().Namespace}.{context.ReturnValue.GetType().Name}";
             }
         }
         #endregion
