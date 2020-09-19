@@ -136,14 +136,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ExceptionLogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\RunningLogController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Maps\LogMap.cs" />
     <Compile Include="Maps\MenuMap.cs" />
-    <Compile Include="Repositories\DbSession.cs" />
     <Compile Include="Repositories\Common.cs" />
     <Compile Include="ViewModels\Outputs\BaseLogView.cs" />
     <Compile Include="ViewModels\Outputs\ExceptionLogView.cs" />
@@ -172,9 +170,6 @@
     <Content Include="Content\images\tx_btn.jpg" />
     <Content Include="Content\scripts\ExceptionLog\Index.js" />
     <Content Include="Content\scripts\Home\Index.js" />
-    <Content Include="Content\scripts\Menu\Add.js" />
-    <Content Include="Content\scripts\Menu\Index.js" />
-    <Content Include="Content\scripts\Menu\Update.js" />
     <Content Include="Content\scripts\RunningLog\Index.js" />
     <Content Include="Content\themes\black\accordion.css" />
     <Content Include="Content\themes\black\calendar.css" />
@@ -573,9 +568,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\RunningLog\Index.cshtml" />
     <Content Include="Views\RunningLog\Detail.cshtml" />
-    <Content Include="Views\Menu\Add.cshtml" />
-    <Content Include="Views\Menu\Index.cshtml" />
-    <Content Include="Views\Menu\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

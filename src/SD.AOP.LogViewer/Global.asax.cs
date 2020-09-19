@@ -1,5 +1,4 @@
-﻿using SD.AOP.LogViewer.Repositories;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -18,12 +17,6 @@ namespace SD.AOP.LogViewer
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
-            //初始化菜单
-            using (DbSession dbSession = new DbSession())
-            {
-                dbSession.InitMenus();
-            }
         }
     }
 }

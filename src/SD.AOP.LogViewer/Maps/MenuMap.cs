@@ -91,25 +91,6 @@ namespace SD.AOP.LogViewer.Maps
         }
         #endregion
 
-        #region # 菜单EasyUI TreeGrid映射 —— static IEnumerable<MenuView> ToTreeGrid(this...
-        /// <summary>
-        /// 菜单EasyUI TreeGrid映射
-        /// </summary>
-        /// <param name="menus">菜单视图模型集</param>
-        /// <returns>TreeGrid</returns>
-        public static IEnumerable<MenuView> ToTreeGrid(this IEnumerable<MenuView> menus)
-        {
-            IList<MenuView> allMenus = menus == null ? new List<MenuView>() : menus.ToList();
-
-            foreach (MenuView menu in allMenus)
-            {
-                menu.FillChildren(allMenus);
-            }
-
-            return allMenus.Where(x => x.IsRoot);
-        }
-        #endregion
-
 
         //Private
 

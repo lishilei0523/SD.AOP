@@ -5,7 +5,7 @@ var topHelper = {};
 $(function () {
     //初始化用户菜单
     $("#menuTree").tree({
-        url: "/Menu/GetMenuTree",
+        url: "/Home/GetMenuTree",
         animate: true,
         lines: true,
         onClick: function (node) {
@@ -112,7 +112,7 @@ function createTab(title, url, isLeaf) {
             var currTab = $("#tabs").tabs("getSelected");
             $("#tabs").tabs("select", title);
             url = $(currTab.panel("options").content).attr("src");
-            if (url != undefined) {
+            if (url !== undefined) {
                 $("#tabs").tabs("update", {
                     tab: currTab,
                     options: {
@@ -121,7 +121,7 @@ function createTab(title, url, isLeaf) {
                 });
             }
         }
-            //如果选项卡不存在，创建
+        //如果选项卡不存在，创建
         else {
             var content = createFrame(url);
             $("#tabs").tabs("add", {

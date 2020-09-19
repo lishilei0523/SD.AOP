@@ -50,6 +50,7 @@ namespace SD.AOP.LogViewer.Entities
             this.Url = url;
             this.Icon = icon;
             this.ParentNode = parentNode;
+            parentNode?.SubNodes.Add(this);
             this.IsRoot = parentNode == null;
         }
         #endregion
@@ -108,47 +109,6 @@ namespace SD.AOP.LogViewer.Entities
         /// 导航属性 - 子级菜单集
         /// </summary>
         public virtual ICollection<Menu> SubNodes { get; private set; }
-        #endregion
-
-        #endregion
-
-        #region # 方法
-
-        #region 修改菜单信息 —— void UpdateInfo(string menuName, int sort...
-        /// <summary>
-        /// 修改菜单信息
-        /// </summary>
-        /// <param name="menuName">菜单名称</param>
-        /// <param name="sort">菜单排序</param>
-        /// <param name="url">链接地址</param>
-        /// <param name="icon">图标</param>
-        public void UpdateInfo(string menuName, int sort, string url, string icon)
-        {
-            #region # 验证参数
-
-            if (string.IsNullOrWhiteSpace(menuName))
-            {
-                throw new ArgumentNullException(nameof(menuName), "菜单名称不可为空！");
-            }
-
-            #endregion
-
-            base.Name = menuName;
-            this.Sort = sort;
-            this.Url = url;
-            this.Icon = icon;
-        }
-        #endregion
-
-        #region 重写ToString()方法
-        /// <summary>
-        /// 重写ToString()方法
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return this.Name;
-        }
         #endregion
 
         #endregion
