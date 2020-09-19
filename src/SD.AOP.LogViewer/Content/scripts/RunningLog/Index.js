@@ -3,7 +3,6 @@ var $tbGrid = null;
 
 //DOM初始化事件
 $(function () {
-    debugger;
     //加载列表
     searchRunningLogs();
 });
