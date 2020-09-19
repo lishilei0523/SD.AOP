@@ -45,6 +45,9 @@
     <Compile Include="..\SD.AOP.Core\Aspects\ForAny\ExceptionAspcet.cs">
       <Link>Aspects\ForAny\ExceptionAspcet.cs</Link>
     </Compile>
+    <Compile Include="..\SD.AOP.Core\Aspects\ForAny\DefaultExceptionAspect.cs">
+      <Link>Aspects\ForAny\DefaultExceptionAspect.cs</Link>
+    </Compile>
     <Compile Include="..\SD.AOP.Core\Aspects\ForAny\NotThrowExceptionAspect.cs">
       <Link>Aspects\ForAny\NotThrowExceptionAspect.cs</Link>
     </Compile>
