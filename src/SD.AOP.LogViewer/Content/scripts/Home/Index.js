@@ -19,7 +19,7 @@ $(function () {
         height: 500,
         collapsible: false,
         minimizable: false,
-        maximizable: true,
+        maximizable: false,
         modal: true
     }).window("close");
 
