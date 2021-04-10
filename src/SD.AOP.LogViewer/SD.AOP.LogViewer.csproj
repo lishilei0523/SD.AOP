@@ -80,9 +80,6 @@
     <Reference Include="SD.Infrastructure, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.2.2.3\lib\net46\SD.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="SD.Infrastructure.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.MVC.1.0.6\lib\net45\SD.Infrastructure.MVC.dll</HintPath>
-    </Reference>
     <Reference Include="SD.Toolkits.Mapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.Mapper.1.0.0\lib\net461\SD.Toolkits.Mapper.dll</HintPath>
     </Reference>
@@ -125,7 +122,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ExceptionLogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RunningLogController.cs" />

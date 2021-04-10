@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("SD.AOP.LogViewer")]
-[assembly: AssemblyDescription("SD - 日志网站")]
+[assembly: AssemblyDescription("SD.Framework - 日志查看器")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SD")]
 [assembly: AssemblyProduct("SD.AOP.LogViewer")]
-[assembly: AssemblyCopyright("版权所有(C) SD 2020")]
+[assembly: AssemblyCopyright("Copyright © SD 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
