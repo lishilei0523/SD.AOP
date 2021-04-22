@@ -40,6 +40,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SD.AOP.Core\Aspects\ForAny\ExceptionAspcet.cs">
@@ -65,6 +66,9 @@
     </Compile>
     <Compile Include="..\SD.AOP.Core\Configurations\LoggerProviderConfiguration.cs">
       <Link>Configurations\LoggerProviderConfiguration.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.AOP.Core\Configurations\TextElement.cs">
+      <Link>Configurations\TextElement.cs</Link>
     </Compile>
     <Compile Include="..\SD.AOP.Core\Implements\DefaultLogger.cs">
       <Link>Implements\DefaultLogger.cs</Link>

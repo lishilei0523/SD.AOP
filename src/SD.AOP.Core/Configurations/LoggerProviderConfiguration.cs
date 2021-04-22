@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SD.AOP.Core.Configurations;
+using System;
 using System.Configuration;
 
 // ReSharper disable once CheckNamespace
@@ -66,6 +67,18 @@ namespace SD.AOP.Core
         {
             get { return this["assembly"].ToString(); }
             set { this["assembly"] = value; }
+        }
+        #endregion
+
+        #region # 连接字符串节点 —— TextElement ConnectionString
+        /// <summary>
+        /// 连接字符串节点
+        /// </summary>
+        [ConfigurationProperty("connectionString", IsRequired = false)]
+        public TextElement ConnectionString
+        {
+            get { return (TextElement)this["connectionString"]; }
+            set { this["connectionString"] = value; }
         }
         #endregion
     }

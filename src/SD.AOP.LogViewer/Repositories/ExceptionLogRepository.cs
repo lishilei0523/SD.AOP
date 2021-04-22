@@ -197,17 +197,17 @@ namespace SD.AOP.LogViewer.Repositories
         {
             ExceptionLog exceptionLog = new ExceptionLog
             {
-                Id = (Guid)Common.ToNetValue(reader, "Id"),
-                Namespace = (string)Common.ToNetValue(reader, "Namespace"),
-                ClassName = (string)Common.ToNetValue(reader, "ClassName"),
-                MethodName = (string)Common.ToNetValue(reader, "MethodName"),
-                ArgsJson = (string)Common.ToNetValue(reader, "ArgsJson"),
-                ExceptionType = (string)Common.ToNetValue(reader, "ExceptionType"),
-                ExceptionMessage = (string)Common.ToNetValue(reader, "ExceptionMessage"),
-                ExceptionInfo = (string)Common.ToNetValue(reader, "ExceptionInfo"),
-                InnerException = (string)Common.ToNetValue(reader, "InnerException"),
-                OccurredTime = (DateTime)Common.ToNetValue(reader, "OccurredTime"),
-                IPAddress = (string)Common.ToNetValue(reader, "IPAddress")
+                Id = (Guid)Common.ToClsValue(reader, "Id"),
+                Namespace = (string)Common.ToClsValue(reader, "Namespace"),
+                ClassName = (string)Common.ToClsValue(reader, "ClassName"),
+                MethodName = (string)Common.ToClsValue(reader, "MethodName"),
+                ArgsJson = (string)Common.ToClsValue(reader, "ArgsJson"),
+                ExceptionType = (string)Common.ToClsValue(reader, "ExceptionType"),
+                ExceptionMessage = (string)Common.ToClsValue(reader, "ExceptionMessage"),
+                ExceptionInfo = (string)Common.ToClsValue(reader, "ExceptionInfo"),
+                InnerException = (string)Common.ToClsValue(reader, "InnerException"),
+                OccurredTime = (DateTime)Common.ToClsValue(reader, "OccurredTime"),
+                IPAddress = (string)Common.ToClsValue(reader, "IPAddress")
             };
             return exceptionLog;
         }

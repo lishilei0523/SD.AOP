@@ -2,7 +2,6 @@
 using SD.AOP.Core.Models.Entities;
 using SD.Common;
 using System;
-using System.Configuration;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -16,11 +15,6 @@ namespace SD.AOP.Core.Implements
         #region # 常量、字段及构造器
 
         /// <summary>
-        /// 日志数据库连接字符串名称
-        /// </summary>
-        private const string DefaultConnectionStringName = "LogConnection";
-
-        /// <summary>
         /// SQL工具
         /// </summary>
         private static readonly SqlHelper _SqlHelper;
@@ -30,19 +24,19 @@ namespace SD.AOP.Core.Implements
         /// </summary>
         static DefaultLogger()
         {
-            ConnectionStringSettings connectionStringSetting = ConfigurationManager.ConnectionStrings[DefaultConnectionStringName];
+            string connectionString = LoggerProviderConfiguration.Setting.ConnectionString.Value;
 
             #region # 验证
 
-            if (connectionStringSetting == null)
+            if (string.IsNullOrWhiteSpace(connectionString))
             {
-                throw new NullReferenceException($"未找到name为\"{DefaultConnectionStringName}\"的连接字符串！");
+                throw new NullReferenceException($"连接字符串未配置！");
             }
 
             #endregion
 
             //初始化SQL工具
-            _SqlHelper = new SqlHelper(connectionStringSetting.ConnectionString);
+            _SqlHelper = new SqlHelper(connectionString);
         }
 
         #endregion

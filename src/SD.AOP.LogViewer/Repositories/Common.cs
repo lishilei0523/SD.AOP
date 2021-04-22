@@ -8,7 +8,7 @@ namespace SD.AOP.LogViewer.Repositories
     /// <summary>
     /// 工具
     /// </summary>
-    public static class Common
+    internal static class Common
     {
         #region # 日志数据库连接字符串名称常量 —— string DefaultConnectionStringName
         /// <summary>
@@ -17,21 +17,19 @@ namespace SD.AOP.LogViewer.Repositories
         public const string DefaultConnectionStringName = "LogConnection";
         #endregion
 
-        #region # 数据库值转C#值空值处理 —— static object ToNetValue(IDataReader reader...
+        #region # 数据库值转CLS值 —— static object ToClsValue(IDataReader reader...
         /// <summary>
-        /// 数据库值转C#值空值处理
+        /// 数据库值转CLS值
         /// </summary>
         /// <param name="reader">IDataReader对象</param>
         /// <param name="columnName">列名</param>
-        /// <returns>C#值</returns>
-        public static object ToNetValue(IDataReader reader, string columnName)
+        /// <returns>CLS值</returns>
+        public static object ToClsValue(IDataReader reader, string columnName)
         {
             if (reader.IsDBNull(reader.GetOrdinal(columnName)))
             {
                 return null;
             }
-
-
             return reader[columnName];
         }
 

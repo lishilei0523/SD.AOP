@@ -197,18 +197,18 @@ namespace SD.AOP.LogViewer.Repositories
         {
             RunningLog runningLog = new RunningLog
             {
-                Id = (Guid)Common.ToNetValue(reader, "Id"),
-                Namespace = (string)Common.ToNetValue(reader, "Namespace"),
-                ClassName = (string)Common.ToNetValue(reader, "ClassName"),
-                MethodName = (string)Common.ToNetValue(reader, "MethodName"),
-                MethodType = (string)Common.ToNetValue(reader, "MethodType"),
-                ArgsJson = (string)Common.ToNetValue(reader, "ArgsJson"),
-                ReturnValue = (string)Common.ToNetValue(reader, "ReturnValue"),
-                ReturnValueType = (string)Common.ToNetValue(reader, "ReturnValueType"),
-                OperatorAccount = (string)Common.ToNetValue(reader, "OperatorAccount"),
-                StartTime = (DateTime)Common.ToNetValue(reader, "StartTime"),
-                EndTime = (DateTime)Common.ToNetValue(reader, "EndTime"),
-                IPAddress = (string)Common.ToNetValue(reader, "IPAddress")
+                Id = (Guid)Common.ToClsValue(reader, "Id"),
+                Namespace = (string)Common.ToClsValue(reader, "Namespace"),
+                ClassName = (string)Common.ToClsValue(reader, "ClassName"),
+                MethodName = (string)Common.ToClsValue(reader, "MethodName"),
+                MethodType = (string)Common.ToClsValue(reader, "MethodType"),
+                ArgsJson = (string)Common.ToClsValue(reader, "ArgsJson"),
+                ReturnValue = (string)Common.ToClsValue(reader, "ReturnValue"),
+                ReturnValueType = (string)Common.ToClsValue(reader, "ReturnValueType"),
+                OperatorAccount = (string)Common.ToClsValue(reader, "OperatorAccount"),
+                StartTime = (DateTime)Common.ToClsValue(reader, "StartTime"),
+                EndTime = (DateTime)Common.ToClsValue(reader, "EndTime"),
+                IPAddress = (string)Common.ToClsValue(reader, "IPAddress")
             };
             return runningLog;
         }
