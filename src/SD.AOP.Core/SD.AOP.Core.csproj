@@ -15,9 +15,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\netstandard2.0\SD.AOP.Core.xml</DocumentationFile>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.7.0" />
     <PackageReference Include="MrAdvice" Version="2.8.11" />
     <PackageReference Include="SD.Common" Version="3.0.3" />
     <PackageReference Include="SD.Toolkits.Json" Version="1.0.1" />
