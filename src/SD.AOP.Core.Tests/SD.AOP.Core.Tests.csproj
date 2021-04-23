@@ -47,6 +47,7 @@
     <Compile Include="StubImplements\StubExceptionLogAspect.cs" />
     <Compile Include="TestCases\StudentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestCases\ConfigurationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

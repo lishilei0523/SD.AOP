@@ -5,7 +5,8 @@ using System;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace SD.AOP.Core.Implements
+// ReSharper disable once CheckNamespace
+namespace SD.AOP.Core
 {
     /// <summary>
     /// 日志记录者默认实现
@@ -24,7 +25,7 @@ namespace SD.AOP.Core.Implements
         /// </summary>
         static DefaultLogger()
         {
-            string connectionString = LoggerProviderConfiguration.Setting.ConnectionString.Value;
+            string connectionString = AopSection.Setting.ConnectionString.Value;
 
             #region # 验证
 

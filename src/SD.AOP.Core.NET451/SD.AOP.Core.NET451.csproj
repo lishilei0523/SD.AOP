@@ -60,11 +60,14 @@
     <Compile Include="..\SD.AOP.Core\Attributes\SkipExceptionAttribute.cs">
       <Link>Attributes\SkipExceptionAttribute.cs</Link>
     </Compile>
-    <Compile Include="..\SD.AOP.Core\Configurations\LoggerProviderConfiguration.cs">
-      <Link>Configurations\LoggerProviderConfiguration.cs</Link>
+    <Compile Include="..\SD.AOP.Core\Configurations\AopSection.cs">
+      <Link>Configurations\AopSection.cs</Link>
     </Compile>
-    <Compile Include="..\SD.AOP.Core\Configurations\TextElement.cs">
-      <Link>Configurations\TextElement.cs</Link>
+    <Compile Include="..\SD.AOP.Core\Configurations\ConnectionStringElement.cs">
+      <Link>Configurations\ConnectionStringElement.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.AOP.Core\Configurations\LoggerProviderElement.cs">
+      <Link>Configurations\LoggerProviderElement.cs</Link>
     </Compile>
     <Compile Include="..\SD.AOP.Core\Implements\DefaultLogger.cs">
       <Link>Implements\DefaultLogger.cs</Link>

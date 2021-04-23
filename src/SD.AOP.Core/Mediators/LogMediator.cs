@@ -23,8 +23,8 @@ namespace SD.AOP.Core.Mediators
         /// </summary>
         static LogMediator()
         {
-            Assembly impAssembly = Assembly.Load(LoggerProviderConfiguration.Setting.Assembly);
-            _LoggerImplType = impAssembly.GetType(LoggerProviderConfiguration.Setting.Type);
+            Assembly impAssembly = Assembly.Load(AopSection.Setting.LoggerProvider.Assembly);
+            _LoggerImplType = impAssembly.GetType(AopSection.Setting.LoggerProvider.Type);
 
         }
 
