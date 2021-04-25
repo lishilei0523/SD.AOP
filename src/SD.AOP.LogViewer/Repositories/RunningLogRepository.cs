@@ -1,10 +1,10 @@
 ﻿using SD.AOP.Core.Models.Entities;
+using SD.Common;
+using SD.Infrastructure.Constants;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
-using SD.Common;
 
 namespace SD.AOP.LogViewer.Repositories
 {
@@ -25,10 +25,8 @@ namespace SD.AOP.LogViewer.Repositories
         /// </summary>
         static RunningLogRepository()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings[Common.DefaultConnectionStringName].ConnectionString;
-
             //初始化SQL工具
-            _SqlHelper = new SqlHelper(connectionString);
+            _SqlHelper = new SqlHelper(GlobalSetting.DefaultConnectionString);
         }
 
         #endregion

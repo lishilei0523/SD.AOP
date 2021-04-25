@@ -1,6 +1,6 @@
 ﻿using SD.AOP.LogViewer.Entities;
 using SD.AOP.LogViewer.ViewModels.Outputs;
-using SD.FormatModel.EasyUI;
+using SD.Toolkits.EasyUI;
 using SD.Toolkits.Mapper;
 using System;
 using System.Collections.Generic;

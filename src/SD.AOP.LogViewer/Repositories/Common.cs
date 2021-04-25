@@ -10,13 +10,6 @@ namespace SD.AOP.LogViewer.Repositories
     /// </summary>
     internal static class Common
     {
-        #region # 日志数据库连接字符串名称常量 —— string DefaultConnectionStringName
-        /// <summary>
-        /// 日志数据库连接字符串名称
-        /// </summary>
-        public const string DefaultConnectionStringName = "LogConnection";
-        #endregion
-
         #region # 数据库值转CLS值 —— static object ToClsValue(IDataReader reader...
         /// <summary>
         /// 数据库值转CLS值

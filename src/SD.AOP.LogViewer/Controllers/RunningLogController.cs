@@ -2,7 +2,7 @@
 using SD.AOP.LogViewer.Maps;
 using SD.AOP.LogViewer.Repositories;
 using SD.AOP.LogViewer.ViewModels.Outputs;
-using SD.FormatModel.EasyUI;
+using SD.Toolkits.EasyUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;

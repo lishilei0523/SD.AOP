@@ -1,5 +1,5 @@
-﻿using SD.FormatModel.EasyUI;
-using SD.Infrastructure.PresentationBase;
+﻿using SD.Infrastructure.PresentationBase;
+using SD.Toolkits.EasyUI;
 using System.Collections.Generic;
 
 namespace SD.AOP.LogViewer.ViewModels.Outputs

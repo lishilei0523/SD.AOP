@@ -1,10 +1,10 @@
 ﻿using SD.AOP.LogViewer.Entities;
 using SD.AOP.LogViewer.Maps;
 using SD.AOP.LogViewer.ViewModels.Outputs;
-using SD.FormatModel.EasyUI;
+using SD.Infrastructure;
 using SD.Infrastructure.Attributes;
+using SD.Toolkits.EasyUI;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -23,8 +23,8 @@ namespace SD.AOP.LogViewer.Controllers
         [HttpGet]
         public ViewResult Index()
         {
-            this.ViewBag.WebName = ConfigurationManager.AppSettings["WebName"];
-            this.ViewBag.TechSupport = ConfigurationManager.AppSettings["TechSupport"];
+            this.ViewBag.WebName = FrameworkSection.Setting.ServiceName.Value;
+            this.ViewBag.TechSupport = FrameworkSection.Setting.ServiceDisplayName.Value;
 
             return base.View();
         }
@@ -40,7 +40,7 @@ namespace SD.AOP.LogViewer.Controllers
         {
             //初始化菜单
             IList<Menu> menus = new List<Menu>();
-            string rootMenuName = $"{ConfigurationManager.AppSettings["WebName"]}日志管理后台";
+            string rootMenuName = $"{FrameworkSection.Setting.ServiceName.Value}日志管理后台";
             Menu rootMenu = new Menu(rootMenuName, int.MinValue, null, null, null);
             Menu exceptionLogMenu = new Menu("异常日志管理", 1, "/ExceptionLog/Index", null, rootMenu);
             Menu runningLogMenu = new Menu("程序日志管理", 2, "/RunningLog/Index", null, rootMenu);
