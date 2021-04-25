@@ -2,6 +2,7 @@
 using SD.AOP.Core.Models.Entities;
 using SD.Common;
 using System;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -25,13 +26,21 @@ namespace SD.AOP.Core
         /// </summary>
         static DefaultLogger()
         {
-            string connectionString = AopSection.Setting.ConnectionString.Value;
+            string connectionString = null;
 
             #region # 验证
 
+            if (!string.IsNullOrWhiteSpace(AopSection.Setting.ConnectionString.Name))
+            {
+                connectionString = ConfigurationManager.ConnectionStrings[AopSection.Setting.ConnectionString.Name]?.ConnectionString;
+            }
             if (string.IsNullOrWhiteSpace(connectionString))
             {
-                throw new NullReferenceException($"连接字符串未配置！");
+                connectionString = AopSection.Setting.ConnectionString.Value;
+            }
+            if (string.IsNullOrWhiteSpace(connectionString))
+            {
+                throw new NullReferenceException("连接字符串未配置！");
             }
 
             #endregion

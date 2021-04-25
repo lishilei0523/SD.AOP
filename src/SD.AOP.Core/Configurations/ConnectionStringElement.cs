@@ -23,7 +23,7 @@ namespace SD.AOP.Core.Configurations
         /// <summary>
         /// 值
         /// </summary>
-        [ConfigurationProperty("value", IsRequired = true)]
+        [ConfigurationProperty("value", IsRequired = false)]
         public string Value
         {
             get { return this["value"].ToString(); }
