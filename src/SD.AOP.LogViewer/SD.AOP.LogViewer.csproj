@@ -559,9 +559,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SD.AOP.Core.NET461\SD.AOP.Core.NET461.csproj">
-      <Project>{dfd2e9e8-27cf-4e41-bc67-dfcd457d3cf3}</Project>
-      <Name>SD.AOP.Core.NET461</Name>
+    <ProjectReference Include="..\SD.AOP.Core\SD.AOP.Core.csproj">
+      <Project>{b0c050dd-6f32-4fac-98d0-e06502927b16}</Project>
+      <Name>SD.AOP.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

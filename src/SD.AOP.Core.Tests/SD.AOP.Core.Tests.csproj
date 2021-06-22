@@ -55,12 +55,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SD.AOP.Core.NET461\SD.AOP.Core.NET461.csproj">
-      <Project>{dfd2e9e8-27cf-4e41-bc67-dfcd457d3cf3}</Project>
-      <Name>SD.AOP.Core.NET461</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="MrAdvice">
       <Version>2.8.11</Version>
     </PackageReference>
@@ -70,6 +64,12 @@
     <PackageReference Include="MSTest.TestFramework">
       <Version>2.2.3</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SD.AOP.Core\SD.AOP.Core.csproj">
+      <Project>{b0c050dd-6f32-4fac-98d0-e06502927b16}</Project>
+      <Name>SD.AOP.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
