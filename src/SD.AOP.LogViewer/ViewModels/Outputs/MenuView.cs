@@ -7,7 +7,7 @@ namespace SD.AOP.LogViewer.ViewModels.Outputs
     /// <summary>
     /// 菜单视图模型
     /// </summary>
-    public class MenuView : ViewModel, ITreeGrid<MenuView>
+    public class MenuView : ModelBase, ITreeGrid<MenuView>
     {
         #region 构造器
         /// <summary>
