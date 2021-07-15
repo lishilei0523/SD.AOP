@@ -1,30 +1,32 @@
-﻿using SD.AOP.Core.Interfaces;
+﻿using SD.AOP.Core;
+using SD.AOP.Core.Interfaces;
 using SD.AOP.Core.Models.Entities;
-using SD.Common;
+using SD.AOP.Core.Toolkits;
+using SD.AOP.Logger.SqlServer.Implements;
 using System;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Text;
 
 // ReSharper disable once CheckNamespace
-namespace SD.AOP.Core
+namespace SD.AOP
 {
     /// <summary>
-    /// 日志记录者默认实现
+    /// SQL Server日志记录者实现
     /// </summary>
-    public class DefaultLogger : ILoggger
+    public class SqlServerLogger : ILoggger
     {
         #region # 常量、字段及构造器
 
         /// <summary>
         /// SQL工具
         /// </summary>
-        private static readonly SqlHelper _SqlHelper;
+        private static readonly SqlServerHelper _SqlHelper;
 
         /// <summary>
         /// 静态构造器
         /// </summary>
-        static DefaultLogger()
+        static SqlServerLogger()
         {
             string connectionString = null;
 
@@ -46,7 +48,7 @@ namespace SD.AOP.Core
             #endregion
 
             //初始化SQL工具
-            _SqlHelper = new SqlHelper(connectionString);
+            _SqlHelper = new SqlServerHelper(connectionString);
         }
 
         #endregion

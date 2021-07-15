@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-namespace SD.AOP.LogViewer.Repositories
+namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
 {
     /// <summary>
     /// 工具

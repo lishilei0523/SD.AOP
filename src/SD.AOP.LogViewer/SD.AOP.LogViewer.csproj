@@ -74,11 +74,12 @@
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
     <PackageReference Include="jQuery" Version="1.12.4" />
     <PackageReference Include="EasyUI" Version="1.4.5" />
-    <PackageReference Include="SD.Common" Version="3.0.3" />
     <PackageReference Include="SD.Toolkits.Mapper" Version="1.0.0" />
     <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.3" />
     <PackageReference Include="SD.Toolkits.EasyUI" Version="1.0.1" />
     <PackageReference Include="SD.Toolkits.JavaScript" Version="1.0.0" />
+    <PackageReference Include="SD.IOC.Core" Version="2.0.7" />
+    <PackageReference Include="SD.IOC.Integration.AspNetMvc" Version="1.0.0"/>
     <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
   </ItemGroup>
   <ItemGroup>
@@ -90,13 +91,10 @@
     </Compile>
     <Compile Include="Maps\LogMap.cs" />
     <Compile Include="Maps\MenuMap.cs" />
-    <Compile Include="Repositories\Common.cs" />
     <Compile Include="ViewModels\Outputs\BaseLogView.cs" />
     <Compile Include="ViewModels\Outputs\ExceptionLogView.cs" />
     <Compile Include="ViewModels\Outputs\MenuView.cs" />
-    <Compile Include="Repositories\ExceptionLogRepository.cs" />
     <Compile Include="Entities\Menu.cs" />
-    <Compile Include="Repositories\RunningLogRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Outputs\RunningLogView.cs" />
   </ItemGroup>
@@ -521,6 +519,18 @@
     <ProjectReference Include="..\SD.AOP.Core\SD.AOP.Core.csproj">
       <Project>{b0c050dd-6f32-4fac-98d0-e06502927b16}</Project>
       <Name>SD.AOP.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SD.AOP.LogViewer.Repository.MySql\SD.AOP.LogViewer.Repository.MySql.csproj">
+      <Project>{e99e999d-2d14-4f2d-ba64-521a2b16a278}</Project>
+      <Name>SD.AOP.LogViewer.Repository.MySql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SD.AOP.LogViewer.Repository.SqlServer\SD.AOP.LogViewer.Repository.SqlServer.csproj">
+      <Project>{e7217601-8e8c-44d9-9694-2c3bf788397b}</Project>
+      <Name>SD.AOP.LogViewer.Repository.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SD.AOP.LogViewer.Repository\SD.AOP.LogViewer.Repository.csproj">
+      <Project>{0cfd9e51-a92e-401a-9443-59affdb0333d}</Project>
+      <Name>SD.AOP.LogViewer.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

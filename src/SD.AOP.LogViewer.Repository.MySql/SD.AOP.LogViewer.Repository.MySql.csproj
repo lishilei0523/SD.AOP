@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.25" />
+    <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SD.AOP.Core\SD.AOP.Core.csproj" />
+    <ProjectReference Include="..\SD.AOP.LogViewer.Repository\SD.AOP.LogViewer.Repository.csproj" />
+  </ItemGroup>
+</Project>

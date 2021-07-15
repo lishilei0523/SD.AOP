@@ -1,10 +1,12 @@
 ﻿using ArxOne.MrAdvice.Advice;
 using SD.AOP.Core.Models.Entities;
 using SD.AOP.Core.Models.ValueObjects;
-using SD.Common;
 using SD.Toolkits.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
 
@@ -27,7 +29,7 @@ namespace SD.AOP.Core.Toolkits
             log.ClassName = context.TargetMethod.DeclaringType?.Name;
             log.MethodName = context.TargetMethod.Name;
             log.MethodType = context.TargetMethod.IsStatic ? "静态" : "实例";
-            log.IPAddress = CommonExtension.GetLocalIPAddress();
+            log.IPAddress = GetLocalIPAddress();
         }
         #endregion
 
@@ -126,6 +128,34 @@ namespace SD.AOP.Core.Toolkits
                 LogBuilder.BuildInnerException(exBuilder, exception.InnerException);
             }
             return exBuilder.ToString();
+        }
+        #endregion
+
+        #region # 获取本机IP地址列表 —— static string GetLocalIPAddress()
+        /// <summary>
+        /// 获取本机IP地址列表
+        /// </summary>
+        /// <returns>本机IP地址列表</returns>
+        /// <remarks>以“,”分隔</remarks>
+        private static string GetLocalIPAddress()
+        {
+            ICollection<string> ips = new HashSet<string>();
+
+            string hostName = Dns.GetHostName();//本机名   
+            ips.Add(hostName);
+
+            IPAddress[] ipAddresses = Dns.GetHostAddresses(hostName);//会返回所有地址，包括IPv4和IPv6
+            foreach (IPAddress ipAddress in ipAddresses)
+            {
+                if (ipAddress.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    ips.Add(ipAddress.ToString());
+                }
+            }
+
+            string ipsStr = ips.Aggregate((x, y) => $"{x},{y}");
+
+            return ipsStr;
         }
         #endregion
     }

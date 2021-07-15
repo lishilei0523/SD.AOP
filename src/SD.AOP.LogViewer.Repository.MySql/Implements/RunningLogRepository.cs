@@ -1,24 +1,24 @@
-﻿using SD.AOP.Core.Models.Entities;
-using SD.Common;
+﻿using MySql.Data.MySqlClient;
+using SD.AOP.Core.Models.Entities;
+using SD.AOP.LogViewer.Repository.Interfaces;
 using SD.Infrastructure.Constants;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 
-namespace SD.AOP.LogViewer.Repositories
+namespace SD.AOP.LogViewer.Repository.MySql.Implements
 {
     /// <summary>
     /// 程序日志仓储接口
     /// </summary>
-    public class RunningLogRepository
+    public class RunningLogRepository : IRunningLogRepository
     {
         #region # 字段及构造器
 
         /// <summary>
         /// SQL工具
         /// </summary>
-        private static readonly SqlHelper _SqlHelper;
+        private static readonly MySqlHelper _MySqlHelper;
 
         /// <summary>
         /// 静态构造器
@@ -26,7 +26,7 @@ namespace SD.AOP.LogViewer.Repositories
         static RunningLogRepository()
         {
             //初始化SQL工具
-            _SqlHelper = new SqlHelper(GlobalSetting.DefaultConnectionString);
+            _MySqlHelper = new MySqlHelper(GlobalSetting.DefaultConnectionString);
         }
 
         #endregion
@@ -55,9 +55,9 @@ namespace SD.AOP.LogViewer.Repositories
             string idsStr = Common.GetIdsString(specIds);
 
             string sql = "DELETE FROM RunningLogs WHERE Id IN (@Id)";
-            SqlParameter arg = new SqlParameter("@Id", idsStr);
+            MySqlParameter arg = new MySqlParameter("@Id", idsStr);
 
-            _SqlHelper.ExecuteNonQuery(sql, arg);
+            _MySqlHelper.ExecuteNonQuery(sql, arg);
         }
         #endregion
 
@@ -71,7 +71,7 @@ namespace SD.AOP.LogViewer.Repositories
         {
             string sql = "SELECT * FROM RunningLogs WHERE Id = @Id";
 
-            using (SqlDataReader reader = _SqlHelper.ExecuteReader(sql, new SqlParameter("@Id", id)))
+            using (MySqlDataReader reader = _MySqlHelper.ExecuteReader(sql, new MySqlParameter("@Id", id)))
             {
                 if (reader.Read())
                 {
@@ -105,11 +105,7 @@ namespace SD.AOP.LogViewer.Repositories
             pageIndex = pageIndex < 1 ? 1 : pageIndex;
             pageIndex = pageIndex >= pageCount ? pageCount : pageIndex;
 
-            //计算起始行与终止行
-            int start = (pageIndex - 1) * pageSize + 1;
-            int end = pageIndex * pageSize;
-
-            string sql = "SELECT *, ROW_NUMBER() OVER(ORDER BY StartTime DESC) AS RowIndex  FROM dbo.RunningLogs WHERE 0 = 0";
+            string sql = "SELECT * FROM RunningLogs WHERE 0 = 0";
 
             #region # 条件过滤
 
@@ -129,16 +125,9 @@ namespace SD.AOP.LogViewer.Repositories
             #endregion
 
             //分页处理
-            sql = $"SELECT * FROM ({sql}) AS T WHERE T.RowIndex >= @Start AND T.RowIndex <= @End";
-
-            SqlParameter[] args = {
-                new SqlParameter("@Start", start),
-                new SqlParameter("@End", end)
-            };
-
+            sql = $"{sql} ORDER BY StartTime DESC LIMIT {(pageIndex - 1) * pageSize}, {pageSize}";
             ICollection<RunningLog> runningLogs = new HashSet<RunningLog>();
-
-            using (SqlDataReader reader = _SqlHelper.ExecuteReader(sql, args))
+            using (MySqlDataReader reader = _MySqlHelper.ExecuteReader(sql))
             {
                 while (reader.Read())
                 {
@@ -159,7 +148,7 @@ namespace SD.AOP.LogViewer.Repositories
         /// <returns>运行日志记录条数</returns>
         public int Count(Guid? logId, DateTime? startTime, DateTime? endTime)
         {
-            string sql = "SELECT COUNT(*) FROM dbo.RunningLogs WHERE 0 = 0";
+            string sql = "SELECT COUNT(*) FROM RunningLogs WHERE 0 = 0";
 
             #region # 条件过滤
 
@@ -178,20 +167,22 @@ namespace SD.AOP.LogViewer.Repositories
 
             #endregion
 
-            return (int)_SqlHelper.ExecuteScalar(sql);
+            object result = _MySqlHelper.ExecuteScalar(sql);
+            int count = Convert.ToInt32(result);
+            return count;
         }
         #endregion
 
 
         //Private
 
-        #region # 根据DataReader获取运行日志 —— RunningLog GetEntity(SqlDataReader reader)
+        #region # 根据DataReader获取运行日志 —— RunningLog GetEntity(MySqlDataReader reader)
         /// <summary>
         /// 根据DataReader获取实体
         /// </summary>
         /// <param name="reader">DataReader</param>
         /// <returns>运行日志</returns>
-        private RunningLog GetEntity(SqlDataReader reader)
+        private RunningLog GetEntity(MySqlDataReader reader)
         {
             RunningLog runningLog = new RunningLog
             {

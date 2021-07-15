@@ -1,24 +1,24 @@
 ﻿using SD.AOP.Core.Models.Entities;
-using SD.Common;
+using SD.AOP.LogViewer.Repository.Interfaces;
 using SD.Infrastructure.Constants;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 
-namespace SD.AOP.LogViewer.Repositories
+namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
 {
     /// <summary>
     /// 异常日志仓储接口
     /// </summary>
-    public class ExceptionLogRepository
+    public class ExceptionLogRepository : IExceptionLogRepository
     {
         #region # 字段及构造器
 
         /// <summary>
         /// SQL工具
         /// </summary>
-        private static readonly SqlHelper _SqlHelper;
+        private static readonly SqlServerHelper _SqlHelper;
 
         /// <summary>
         /// 静态构造器
@@ -26,7 +26,7 @@ namespace SD.AOP.LogViewer.Repositories
         static ExceptionLogRepository()
         {
             //初始化SQL工具
-            _SqlHelper = new SqlHelper(GlobalSetting.DefaultConnectionString);
+            _SqlHelper = new SqlServerHelper(GlobalSetting.DefaultConnectionString);
         }
 
         #endregion
@@ -109,7 +109,7 @@ namespace SD.AOP.LogViewer.Repositories
             int start = (pageIndex - 1) * pageSize + 1;
             int end = pageIndex * pageSize;
 
-            string sql = "SELECT *, ROW_NUMBER() OVER(ORDER BY OccurredTime DESC) AS RowIndex  FROM dbo.ExceptionLogs WHERE 0 = 0";
+            string sql = "SELECT *, ROW_NUMBER() OVER(ORDER BY OccurredTime DESC) AS RowIndex FROM dbo.ExceptionLogs WHERE 0 = 0";
 
             #region # 条件过滤
 

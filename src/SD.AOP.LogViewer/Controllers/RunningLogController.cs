@@ -1,6 +1,6 @@
 ﻿using SD.AOP.Core.Models.Entities;
 using SD.AOP.LogViewer.Maps;
-using SD.AOP.LogViewer.Repositories;
+using SD.AOP.LogViewer.Repository.Interfaces;
 using SD.AOP.LogViewer.ViewModels.Outputs;
 using SD.Toolkits.EasyUI;
 using System;
@@ -20,14 +20,14 @@ namespace SD.AOP.LogViewer.Controllers
         /// <summary>
         /// 运行日志仓储接口
         /// </summary>
-        private readonly RunningLogRepository _runningLogRep;
+        private readonly IRunningLogRepository _runningLogRep;
 
         /// <summary>
         /// 构造器
         /// </summary>
-        public RunningLogController()
+        public RunningLogController(IRunningLogRepository runningLogRep)
         {
-            this._runningLogRep = new RunningLogRepository();
+            this._runningLogRep = runningLogRep;
         }
 
         #endregion

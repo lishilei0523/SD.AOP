@@ -18,5 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SD.AOP.Core\SD.AOP.Core.csproj" />
+    <ProjectReference Include="..\SD.AOP.Logger.MySql\SD.AOP.Logger.MySql.csproj" />
+    <ProjectReference Include="..\SD.AOP.Logger.SqlServer\SD.AOP.Logger.SqlServer.csproj" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 ﻿using SD.AOP.Core.Models.Entities;
 using SD.AOP.LogViewer.Maps;
-using SD.AOP.LogViewer.Repositories;
+using SD.AOP.LogViewer.Repository.Interfaces;
 using SD.AOP.LogViewer.ViewModels.Outputs;
 using SD.Toolkits.EasyUI;
 using System;
@@ -20,14 +20,14 @@ namespace SD.AOP.LogViewer.Controllers
         /// <summary>
         /// 异常日志仓储接口
         /// </summary>
-        private readonly ExceptionLogRepository _exceptionLogRep;
+        private readonly IExceptionLogRepository _exceptionLogRep;
 
         /// <summary>
         /// 构造器
         /// </summary>
-        public ExceptionLogController()
+        public ExceptionLogController(IExceptionLogRepository exceptionLogRep)
         {
-            this._exceptionLogRep = new ExceptionLogRepository();
+            this._exceptionLogRep = exceptionLogRep;
         }
 
         #endregion
