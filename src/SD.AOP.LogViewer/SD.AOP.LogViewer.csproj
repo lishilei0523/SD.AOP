@@ -61,7 +61,6 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -79,7 +78,7 @@
     <PackageReference Include="SD.Toolkits.EasyUI" Version="1.0.1" />
     <PackageReference Include="SD.Toolkits.JavaScript" Version="1.0.0" />
     <PackageReference Include="SD.IOC.Core" Version="2.0.7" />
-    <PackageReference Include="SD.IOC.Integration.AspNetMvc" Version="1.0.0"/>
+    <PackageReference Include="SD.IOC.Integration.AspNetMvc" Version="1.0.0" />
     <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
   </ItemGroup>
   <ItemGroup>

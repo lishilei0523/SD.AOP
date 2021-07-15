@@ -9,7 +9,7 @@ using System.Linq;
 namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
 {
     /// <summary>
-    /// 异常日志仓储接口
+    /// 异常日志仓储SQL Server实现
     /// </summary>
     public class ExceptionLogRepository : IExceptionLogRepository
     {

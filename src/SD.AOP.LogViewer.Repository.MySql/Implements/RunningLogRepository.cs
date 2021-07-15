@@ -9,7 +9,7 @@ using System.Linq;
 namespace SD.AOP.LogViewer.Repository.MySql.Implements
 {
     /// <summary>
-    /// 程序日志仓储接口
+    /// 程序日志仓储MySQL实现
     /// </summary>
     public class RunningLogRepository : IRunningLogRepository
     {

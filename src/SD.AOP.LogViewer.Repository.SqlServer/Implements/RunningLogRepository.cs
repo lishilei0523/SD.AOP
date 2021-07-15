@@ -9,7 +9,7 @@ using System.Linq;
 namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
 {
     /// <summary>
-    /// 程序日志仓储接口
+    /// 程序日志仓储SQL Server实现
     /// </summary>
     public class RunningLogRepository : IRunningLogRepository
     {
