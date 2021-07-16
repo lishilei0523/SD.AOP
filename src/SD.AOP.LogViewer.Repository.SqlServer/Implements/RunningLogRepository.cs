@@ -132,7 +132,7 @@ namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
             //分页处理
             sql = $"SELECT * FROM ({sql}) AS T WHERE T.RowIndex >= @Start AND T.RowIndex <= @End";
 
-            SqlParameter[] args = {
+            IDbDataParameter[] args = {
                 new SqlParameter("@Start", start),
                 new SqlParameter("@End", end)
             };
