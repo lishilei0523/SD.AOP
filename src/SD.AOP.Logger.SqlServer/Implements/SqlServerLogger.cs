@@ -2,9 +2,10 @@
 using SD.AOP.Core.Interfaces;
 using SD.AOP.Core.Models.Entities;
 using SD.AOP.Core.Toolkits;
-using SD.AOP.Logger.SqlServer.Implements;
+using SD.Toolkits.Sql.SqlServer;
 using System;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -68,7 +69,7 @@ namespace SD.AOP
             string sql = "INSERT INTO ExceptionLogs (Id, Namespace, ClassName, MethodName, MethodType, ArgsJson, ExceptionType, ExceptionMessage, ExceptionInfo, InnerException, OccurredTime, IPAddress) OUTPUT inserted.Id VALUES (NEWID(), @Namespace, @ClassName, @MethodName, @MethodType, @ArgsJson, @ExceptionType, @ExceptionMessage, @ExceptionInfo, @InnerException, @OccurredTime, @IPAddress)";
 
             //02.初始化参数
-            SqlParameter[] parameters = {
+            IDbDataParameter[] parameters = {
                     new SqlParameter("@Namespace",log.Namespace.ToDbValue()),
                     new SqlParameter("@ClassName", log.ClassName.ToDbValue()),
                     new SqlParameter("@MethodName", log.MethodName.ToDbValue()),
@@ -103,7 +104,7 @@ namespace SD.AOP
             string sql = "INSERT INTO RunningLogs (Id, Namespace, ClassName, MethodName, MethodType, ArgsJson, ReturnValue, ReturnValueType, OperatorAccount, StartTime, EndTime, IPAddress) OUTPUT inserted.Id VALUES (NEWID(), @Namespace, @ClassName, @MethodName, @MethodType, @ArgsJson, @ReturnValue, @ReturnValueType, @OperatorAccount, @StartTime, @EndTime, @IPAddress)";
 
             //02.初始化参数
-            SqlParameter[] parameters = {
+            IDbDataParameter[] parameters = {
                     new SqlParameter("@Namespace", log.Namespace.ToDbValue()),
                     new SqlParameter("@ClassName", log.ClassName.ToDbValue()),
                     new SqlParameter("@MethodName", log.MethodName.ToDbValue()),

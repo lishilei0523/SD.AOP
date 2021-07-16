@@ -1,8 +1,11 @@
 ﻿using SD.AOP.Core.Models.Entities;
 using SD.AOP.LogViewer.Repository.Interfaces;
 using SD.Infrastructure.Constants;
+using SD.Toolkits.Sql;
+using SD.Toolkits.Sql.SqlServer;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 
@@ -52,8 +55,7 @@ namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
 
             #endregion
 
-            string idsStr = Common.GetIdsString(specIds);
-
+            string idsStr = specIds.FormatIdsString();
             string sql = "DELETE FROM RunningLogs WHERE Id IN (@Id)";
             SqlParameter arg = new SqlParameter("@Id", idsStr);
 
@@ -70,8 +72,7 @@ namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
         public RunningLog Single(Guid id)
         {
             string sql = "SELECT * FROM RunningLogs WHERE Id = @Id";
-
-            using (SqlDataReader reader = _SqlHelper.ExecuteReader(sql, new SqlParameter("@Id", id)))
+            using (IDataReader reader = _SqlHelper.ExecuteReader(sql, new SqlParameter("@Id", id)))
             {
                 if (reader.Read())
                 {
@@ -137,8 +138,7 @@ namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
             };
 
             ICollection<RunningLog> runningLogs = new HashSet<RunningLog>();
-
-            using (SqlDataReader reader = _SqlHelper.ExecuteReader(sql, args))
+            using (IDataReader reader = _SqlHelper.ExecuteReader(sql, args))
             {
                 while (reader.Read())
                 {
@@ -185,28 +185,28 @@ namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
 
         //Private
 
-        #region # 根据DataReader获取运行日志 —— RunningLog GetEntity(SqlDataReader reader)
+        #region # 根据DataReader获取运行日志 —— RunningLog GetEntity(IDataReader reader)
         /// <summary>
         /// 根据DataReader获取实体
         /// </summary>
         /// <param name="reader">DataReader</param>
         /// <returns>运行日志</returns>
-        private RunningLog GetEntity(SqlDataReader reader)
+        private RunningLog GetEntity(IDataReader reader)
         {
             RunningLog runningLog = new RunningLog
             {
-                Id = (Guid)Common.ToClsValue(reader, "Id"),
-                Namespace = (string)Common.ToClsValue(reader, "Namespace"),
-                ClassName = (string)Common.ToClsValue(reader, "ClassName"),
-                MethodName = (string)Common.ToClsValue(reader, "MethodName"),
-                MethodType = (string)Common.ToClsValue(reader, "MethodType"),
-                ArgsJson = (string)Common.ToClsValue(reader, "ArgsJson"),
-                ReturnValue = (string)Common.ToClsValue(reader, "ReturnValue"),
-                ReturnValueType = (string)Common.ToClsValue(reader, "ReturnValueType"),
-                OperatorAccount = (string)Common.ToClsValue(reader, "OperatorAccount"),
-                StartTime = (DateTime)Common.ToClsValue(reader, "StartTime"),
-                EndTime = (DateTime)Common.ToClsValue(reader, "EndTime"),
-                IPAddress = (string)Common.ToClsValue(reader, "IPAddress")
+                Id = (Guid)reader.ToClsValue("Id"),
+                Namespace = (string)reader.ToClsValue("Namespace"),
+                ClassName = (string)reader.ToClsValue("ClassName"),
+                MethodName = (string)reader.ToClsValue("MethodName"),
+                MethodType = (string)reader.ToClsValue("MethodType"),
+                ArgsJson = (string)reader.ToClsValue("ArgsJson"),
+                ReturnValue = (string)reader.ToClsValue("ReturnValue"),
+                ReturnValueType = (string)reader.ToClsValue("ReturnValueType"),
+                OperatorAccount = (string)reader.ToClsValue("OperatorAccount"),
+                StartTime = (DateTime)reader.ToClsValue("StartTime"),
+                EndTime = (DateTime)reader.ToClsValue("EndTime"),
+                IPAddress = (string)reader.ToClsValue("IPAddress")
             };
             return runningLog;
         }

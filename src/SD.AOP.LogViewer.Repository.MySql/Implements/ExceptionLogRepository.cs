@@ -2,8 +2,10 @@
 using SD.AOP.Core.Models.Entities;
 using SD.AOP.LogViewer.Repository.Interfaces;
 using SD.Infrastructure.Constants;
+using SD.Toolkits.Sql;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace SD.AOP.LogViewer.Repository.MySql.Implements
@@ -18,7 +20,7 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
         /// <summary>
         /// SQL工具
         /// </summary>
-        private static readonly MySqlHelper _MySqlHelper;
+        private static readonly SD.Toolkits.Sql.MySql.MySqlHelper _MySqlHelper;
 
         /// <summary>
         /// 静态构造器
@@ -26,7 +28,7 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
         static ExceptionLogRepository()
         {
             //初始化SQL工具
-            _MySqlHelper = new MySqlHelper(GlobalSetting.DefaultConnectionString);
+            _MySqlHelper = new SD.Toolkits.Sql.MySql.MySqlHelper(GlobalSetting.DefaultConnectionString);
         }
 
         #endregion
@@ -52,8 +54,7 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
 
             #endregion
 
-            string idsStr = Common.GetIdsString(specIds);
-
+            string idsStr = specIds.FormatIdsString();
             string sql = "DELETE FROM ExceptionLogs WHERE Id IN (@Id)";
             MySqlParameter arg = new MySqlParameter("@Id", idsStr);
 
@@ -70,8 +71,7 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
         public ExceptionLog Single(Guid id)
         {
             string sql = "SELECT * FROM ExceptionLogs WHERE Id = @Id";
-
-            using (MySqlDataReader reader = _MySqlHelper.ExecuteReader(sql, new MySqlParameter("@Id", id)))
+            using (IDataReader reader = _MySqlHelper.ExecuteReader(sql, new MySqlParameter("@Id", id)))
             {
                 if (reader.Read())
                 {
@@ -127,7 +127,7 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
             //分页处理
             sql = $"{sql} ORDER BY OccurredTime DESC LIMIT {(pageIndex - 1) * pageSize}, {pageSize}";
             ICollection<ExceptionLog> exceptionLogs = new HashSet<ExceptionLog>();
-            using (MySqlDataReader reader = _MySqlHelper.ExecuteReader(sql))
+            using (IDataReader reader = _MySqlHelper.ExecuteReader(sql))
             {
                 while (reader.Read())
                 {
@@ -176,27 +176,27 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
 
         //Private
 
-        #region # 根据DataReader获取异常日志 —— ExceptionLog GetEntity(MySqlDataReader reader)
+        #region # 根据DataReader获取异常日志 —— ExceptionLog GetEntity(IDataReader reader)
         /// <summary>
         /// 根据DataReader获取实体
         /// </summary>
         /// <param name="reader">DataReader</param>
         /// <returns>异常日志</returns>
-        private ExceptionLog GetEntity(MySqlDataReader reader)
+        private ExceptionLog GetEntity(IDataReader reader)
         {
             ExceptionLog exceptionLog = new ExceptionLog
             {
-                Id = (Guid)Common.ToClsValue(reader, "Id"),
-                Namespace = (string)Common.ToClsValue(reader, "Namespace"),
-                ClassName = (string)Common.ToClsValue(reader, "ClassName"),
-                MethodName = (string)Common.ToClsValue(reader, "MethodName"),
-                ArgsJson = (string)Common.ToClsValue(reader, "ArgsJson"),
-                ExceptionType = (string)Common.ToClsValue(reader, "ExceptionType"),
-                ExceptionMessage = (string)Common.ToClsValue(reader, "ExceptionMessage"),
-                ExceptionInfo = (string)Common.ToClsValue(reader, "ExceptionInfo"),
-                InnerException = (string)Common.ToClsValue(reader, "InnerException"),
-                OccurredTime = (DateTime)Common.ToClsValue(reader, "OccurredTime"),
-                IPAddress = (string)Common.ToClsValue(reader, "IPAddress")
+                Id = (Guid)reader.ToClsValue("Id"),
+                Namespace = (string)reader.ToClsValue("Namespace"),
+                ClassName = (string)reader.ToClsValue("ClassName"),
+                MethodName = (string)reader.ToClsValue("MethodName"),
+                ArgsJson = (string)reader.ToClsValue("ArgsJson"),
+                ExceptionType = (string)reader.ToClsValue("ExceptionType"),
+                ExceptionMessage = (string)reader.ToClsValue("ExceptionMessage"),
+                ExceptionInfo = (string)reader.ToClsValue("ExceptionInfo"),
+                InnerException = (string)reader.ToClsValue("InnerException"),
+                OccurredTime = (DateTime)reader.ToClsValue("OccurredTime"),
+                IPAddress = (string)reader.ToClsValue("IPAddress")
             };
             return exceptionLog;
         }

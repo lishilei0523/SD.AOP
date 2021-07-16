@@ -2,8 +2,10 @@
 using SD.AOP.Core.Models.Entities;
 using SD.AOP.LogViewer.Repository.Interfaces;
 using SD.Infrastructure.Constants;
+using SD.Toolkits.Sql;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace SD.AOP.LogViewer.Repository.MySql.Implements
@@ -18,7 +20,7 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
         /// <summary>
         /// SQL工具
         /// </summary>
-        private static readonly MySqlHelper _MySqlHelper;
+        private static readonly SD.Toolkits.Sql.MySql.MySqlHelper _MySqlHelper;
 
         /// <summary>
         /// 静态构造器
@@ -26,7 +28,7 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
         static RunningLogRepository()
         {
             //初始化SQL工具
-            _MySqlHelper = new MySqlHelper(GlobalSetting.DefaultConnectionString);
+            _MySqlHelper = new SD.Toolkits.Sql.MySql.MySqlHelper(GlobalSetting.DefaultConnectionString);
         }
 
         #endregion
@@ -52,8 +54,7 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
 
             #endregion
 
-            string idsStr = Common.GetIdsString(specIds);
-
+            string idsStr = specIds.FormatIdsString();
             string sql = "DELETE FROM RunningLogs WHERE Id IN (@Id)";
             MySqlParameter arg = new MySqlParameter("@Id", idsStr);
 
@@ -70,8 +71,7 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
         public RunningLog Single(Guid id)
         {
             string sql = "SELECT * FROM RunningLogs WHERE Id = @Id";
-
-            using (MySqlDataReader reader = _MySqlHelper.ExecuteReader(sql, new MySqlParameter("@Id", id)))
+            using (IDataReader reader = _MySqlHelper.ExecuteReader(sql, new MySqlParameter("@Id", id)))
             {
                 if (reader.Read())
                 {
@@ -127,7 +127,7 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
             //分页处理
             sql = $"{sql} ORDER BY StartTime DESC LIMIT {(pageIndex - 1) * pageSize}, {pageSize}";
             ICollection<RunningLog> runningLogs = new HashSet<RunningLog>();
-            using (MySqlDataReader reader = _MySqlHelper.ExecuteReader(sql))
+            using (IDataReader reader = _MySqlHelper.ExecuteReader(sql))
             {
                 while (reader.Read())
                 {
@@ -176,28 +176,28 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
 
         //Private
 
-        #region # 根据DataReader获取运行日志 —— RunningLog GetEntity(MySqlDataReader reader)
+        #region # 根据DataReader获取运行日志 —— RunningLog GetEntity(IDataReader reader)
         /// <summary>
         /// 根据DataReader获取实体
         /// </summary>
         /// <param name="reader">DataReader</param>
         /// <returns>运行日志</returns>
-        private RunningLog GetEntity(MySqlDataReader reader)
+        private RunningLog GetEntity(IDataReader reader)
         {
             RunningLog runningLog = new RunningLog
             {
-                Id = (Guid)Common.ToClsValue(reader, "Id"),
-                Namespace = (string)Common.ToClsValue(reader, "Namespace"),
-                ClassName = (string)Common.ToClsValue(reader, "ClassName"),
-                MethodName = (string)Common.ToClsValue(reader, "MethodName"),
-                MethodType = (string)Common.ToClsValue(reader, "MethodType"),
-                ArgsJson = (string)Common.ToClsValue(reader, "ArgsJson"),
-                ReturnValue = (string)Common.ToClsValue(reader, "ReturnValue"),
-                ReturnValueType = (string)Common.ToClsValue(reader, "ReturnValueType"),
-                OperatorAccount = (string)Common.ToClsValue(reader, "OperatorAccount"),
-                StartTime = (DateTime)Common.ToClsValue(reader, "StartTime"),
-                EndTime = (DateTime)Common.ToClsValue(reader, "EndTime"),
-                IPAddress = (string)Common.ToClsValue(reader, "IPAddress")
+                Id = (Guid)reader.ToClsValue("Id"),
+                Namespace = (string)reader.ToClsValue("Namespace"),
+                ClassName = (string)reader.ToClsValue("ClassName"),
+                MethodName = (string)reader.ToClsValue("MethodName"),
+                MethodType = (string)reader.ToClsValue("MethodType"),
+                ArgsJson = (string)reader.ToClsValue("ArgsJson"),
+                ReturnValue = (string)reader.ToClsValue("ReturnValue"),
+                ReturnValueType = (string)reader.ToClsValue("ReturnValueType"),
+                OperatorAccount = (string)reader.ToClsValue("OperatorAccount"),
+                StartTime = (DateTime)reader.ToClsValue("StartTime"),
+                EndTime = (DateTime)reader.ToClsValue("EndTime"),
+                IPAddress = (string)reader.ToClsValue("IPAddress")
             };
             return runningLog;
         }

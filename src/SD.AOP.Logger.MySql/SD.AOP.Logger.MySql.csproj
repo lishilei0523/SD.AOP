@@ -16,11 +16,15 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'net452'">
     <Reference Include="System.Configuration" />
     <PackageReference Include="MySql.Data" Version="8.0.25" />
+    <PackageReference Include="SD.Toolkits.Sql" Version="1.0.0" />
+    <PackageReference Include="SD.Toolkits.Sql.MySql" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
     <PackageReference Include="MySql.Data" Version="8.0.25" />
+    <PackageReference Include="SD.Toolkits.Sql" Version="1.0.0" />
+    <PackageReference Include="SD.Toolkits.Sql.MySql" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>

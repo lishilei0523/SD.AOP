@@ -1,8 +1,11 @@
 ﻿using SD.AOP.Core.Models.Entities;
 using SD.AOP.LogViewer.Repository.Interfaces;
 using SD.Infrastructure.Constants;
+using SD.Toolkits.Sql;
+using SD.Toolkits.Sql.SqlServer;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 
@@ -52,8 +55,7 @@ namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
 
             #endregion
 
-            string idsStr = Common.GetIdsString(specIds);
-
+            string idsStr = specIds.FormatIdsString();
             string sql = "DELETE FROM ExceptionLogs WHERE Id IN (@Id)";
             SqlParameter arg = new SqlParameter("@Id", idsStr);
 
@@ -70,8 +72,7 @@ namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
         public ExceptionLog Single(Guid id)
         {
             string sql = "SELECT * FROM ExceptionLogs WHERE Id = @Id";
-
-            using (SqlDataReader reader = _SqlHelper.ExecuteReader(sql, new SqlParameter("@Id", id)))
+            using (IDataReader reader = _SqlHelper.ExecuteReader(sql, new SqlParameter("@Id", id)))
             {
                 if (reader.Read())
                 {
@@ -131,14 +132,14 @@ namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
             //分页处理
             sql = $"SELECT * FROM ({sql}) AS T WHERE T.RowIndex >= @Start AND T.RowIndex <= @End";
 
-            SqlParameter[] args = {
+            IDbDataParameter[] args = {
                 new SqlParameter("@Start", start),
                 new SqlParameter("@End", end)
             };
 
             ICollection<ExceptionLog> exceptionLogs = new HashSet<ExceptionLog>();
 
-            using (SqlDataReader reader = _SqlHelper.ExecuteReader(sql, args))
+            using (IDataReader reader = _SqlHelper.ExecuteReader(sql, args))
             {
                 while (reader.Read())
                 {
@@ -185,27 +186,27 @@ namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
 
         //Private
 
-        #region # 根据DataReader获取异常日志 —— ExceptionLog GetEntity(SqlDataReader reader)
+        #region # 根据DataReader获取异常日志 —— ExceptionLog GetEntity(IDataReader reader)
         /// <summary>
         /// 根据DataReader获取实体
         /// </summary>
         /// <param name="reader">DataReader</param>
         /// <returns>异常日志</returns>
-        private ExceptionLog GetEntity(SqlDataReader reader)
+        private ExceptionLog GetEntity(IDataReader reader)
         {
             ExceptionLog exceptionLog = new ExceptionLog
             {
-                Id = (Guid)Common.ToClsValue(reader, "Id"),
-                Namespace = (string)Common.ToClsValue(reader, "Namespace"),
-                ClassName = (string)Common.ToClsValue(reader, "ClassName"),
-                MethodName = (string)Common.ToClsValue(reader, "MethodName"),
-                ArgsJson = (string)Common.ToClsValue(reader, "ArgsJson"),
-                ExceptionType = (string)Common.ToClsValue(reader, "ExceptionType"),
-                ExceptionMessage = (string)Common.ToClsValue(reader, "ExceptionMessage"),
-                ExceptionInfo = (string)Common.ToClsValue(reader, "ExceptionInfo"),
-                InnerException = (string)Common.ToClsValue(reader, "InnerException"),
-                OccurredTime = (DateTime)Common.ToClsValue(reader, "OccurredTime"),
-                IPAddress = (string)Common.ToClsValue(reader, "IPAddress")
+                Id = (Guid)reader.ToClsValue("Id"),
+                Namespace = (string)reader.ToClsValue("Namespace"),
+                ClassName = (string)reader.ToClsValue("ClassName"),
+                MethodName = (string)reader.ToClsValue("MethodName"),
+                ArgsJson = (string)reader.ToClsValue("ArgsJson"),
+                ExceptionType = (string)reader.ToClsValue("ExceptionType"),
+                ExceptionMessage = (string)reader.ToClsValue("ExceptionMessage"),
+                ExceptionInfo = (string)reader.ToClsValue("ExceptionInfo"),
+                InnerException = (string)reader.ToClsValue("InnerException"),
+                OccurredTime = (DateTime)reader.ToClsValue("OccurredTime"),
+                IPAddress = (string)reader.ToClsValue("IPAddress")
             };
             return exceptionLog;
         }

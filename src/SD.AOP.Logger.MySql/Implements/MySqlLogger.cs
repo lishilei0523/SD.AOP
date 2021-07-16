@@ -5,6 +5,7 @@ using SD.AOP.Core.Models.Entities;
 using SD.AOP.Core.Toolkits;
 using System;
 using System.Configuration;
+using System.Data;
 using System.Text;
 
 // ReSharper disable once CheckNamespace
@@ -20,7 +21,7 @@ namespace SD.AOP
         /// <summary>
         /// SQL工具
         /// </summary>
-        private static readonly Logger.MySql.Implements.MySqlHelper _SqlHelper;
+        private static readonly SD.Toolkits.Sql.MySql.MySqlHelper _SqlHelper;
 
         /// <summary>
         /// 静态构造器
@@ -47,7 +48,7 @@ namespace SD.AOP
             #endregion
 
             //初始化SQL工具
-            _SqlHelper = new Logger.MySql.Implements.MySqlHelper(connectionString);
+            _SqlHelper = new SD.Toolkits.Sql.MySql.MySqlHelper(connectionString);
         }
 
         #endregion
@@ -71,7 +72,7 @@ namespace SD.AOP
             sqlBuilder.Append("SELECT @NEWID; ");
 
             //02.初始化参数
-            MySqlParameter[] parameters = {
+            IDbDataParameter[] parameters = {
                     new MySqlParameter("@Namespace",log.Namespace.ToDbValue()),
                     new MySqlParameter("@ClassName", log.ClassName.ToDbValue()),
                     new MySqlParameter("@MethodName", log.MethodName.ToDbValue()),
@@ -110,7 +111,7 @@ namespace SD.AOP
             sqlBuilder.Append("SELECT @NEWID; ");
 
             //02.初始化参数
-            MySqlParameter[] parameters = {
+            IDbDataParameter[] parameters = {
                     new MySqlParameter("@Namespace", log.Namespace.ToDbValue()),
                     new MySqlParameter("@ClassName", log.ClassName.ToDbValue()),
                     new MySqlParameter("@MethodName", log.MethodName.ToDbValue()),

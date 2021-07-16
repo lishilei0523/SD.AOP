@@ -6,7 +6,6 @@
     <Description>SD.AOP - SQL Server日志记录提供者</Description>
   </PropertyGroup>
 
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\$(TargetFramework)\SD.AOP.Logger.SqlServer.xml</DocumentationFile>
   </PropertyGroup>
@@ -16,11 +15,15 @@
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net451'">
     <Reference Include="System.Configuration" />
+    <PackageReference Include="SD.Toolkits.Sql" Version="1.0.0" />
+    <PackageReference Include="SD.Toolkits.Sql.SqlServer" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.7.0" />
+    <PackageReference Include="SD.Toolkits.Sql" Version="1.0.0" />
+    <PackageReference Include="SD.Toolkits.Sql.SqlServer" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
