@@ -3,14 +3,11 @@
     <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
-    <PackageReference Include="SD.Toolkits.Sql" Version="1.0.0" />
-    <PackageReference Include="SD.Toolkits.Sql.SqlServer" Version="1.0.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
-  </ItemGroup>
-
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Data.SqlClient" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="SD.Toolkits.Sql" Version="1.0.0" />
     <PackageReference Include="SD.Toolkits.Sql.SqlServer" Version="1.0.0" />
     <PackageReference Include="SD.Infrastructure" Version="3.0.3" />

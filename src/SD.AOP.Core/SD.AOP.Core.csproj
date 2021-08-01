@@ -16,15 +16,16 @@
     <DocumentationFile>bin\Release\$(TargetFramework)\SD.AOP.Core.xml</DocumentationFile>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net451' Or '$(TargetFramework)' == 'net461'">
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
     <Reference Include="System.Configuration" />
     <Reference Include="System.Transactions" />
-    <PackageReference Include="MrAdvice" Version="2.8.11" />
-    <PackageReference Include="SD.Toolkits.Json" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MrAdvice" Version="2.8.11" />
     <PackageReference Include="SD.Toolkits.Json" Version="1.0.1" />
   </ItemGroup>
