@@ -1,17 +1,18 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Npgsql;
 using SD.AOP.Core.Models.Entities;
 using SD.AOP.LogViewer.Repository.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Toolkits.Sql;
+using SD.Toolkits.Sql.PostgreSQL;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace SD.AOP.LogViewer.Repository.MySql.Implements
+namespace SD.AOP.LogViewer.Repository.PostgreSQL.Implements
 {
     /// <summary>
-    /// 异常日志仓储MySQL实现
+    /// 异常日志仓储PostgreSQL实现
     /// </summary>
     public class ExceptionLogRepository : IExceptionLogRepository
     {
@@ -20,7 +21,7 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
         /// <summary>
         /// SQL工具
         /// </summary>
-        private static readonly SD.Toolkits.Sql.MySql.MySqlHelper _MySqlHelper;
+        private static readonly PgSqlHelper _SqlHelper;
 
         /// <summary>
         /// 静态构造器
@@ -28,7 +29,7 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
         static ExceptionLogRepository()
         {
             //初始化SQL工具
-            _MySqlHelper = new SD.Toolkits.Sql.MySql.MySqlHelper(GlobalSetting.DefaultConnectionString);
+            _SqlHelper = new PgSqlHelper(GlobalSetting.DefaultConnectionString);
         }
 
         #endregion
@@ -54,9 +55,9 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
             #endregion
 
             string guids = specIds.FormatGuids();
-            string sql = $"DELETE FROM ExceptionLogs WHERE Id IN ({guids})";
+            string sql = $"DELETE FROM ExceptionLogs WHERE \"Id\" IN ({guids})";
 
-            _MySqlHelper.ExecuteNonQuery(sql);
+            _SqlHelper.ExecuteNonQuery(sql);
         }
         #endregion
 
@@ -68,8 +69,8 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
         /// <returns>异常日志</returns>
         public ExceptionLog Single(Guid id)
         {
-            string sql = "SELECT * FROM ExceptionLogs WHERE Id = @Id";
-            using (IDataReader reader = _MySqlHelper.ExecuteReader(sql, new MySqlParameter("@Id", id)))
+            string sql = "SELECT * FROM ExceptionLogs WHERE \"Id\" = @Id";
+            using (IDataReader reader = _SqlHelper.ExecuteReader(sql, new NpgsqlParameter("@Id", id)))
             {
                 if (reader.Read())
                 {
@@ -109,23 +110,23 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
 
             if (logId.HasValue && logId.Value != Guid.Empty)
             {
-                sql = $"{sql} AND Id = '{logId}'";
+                sql = $"{sql} AND \"Id\" = '{logId}'";
             }
             if (startTime != null)
             {
-                sql = $"{sql} AND OccurredTime >= '{startTime}'";
+                sql = $"{sql} AND \"OccurredTime\" >= '{startTime}'";
             }
             if (endTime != null)
             {
-                sql = $"{sql} AND OccurredTime <= '{endTime}'";
+                sql = $"{sql} AND \"OccurredTime\" <= '{endTime}'";
             }
 
             #endregion
 
             //分页处理
-            sql = $"{sql} ORDER BY OccurredTime DESC LIMIT {(pageIndex - 1) * pageSize}, {pageSize}";
+            sql = $"{sql} ORDER BY \"OccurredTime\" DESC LIMIT {pageSize} OFFSET {(pageIndex - 1) * pageSize}; ";
             ICollection<ExceptionLog> exceptionLogs = new HashSet<ExceptionLog>();
-            using (IDataReader reader = _MySqlHelper.ExecuteReader(sql))
+            using (IDataReader reader = _SqlHelper.ExecuteReader(sql))
             {
                 while (reader.Read())
                 {
@@ -152,20 +153,20 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
 
             if (logId.HasValue && logId.Value != Guid.Empty)
             {
-                sql = $"{sql} AND Id = '{logId}'";
+                sql = $"{sql} AND \"Id\" = '{logId}'";
             }
             if (startTime != null)
             {
-                sql = $"{sql} AND OccurredTime >= '{startTime}'";
+                sql = $"{sql} AND \"OccurredTime\" >= '{startTime}'";
             }
             if (endTime != null)
             {
-                sql = $"{sql} AND OccurredTime <= '{endTime}'";
+                sql = $"{sql} AND \"OccurredTime\" <= '{endTime}'";
             }
 
             #endregion
 
-            object result = _MySqlHelper.ExecuteScalar(sql);
+            object result = _SqlHelper.ExecuteScalar(sql);
             int count = Convert.ToInt32(result);
             return count;
         }

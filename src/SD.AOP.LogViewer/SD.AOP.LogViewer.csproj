@@ -523,6 +523,10 @@
       <Project>{e99e999d-2d14-4f2d-ba64-521a2b16a278}</Project>
       <Name>SD.AOP.LogViewer.Repository.MySql</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SD.AOP.LogViewer.Repository.PostgreSQL\SD.AOP.LogViewer.Repository.PostgreSQL.csproj">
+      <Project>{f87ee32d-c6c1-4873-82ca-eae4b2f107f4}</Project>
+      <Name>SD.AOP.LogViewer.Repository.PostgreSQL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SD.AOP.LogViewer.Repository.SqlServer\SD.AOP.LogViewer.Repository.SqlServer.csproj">
       <Project>{e7217601-8e8c-44d9-9694-2c3bf788397b}</Project>
       <Name>SD.AOP.LogViewer.Repository.SqlServer</Name>

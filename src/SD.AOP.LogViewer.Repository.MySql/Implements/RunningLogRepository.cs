@@ -46,7 +46,6 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
             #region # 验证
 
             Guid[] specIds = ids == null ? new Guid[0] : ids.ToArray();
-
             if (!specIds.Any())
             {
                 return;
@@ -54,11 +53,10 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
 
             #endregion
 
-            string idsStr = specIds.FormatIdsString();
-            string sql = "DELETE FROM RunningLogs WHERE Id IN (@Id)";
-            MySqlParameter arg = new MySqlParameter("@Id", idsStr);
+            string guids = specIds.FormatGuids();
+            string sql = $"DELETE FROM RunningLogs WHERE Id IN ({guids})";
 
-            _MySqlHelper.ExecuteNonQuery(sql, arg);
+            _MySqlHelper.ExecuteNonQuery(sql);
         }
         #endregion
 

@@ -142,7 +142,6 @@ namespace SD.AOP
             StringBuilder sqlBuilder = new StringBuilder();
 
             //初始化异常日志
-
             sqlBuilder.Append("CREATE TABLE IF NOT EXISTS `ExceptionLogs` (`Id` char(36) NOT NULL, `Namespace` longtext default NULL, `ClassName` longtext default NULL, `MethodName` longtext default NULL, `MethodType` longtext default NULL, `ArgsJson` longtext default NULL, `ExceptionType` longtext default NULL, `ExceptionMessage` longtext default NULL, `ExceptionInfo` longtext default NULL, `InnerException` longtext default NULL, `OccurredTime` datetime default NULL, `IPAddress` longtext default NULL, PRIMARY KEY (`Id`)); ");
 
             //初始化程序运行日志

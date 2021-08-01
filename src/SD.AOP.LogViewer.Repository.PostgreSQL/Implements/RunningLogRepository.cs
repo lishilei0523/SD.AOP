@@ -1,34 +1,35 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Npgsql;
 using SD.AOP.Core.Models.Entities;
 using SD.AOP.LogViewer.Repository.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Toolkits.Sql;
+using SD.Toolkits.Sql.PostgreSQL;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace SD.AOP.LogViewer.Repository.MySql.Implements
+namespace SD.AOP.LogViewer.Repository.PostgreSQL.Implements
 {
     /// <summary>
-    /// 异常日志仓储MySQL实现
+    /// 程序日志仓储PostgreSQL实现
     /// </summary>
-    public class ExceptionLogRepository : IExceptionLogRepository
+    public class RunningLogRepository : IRunningLogRepository
     {
         #region # 字段及构造器
 
         /// <summary>
         /// SQL工具
         /// </summary>
-        private static readonly SD.Toolkits.Sql.MySql.MySqlHelper _MySqlHelper;
+        private static readonly PgSqlHelper _SqlHelper;
 
         /// <summary>
         /// 静态构造器
         /// </summary>
-        static ExceptionLogRepository()
+        static RunningLogRepository()
         {
             //初始化SQL工具
-            _MySqlHelper = new SD.Toolkits.Sql.MySql.MySqlHelper(GlobalSetting.DefaultConnectionString);
+            _SqlHelper = new PgSqlHelper(GlobalSetting.DefaultConnectionString);
         }
 
         #endregion
@@ -36,12 +37,12 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
 
         //Public
 
-        #region # 删除异常日志 —— void RemoveExceptionLogs(IEnumerable<Guid> ids)
+        #region # 删除运行日志 —— void RemoveRunningLogs(IEnumerable<Guid> ids)
         /// <summary>
-        /// 删除异常日志
+        /// 删除运行日志
         /// </summary>
-        /// <param name="ids">异常日志Id集</param>
-        public void RemoveExceptionLogs(IEnumerable<Guid> ids)
+        /// <param name="ids">运行日志Id集</param>
+        public void RemoveRunningLogs(IEnumerable<Guid> ids)
         {
             #region # 验证
 
@@ -54,36 +55,36 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
             #endregion
 
             string guids = specIds.FormatGuids();
-            string sql = $"DELETE FROM ExceptionLogs WHERE Id IN ({guids})";
+            string sql = $"DELETE FROM RunningLogs WHERE \"Id\" IN ({guids})";
 
-            _MySqlHelper.ExecuteNonQuery(sql);
+            _SqlHelper.ExecuteNonQuery(sql);
         }
         #endregion
 
-        #region # 获取异常日志 —— ExceptionLog Single(Guid id)
+        #region # 获取运行日志 —— RunningLog Single(Guid id)
         /// <summary>
-        /// 获取异常日志
+        /// 获取运行日志
         /// </summary>
         /// <param name="id">标识Id</param>
-        /// <returns>异常日志</returns>
-        public ExceptionLog Single(Guid id)
+        /// <returns>运行日志</returns>
+        public RunningLog Single(Guid id)
         {
-            string sql = "SELECT * FROM ExceptionLogs WHERE Id = @Id";
-            using (IDataReader reader = _MySqlHelper.ExecuteReader(sql, new MySqlParameter("@Id", id)))
+            string sql = "SELECT * FROM RunningLogs WHERE \"Id\" = @Id";
+            using (IDataReader reader = _SqlHelper.ExecuteReader(sql, new NpgsqlParameter("@Id", id)))
             {
                 if (reader.Read())
                 {
                     return this.GetEntity(reader);
                 }
 
-                throw new NullReferenceException($"Id为\"{id}\"的日志不存在！");
+                throw new NullReferenceException($"Id为\"{id}\"的运行日志不存在！");
             }
         }
         #endregion
 
-        #region # 获取异常日志列表 —— ICollection<ExceptionLog> GetExceptionLogs(Guid? logId...
+        #region # 获取运行日志列表 —— ICollection<RunningLog> GetRunningLogs(Guid? logId...
         /// <summary>
-        /// 获取异常日志列表
+        /// 获取运行日志列表
         /// </summary>
         /// <param name="logId">日志Id</param>
         /// <param name="startTime">开始时间</param>
@@ -92,8 +93,8 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
         /// <param name="pageSize">页容量</param>
         /// <param name="pageCount">符合条件的页数</param>
         /// <param name="rowCount">符合条件的记录条数</param>
-        /// <returns>异常日志列表</returns>
-        public ICollection<ExceptionLog> GetExceptionLogs(Guid? logId, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize, out int pageCount, out int rowCount)
+        /// <returns>运行日志列表</returns>
+        public ICollection<RunningLog> GetRunningLogs(Guid? logId, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize, out int pageCount, out int rowCount)
         {
             //计算总记录条数与总页数
             rowCount = this.Count(logId, startTime, endTime);
@@ -103,69 +104,69 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
             pageIndex = pageIndex < 1 ? 1 : pageIndex;
             pageIndex = pageIndex >= pageCount ? pageCount : pageIndex;
 
-            string sql = "SELECT * FROM ExceptionLogs WHERE 0 = 0";
+            string sql = "SELECT * FROM RunningLogs WHERE 0 = 0";
 
             #region # 条件过滤
 
             if (logId.HasValue && logId.Value != Guid.Empty)
             {
-                sql = $"{sql} AND Id = '{logId}'";
+                sql = $"{sql} AND \"Id\" = '{logId}'";
             }
             if (startTime != null)
             {
-                sql = $"{sql} AND OccurredTime >= '{startTime}'";
+                sql = $"{sql} AND \"StartTime\" >= '{startTime}'";
             }
             if (endTime != null)
             {
-                sql = $"{sql} AND OccurredTime <= '{endTime}'";
+                sql = $"{sql} AND \"StartTime\" <= '{endTime}'";
             }
 
             #endregion
 
             //分页处理
-            sql = $"{sql} ORDER BY OccurredTime DESC LIMIT {(pageIndex - 1) * pageSize}, {pageSize}";
-            ICollection<ExceptionLog> exceptionLogs = new HashSet<ExceptionLog>();
-            using (IDataReader reader = _MySqlHelper.ExecuteReader(sql))
+            sql = $"{sql} ORDER BY \"StartTime\" DESC LIMIT {pageSize} OFFSET {(pageIndex - 1) * pageSize}; ";
+            ICollection<RunningLog> runningLogs = new HashSet<RunningLog>();
+            using (IDataReader reader = _SqlHelper.ExecuteReader(sql))
             {
                 while (reader.Read())
                 {
-                    exceptionLogs.Add(this.GetEntity(reader));
+                    runningLogs.Add(this.GetEntity(reader));
                 }
             }
-            return exceptionLogs;
+            return runningLogs;
         }
         #endregion
 
-        #region # 获取异常日志记录条数 —— int Count(Guid logId, string startTime...
+        #region # 获取运行日志记录条数 —— int Count(Guid logId, string startTime...
         /// <summary>
-        /// 获取异常日志记录条数
+        /// 获取运行日志记录条数
         /// </summary>
         /// <param name="logId">日志Id</param>
         /// <param name="startTime">开始时间</param>
         /// <param name="endTime">结束时间</param>
-        /// <returns>异常日志记录条数</returns>
+        /// <returns>运行日志记录条数</returns>
         public int Count(Guid? logId, DateTime? startTime, DateTime? endTime)
         {
-            string sql = "SELECT COUNT(*) FROM ExceptionLogs WHERE 0 = 0";
+            string sql = "SELECT COUNT(*) FROM RunningLogs WHERE 0 = 0";
 
             #region # 条件过滤
 
             if (logId.HasValue && logId.Value != Guid.Empty)
             {
-                sql = $"{sql} AND Id = '{logId}'";
+                sql = $"{sql} AND \"Id\" = '{logId}'";
             }
             if (startTime != null)
             {
-                sql = $"{sql} AND OccurredTime >= '{startTime}'";
+                sql = $"{sql} AND \"StartTime\" >= '{startTime}'";
             }
             if (endTime != null)
             {
-                sql = $"{sql} AND OccurredTime <= '{endTime}'";
+                sql = $"{sql} AND \"StartTime\" <= '{endTime}'";
             }
 
             #endregion
 
-            object result = _MySqlHelper.ExecuteScalar(sql);
+            object result = _SqlHelper.ExecuteScalar(sql);
             int count = Convert.ToInt32(result);
             return count;
         }
@@ -174,29 +175,30 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
 
         //Private
 
-        #region # 根据DataReader获取异常日志 —— ExceptionLog GetEntity(IDataReader reader)
+        #region # 根据DataReader获取运行日志 —— RunningLog GetEntity(IDataReader reader)
         /// <summary>
         /// 根据DataReader获取实体
         /// </summary>
         /// <param name="reader">DataReader</param>
-        /// <returns>异常日志</returns>
-        private ExceptionLog GetEntity(IDataReader reader)
+        /// <returns>运行日志</returns>
+        private RunningLog GetEntity(IDataReader reader)
         {
-            ExceptionLog exceptionLog = new ExceptionLog
+            RunningLog runningLog = new RunningLog
             {
                 Id = (Guid)reader.ToClsValue("Id"),
                 Namespace = (string)reader.ToClsValue("Namespace"),
                 ClassName = (string)reader.ToClsValue("ClassName"),
                 MethodName = (string)reader.ToClsValue("MethodName"),
+                MethodType = (string)reader.ToClsValue("MethodType"),
                 ArgsJson = (string)reader.ToClsValue("ArgsJson"),
-                ExceptionType = (string)reader.ToClsValue("ExceptionType"),
-                ExceptionMessage = (string)reader.ToClsValue("ExceptionMessage"),
-                ExceptionInfo = (string)reader.ToClsValue("ExceptionInfo"),
-                InnerException = (string)reader.ToClsValue("InnerException"),
-                OccurredTime = (DateTime)reader.ToClsValue("OccurredTime"),
+                ReturnValue = (string)reader.ToClsValue("ReturnValue"),
+                ReturnValueType = (string)reader.ToClsValue("ReturnValueType"),
+                OperatorAccount = (string)reader.ToClsValue("OperatorAccount"),
+                StartTime = (DateTime)reader.ToClsValue("StartTime"),
+                EndTime = (DateTime)reader.ToClsValue("EndTime"),
                 IPAddress = (string)reader.ToClsValue("IPAddress")
             };
-            return exceptionLog;
+            return runningLog;
         }
         #endregion
     }

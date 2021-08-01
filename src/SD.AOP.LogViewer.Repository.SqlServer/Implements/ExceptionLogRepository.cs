@@ -47,7 +47,6 @@ namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
             #region # 验证
 
             Guid[] specIds = ids == null ? new Guid[0] : ids.ToArray();
-
             if (!specIds.Any())
             {
                 return;
@@ -55,11 +54,10 @@ namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
 
             #endregion
 
-            string idsStr = specIds.FormatIdsString();
-            string sql = "DELETE FROM ExceptionLogs WHERE Id IN (@Id)";
-            SqlParameter arg = new SqlParameter("@Id", idsStr);
+            string guids = specIds.FormatGuids();
+            string sql = $"DELETE FROM ExceptionLogs WHERE Id IN ({guids})";
 
-            _SqlHelper.ExecuteNonQuery(sql, arg);
+            _SqlHelper.ExecuteNonQuery(sql);
         }
         #endregion
 

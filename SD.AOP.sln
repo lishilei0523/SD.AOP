@@ -21,11 +21,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Loggers", "02 - Logger
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.AOP.Logger.MySql", "src\SD.AOP.Logger.MySql\SD.AOP.Logger.MySql.csproj", "{6E63A99B-D48B-462D-AC65-EDD4A152D534}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.AOP.LogViewer.Repository.SqlServer", "src\SD.AOP.LogViewer.Repository.SqlServer\SD.AOP.LogViewer.Repository.SqlServer.csproj", "{E7217601-8E8C-44D9-9694-2C3BF788397B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.AOP.LogViewer.Repository.SqlServer", "src\SD.AOP.LogViewer.Repository.SqlServer\SD.AOP.LogViewer.Repository.SqlServer.csproj", "{E7217601-8E8C-44D9-9694-2C3BF788397B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.AOP.LogViewer.Repository.MySql", "src\SD.AOP.LogViewer.Repository.MySql\SD.AOP.LogViewer.Repository.MySql.csproj", "{E99E999D-2D14-4F2D-BA64-521A2B16A278}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.AOP.LogViewer.Repository.MySql", "src\SD.AOP.LogViewer.Repository.MySql\SD.AOP.LogViewer.Repository.MySql.csproj", "{E99E999D-2D14-4F2D-BA64-521A2B16A278}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.AOP.LogViewer.Repository", "src\SD.AOP.LogViewer.Repository\SD.AOP.LogViewer.Repository.csproj", "{0CFD9E51-A92E-401A-9443-59AFFDB0333D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.AOP.LogViewer.Repository", "src\SD.AOP.LogViewer.Repository\SD.AOP.LogViewer.Repository.csproj", "{0CFD9E51-A92E-401A-9443-59AFFDB0333D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.AOP.Logger.PostgreSQL", "src\SD.AOP.Logger.PostgreSQL\SD.AOP.Logger.PostgreSQL.csproj", "{6701C525-5A28-4C46-884C-50850DEAF7CD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.AOP.LogViewer.Repository.PostgreSQL", "src\SD.AOP.LogViewer.Repository.PostgreSQL\SD.AOP.LogViewer.Repository.PostgreSQL.csproj", "{F87EE32D-C6C1-4873-82CA-EAE4B2F107F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +69,14 @@ Global
 		{0CFD9E51-A92E-401A-9443-59AFFDB0333D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CFD9E51-A92E-401A-9443-59AFFDB0333D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CFD9E51-A92E-401A-9443-59AFFDB0333D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6701C525-5A28-4C46-884C-50850DEAF7CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6701C525-5A28-4C46-884C-50850DEAF7CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6701C525-5A28-4C46-884C-50850DEAF7CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6701C525-5A28-4C46-884C-50850DEAF7CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F87EE32D-C6C1-4873-82CA-EAE4B2F107F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F87EE32D-C6C1-4873-82CA-EAE4B2F107F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F87EE32D-C6C1-4873-82CA-EAE4B2F107F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F87EE32D-C6C1-4873-82CA-EAE4B2F107F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +90,8 @@ Global
 		{E7217601-8E8C-44D9-9694-2C3BF788397B} = {DEB995E0-CBF6-4BB5-8D25-E57FFF7C35B1}
 		{E99E999D-2D14-4F2D-BA64-521A2B16A278} = {DEB995E0-CBF6-4BB5-8D25-E57FFF7C35B1}
 		{0CFD9E51-A92E-401A-9443-59AFFDB0333D} = {DEB995E0-CBF6-4BB5-8D25-E57FFF7C35B1}
+		{6701C525-5A28-4C46-884C-50850DEAF7CD} = {1584FD67-BCA0-48F5-B857-CF8BDC5CCF07}
+		{F87EE32D-C6C1-4873-82CA-EAE4B2F107F4} = {DEB995E0-CBF6-4BB5-8D25-E57FFF7C35B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {76C23E0F-CCE0-418E-95A8-89A2562FCA9D}

@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.25" />
-    <PackageReference Include="SD.Toolkits.Sql" Version="1.0.0" />
+    <PackageReference Include="SD.Toolkits.Sql" Version="1.0.1" />
     <PackageReference Include="SD.Toolkits.Sql.MySql" Version="1.0.0" />
   </ItemGroup>
 
