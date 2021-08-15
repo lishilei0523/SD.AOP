@@ -1,0 +1,7 @@
+﻿<configuration>
+  <!--SD.AOP配置-->
+  <sd.aop>
+    <!--日志记录者-->
+    <loggerProvider type="SD.AOP.FbSqlLogger" assembly="SD.AOP.Logger.Firebird" />
+  </sd.aop>
+</configuration>

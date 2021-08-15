@@ -11,6 +11,16 @@ namespace SD.AOP.Core.Tests.TestCases
     public class StudentTests
     {
         /// <summary>
+        /// 测试初始化
+        /// </summary>
+        [TestInitialize]
+        public void Initialize()
+        {
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            AppDomain.CurrentDomain.SetData("DataDirectory", baseDirectory);
+        }
+
+        /// <summary>
         /// 创建学生测试 - 测试异常日志
         /// </summary>
         [TestMethod]

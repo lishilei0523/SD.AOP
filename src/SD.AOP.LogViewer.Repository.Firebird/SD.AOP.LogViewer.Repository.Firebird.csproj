@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net48;netstandard2.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="8.0.0" />
+    <PackageReference Include="SD.Toolkits.Sql" Version="1.0.1" />
+    <PackageReference Include="SD.Toolkits.Sql.Firebird" Version="1.0.0" />
+    <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SD.AOP.Core\SD.AOP.Core.csproj" />
+    <ProjectReference Include="..\SD.AOP.LogViewer.Repository\SD.AOP.LogViewer.Repository.csproj" />
+  </ItemGroup>
+</Project>
