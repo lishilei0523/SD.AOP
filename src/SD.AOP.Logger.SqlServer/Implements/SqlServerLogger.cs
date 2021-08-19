@@ -1,7 +1,7 @@
 ﻿using SD.AOP.Core;
 using SD.AOP.Core.Interfaces;
 using SD.AOP.Core.Models.Entities;
-using SD.AOP.Core.Toolkits;
+using SD.Toolkits.Sql;
 using SD.Toolkits.Sql.SqlServer;
 using System;
 using System.Configuration;

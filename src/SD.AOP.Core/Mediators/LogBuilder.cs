@@ -10,7 +10,7 @@ using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
 
-namespace SD.AOP.Core.Toolkits
+namespace SD.AOP.Core.Mediators
 {
     /// <summary>
     /// 日志建造者
@@ -72,7 +72,7 @@ namespace SD.AOP.Core.Toolkits
             log.OccurredTime = DateTime.Now;
 
             StringBuilder exceptionBuilder = new StringBuilder();
-            log.InnerException = LogBuilder.BuildInnerException(exceptionBuilder, exception);
+            log.InnerException = BuildInnerException(exceptionBuilder, exception);
         }
         #endregion
 
@@ -125,7 +125,7 @@ namespace SD.AOP.Core.Toolkits
             {
                 exBuilder.Append(exception.InnerException);
                 exBuilder.Append(@"\r\n");
-                LogBuilder.BuildInnerException(exBuilder, exception.InnerException);
+                BuildInnerException(exBuilder, exception.InnerException);
             }
             return exBuilder.ToString();
         }
