@@ -50,6 +50,9 @@ namespace SD.AOP
 
             //初始化SQL工具
             _SqlHelper = new SqlServerHelper(connectionString);
+
+            //初始化日志数据表
+            InitTable();
         }
 
         #endregion
@@ -62,9 +65,6 @@ namespace SD.AOP
         /// <returns>日志Id</returns>
         public Guid Write(ExceptionLog log)
         {
-            //初始化日志数据表
-            InitTable();
-
             //01.构造sql语句
             string sql = "INSERT INTO ExceptionLogs (Id, Namespace, ClassName, MethodName, MethodType, ArgsJson, ExceptionType, ExceptionMessage, ExceptionInfo, InnerException, OccurredTime, IPAddress) OUTPUT inserted.Id VALUES (NEWID(), @Namespace, @ClassName, @MethodName, @MethodType, @ArgsJson, @ExceptionType, @ExceptionMessage, @ExceptionInfo, @InnerException, @OccurredTime, @IPAddress)";
 
@@ -97,9 +97,6 @@ namespace SD.AOP
         /// <returns>日志Id</returns>
         public Guid Write(RunningLog log)
         {
-            //初始化日志数据表
-            InitTable();
-
             //01.构造SQL语句
             string sql = "INSERT INTO RunningLogs (Id, Namespace, ClassName, MethodName, MethodType, ArgsJson, ReturnValue, ReturnValueType, OperatorAccount, StartTime, EndTime, IPAddress) OUTPUT inserted.Id VALUES (NEWID(), @Namespace, @ClassName, @MethodName, @MethodType, @ArgsJson, @ReturnValue, @ReturnValueType, @OperatorAccount, @StartTime, @EndTime, @IPAddress)";
 

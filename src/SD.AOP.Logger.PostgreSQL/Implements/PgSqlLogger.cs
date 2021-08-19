@@ -50,6 +50,9 @@ namespace SD.AOP
 
             //初始化SQL工具
             _SqlHelper = new PgSqlHelper(connectionString);
+
+            //初始化日志数据表
+            InitTable();
         }
 
         #endregion
@@ -62,9 +65,6 @@ namespace SD.AOP
         /// <returns>日志Id</returns>
         public Guid Write(ExceptionLog log)
         {
-            //初始化日志数据表
-            InitTable();
-
             //01.构造sql语句
             StringBuilder sqlBuilder = new StringBuilder();
             sqlBuilder.Append(
@@ -101,9 +101,6 @@ namespace SD.AOP
         /// <returns>日志Id</returns>
         public Guid Write(RunningLog log)
         {
-            //初始化日志数据表
-            InitTable();
-
             //01.构造SQL语句
             StringBuilder sqlBuilder = new StringBuilder();
             sqlBuilder.Append("INSERT INTO RunningLogs (\"Id\", \"Namespace\", \"ClassName\", \"MethodName\", \"MethodType\", \"ArgsJson\", \"ReturnValue\", \"ReturnValueType\", \"OperatorAccount\", \"StartTime\", \"EndTime\", \"IPAddress\") VALUES (uuid_generate_v4(), @Namespace, @ClassName, @MethodName, @MethodType, @ArgsJson, @ReturnValue, @ReturnValueType, @OperatorAccount, @StartTime, @EndTime, @IPAddress) ");

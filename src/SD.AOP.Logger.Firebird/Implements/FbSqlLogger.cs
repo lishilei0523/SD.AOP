@@ -50,6 +50,9 @@ namespace SD.AOP
 
             //初始化SQL工具
             _SqlHelper = new FbSqlHelper(connectionString);
+
+            //初始化日志数据表
+            InitTable();
         }
 
         #endregion
@@ -62,9 +65,6 @@ namespace SD.AOP
         /// <returns>日志Id</returns>
         public Guid Write(ExceptionLog log)
         {
-            //初始化日志数据表
-            InitTable();
-
             //生成GUID
             string generateIdSql = "SELECT GEN_UUID() FROM rdb$database;";
             object result = _SqlHelper.ExecuteScalar(generateIdSql);
@@ -105,9 +105,6 @@ namespace SD.AOP
         /// <returns>日志Id</returns>
         public Guid Write(RunningLog log)
         {
-            //初始化日志数据表
-            InitTable();
-
             //生成GUID
             string generateIdSql = "SELECT GEN_UUID() FROM rdb$database;";
             object result = _SqlHelper.ExecuteScalar(generateIdSql);
