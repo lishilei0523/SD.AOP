@@ -79,7 +79,7 @@
     <PackageReference Include="SD.Toolkits.JavaScript" Version="1.0.0" />
     <PackageReference Include="SD.IOC.Core" Version="2.0.7" />
     <PackageReference Include="SD.IOC.Integration.AspNetMvc" Version="1.0.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
+    <PackageReference Include="SD.Infrastructure" Version="3.0.5" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ExceptionLogController.cs" />
@@ -88,14 +88,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Maps\LogMap.cs" />
-    <Compile Include="Maps\MenuMap.cs" />
-    <Compile Include="ViewModels\Outputs\BaseLogView.cs" />
-    <Compile Include="ViewModels\Outputs\ExceptionLogView.cs" />
-    <Compile Include="ViewModels\Outputs\MenuView.cs" />
-    <Compile Include="Entities\Menu.cs" />
+    <Compile Include="Models\LogMap.cs" />
+    <Compile Include="Models\MenuMap.cs" />
+    <Compile Include="Models\LogModel.cs" />
+    <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\Outputs\RunningLogView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\Common\Form.css" />
@@ -536,6 +533,7 @@
       <Name>SD.AOP.LogViewer.Repository</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

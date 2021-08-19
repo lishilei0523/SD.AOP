@@ -1,11 +1,8 @@
-﻿using SD.AOP.LogViewer.Entities;
-using SD.AOP.LogViewer.Maps;
-using SD.AOP.LogViewer.ViewModels.Outputs;
+﻿using SD.AOP.LogViewer.Models;
 using SD.Infrastructure;
 using SD.Infrastructure.Attributes;
 using SD.Toolkits.EasyUI;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace SD.AOP.LogViewer.Controllers
@@ -23,8 +20,8 @@ namespace SD.AOP.LogViewer.Controllers
         [HttpGet]
         public ViewResult Index()
         {
-            this.ViewBag.WebName = FrameworkSection.Setting.ServiceName.Value;
-            this.ViewBag.TechSupport = FrameworkSection.Setting.ServiceDisplayName.Value;
+            this.ViewBag.WebName = FrameworkSection.Setting.ApplicationName.Value;
+            this.ViewBag.TechSupport = FrameworkSection.Setting.ServiceName.Value;
 
             return base.View();
         }
@@ -39,17 +36,16 @@ namespace SD.AOP.LogViewer.Controllers
         public JsonResult GetMenuTree()
         {
             //初始化菜单
-            IList<Menu> menus = new List<Menu>();
-            string rootMenuName = $"{FrameworkSection.Setting.ServiceName.Value}日志管理后台";
-            Menu rootMenu = new Menu(rootMenuName, int.MinValue, null, null, null);
-            Menu exceptionLogMenu = new Menu("异常日志管理", 1, "/ExceptionLog/Index", null, rootMenu);
-            Menu runningLogMenu = new Menu("程序日志管理", 2, "/RunningLog/Index", null, rootMenu);
+            IList<MenuModel> menus = new List<MenuModel>();
+            string rootMenuName = $"{FrameworkSection.Setting.ApplicationName.Value} 日志管理后台";
+            MenuModel rootMenu = new MenuModel(rootMenuName, int.MinValue, null, null, true, false, null);
+            MenuModel exceptionLogMenu = new MenuModel("异常日志管理", 1, "/ExceptionLog/Index", null, false, true, rootMenu);
+            MenuModel runningLogMenu = new MenuModel("运行日志管理", 2, "/RunningLog/Index", null, false, true, rootMenu);
             menus.Add(rootMenu);
             menus.Add(exceptionLogMenu);
             menus.Add(runningLogMenu);
 
-            IEnumerable<MenuView> menuViews = menus.Select(x => x.ToViewModel());
-            IEnumerable<Node> menuTree = menuViews.ToTree(null);
+            IEnumerable<Node> menuTree = menus.ToTree(null);
 
             return base.Json(menuTree, JsonRequestBehavior.AllowGet);
         }

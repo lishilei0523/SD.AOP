@@ -1,7 +1,6 @@
 ﻿using SD.AOP.Core.Models.Entities;
-using SD.AOP.LogViewer.Maps;
+using SD.AOP.LogViewer.Models;
 using SD.AOP.LogViewer.Repository.Interfaces;
-using SD.AOP.LogViewer.ViewModels.Outputs;
 using SD.Toolkits.EasyUI;
 using System;
 using System.Collections.Generic;
@@ -57,9 +56,9 @@ namespace SD.AOP.LogViewer.Controllers
         public ViewResult Detail(Guid id)
         {
             RunningLog runningLog = this._runningLogRep.Single(id);
-            RunningLogView runningLogView = runningLog.ToViewModel();
+            RunningLogModel runningLogModel = runningLog.ToModel();
 
-            return base.View(runningLogView);
+            return base.View(runningLogModel);
         }
         #endregion
 
@@ -100,10 +99,10 @@ namespace SD.AOP.LogViewer.Controllers
         /// <returns>运行日志列表</returns>
         public JsonResult GetRunningLogs(Guid? logId, DateTime? startTime, DateTime? endTime, int page, int rows)
         {
-            ICollection<RunningLog> runningLogs = this._runningLogRep.GetRunningLogs(logId, startTime, endTime, page, rows, out int pageCount, out int rowCount);
-            IEnumerable<RunningLogView> runningLogViews = runningLogs.Select(x => x.ToViewModel());
+            ICollection<RunningLog> runningLogs = this._runningLogRep.GetRunningLogs(logId, startTime, endTime, page, rows, out int _, out int rowCount);
+            IEnumerable<RunningLogModel> runningLogViews = runningLogs.Select(x => x.ToModel());
 
-            Grid<RunningLogView> grid = new Grid<RunningLogView>(rowCount, runningLogViews);
+            Grid<RunningLogModel> grid = new Grid<RunningLogModel>(rowCount, runningLogViews);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);
         }

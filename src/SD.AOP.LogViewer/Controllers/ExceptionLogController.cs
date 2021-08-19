@@ -1,7 +1,6 @@
 ﻿using SD.AOP.Core.Models.Entities;
-using SD.AOP.LogViewer.Maps;
+using SD.AOP.LogViewer.Models;
 using SD.AOP.LogViewer.Repository.Interfaces;
-using SD.AOP.LogViewer.ViewModels.Outputs;
 using SD.Toolkits.EasyUI;
 using System;
 using System.Collections.Generic;
@@ -57,9 +56,9 @@ namespace SD.AOP.LogViewer.Controllers
         public ViewResult Detail(Guid id)
         {
             ExceptionLog exceptionLog = this._exceptionLogRep.Single(id);
-            ExceptionLogView exceptionLogView = exceptionLog.ToViewModel();
+            ExceptionLogModel exceptionLogModel = exceptionLog.ToModel();
 
-            return base.View(exceptionLogView);
+            return base.View(exceptionLogModel);
         }
         #endregion
 
@@ -100,10 +99,10 @@ namespace SD.AOP.LogViewer.Controllers
         /// <returns>异常日志列表</returns>
         public JsonResult GetExceptionLogs(Guid? logId, DateTime? startTime, DateTime? endTime, int page, int rows)
         {
-            ICollection<ExceptionLog> exceptionLogs = this._exceptionLogRep.GetExceptionLogs(logId, startTime, endTime, page, rows, out int pageCount, out int rowCount);
-            IEnumerable<ExceptionLogView> exceptionLogViews = exceptionLogs.Select(x => x.ToViewModel());
+            ICollection<ExceptionLog> exceptionLogs = this._exceptionLogRep.GetExceptionLogs(logId, startTime, endTime, page, rows, out int _, out int rowCount);
+            IEnumerable<ExceptionLogModel> exceptionLogViews = exceptionLogs.Select(x => x.ToModel());
 
-            Grid<ExceptionLogView> grid = new Grid<ExceptionLogView>(rowCount, exceptionLogViews);
+            Grid<ExceptionLogModel> grid = new Grid<ExceptionLogModel>(rowCount, exceptionLogViews);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);
         }
