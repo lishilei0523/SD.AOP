@@ -108,17 +108,17 @@ namespace SD.AOP.LogViewer.Repository.Firebird.Implements
 
             #region # 条件过滤
 
-            if (logId.HasValue && logId.Value != Guid.Empty)
+            if (logId.HasValue)
             {
-                sql = $"{sql} AND \"Id\" = '{logId}'";
+                sql = $"{sql} AND \"Id\" = '{logId.Value}'";
             }
-            if (startTime != null)
+            if (startTime.HasValue)
             {
-                sql = $"{sql} AND \"StartTime\" >= '{startTime}'";
+                sql = $"{sql} AND \"StartTime\" >= '{startTime.Value}'";
             }
-            if (endTime != null)
+            if (endTime.HasValue)
             {
-                sql = $"{sql} AND \"StartTime\" <= '{endTime}'";
+                sql = $"{sql} AND \"StartTime\" <= '{endTime.Value}'";
             }
 
             #endregion
@@ -151,17 +151,17 @@ namespace SD.AOP.LogViewer.Repository.Firebird.Implements
 
             #region # 条件过滤
 
-            if (logId.HasValue && logId.Value != Guid.Empty)
+            if (logId.HasValue)
             {
-                sql = $"{sql} AND \"Id\" = '{logId}'";
+                sql = $"{sql} AND \"Id\" = '{logId.Value}'";
             }
-            if (startTime != null)
+            if (startTime.HasValue)
             {
-                sql = $"{sql} AND \"StartTime\" >= '{startTime}'";
+                sql = $"{sql} AND \"StartTime\" >= '{startTime.Value}'";
             }
-            if (endTime != null)
+            if (endTime.HasValue)
             {
-                sql = $"{sql} AND \"StartTime\" <= '{endTime}'";
+                sql = $"{sql} AND \"StartTime\" <= '{endTime.Value}'";
             }
 
             #endregion

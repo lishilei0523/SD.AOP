@@ -104,40 +104,29 @@ namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
             pageIndex = pageIndex < 1 ? 1 : pageIndex;
             pageIndex = pageIndex >= pageCount ? pageCount : pageIndex;
 
-            //计算起始行与终止行
-            int start = (pageIndex - 1) * pageSize + 1;
-            int end = pageIndex * pageSize;
-
-            string sql = "SELECT *, ROW_NUMBER() OVER(ORDER BY OccurredTime DESC) AS RowIndex FROM dbo.ExceptionLogs WHERE 0 = 0";
+            string sql = "SELECT * FROM dbo.ExceptionLogs WHERE 0 = 0";
 
             #region # 条件过滤
 
-            if (logId.HasValue && logId.Value != Guid.Empty)
+            if (logId.HasValue)
             {
-                sql = $"{sql} AND Id = '{logId}'";
+                sql = $"{sql} AND Id = '{logId.Value}'";
             }
-            if (startTime != null)
+            if (startTime.HasValue)
             {
-                sql = $"{sql} AND OccurredTime >= '{startTime}'";
+                sql = $"{sql} AND OccurredTime >= '{startTime.Value}'";
             }
-            if (endTime != null)
+            if (endTime.HasValue)
             {
-                sql = $"{sql} AND OccurredTime <= '{endTime}'";
+                sql = $"{sql} AND OccurredTime <= '{endTime.Value}'";
             }
 
             #endregion
 
             //分页处理
-            sql = $"SELECT * FROM ({sql}) AS T WHERE T.RowIndex >= @Start AND T.RowIndex <= @End";
-
-            IDbDataParameter[] args = {
-                new SqlParameter("@Start", start),
-                new SqlParameter("@End", end)
-            };
-
+            sql = $"{sql} ORDER BY OccurredTime DESC OFFSET {(pageIndex - 1) * pageSize} ROWS FETCH NEXT {pageSize} ROWS ONLY";
             ICollection<ExceptionLog> exceptionLogs = new HashSet<ExceptionLog>();
-
-            using (IDataReader reader = _SqlHelper.ExecuteReader(sql, args))
+            using (IDataReader reader = _SqlHelper.ExecuteReader(sql))
             {
                 while (reader.Read())
                 {
@@ -162,17 +151,17 @@ namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
 
             #region # 条件过滤
 
-            if (logId.HasValue && logId.Value != Guid.Empty)
+            if (logId.HasValue)
             {
-                sql = $"{sql} AND Id = '{logId}'";
+                sql = $"{sql} AND Id = '{logId.Value}'";
             }
-            if (startTime != null)
+            if (startTime.HasValue)
             {
-                sql = $"{sql} AND OccurredTime >= '{startTime}'";
+                sql = $"{sql} AND OccurredTime >= '{startTime.Value}'";
             }
-            if (endTime != null)
+            if (endTime.HasValue)
             {
-                sql = $"{sql} AND OccurredTime <= '{endTime}'";
+                sql = $"{sql} AND OccurredTime <= '{endTime.Value}'";
             }
 
             #endregion
