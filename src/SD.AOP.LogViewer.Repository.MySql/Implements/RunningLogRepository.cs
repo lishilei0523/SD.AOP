@@ -28,7 +28,7 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
         static RunningLogRepository()
         {
             //初始化SQL工具
-            _MySqlHelper = new SD.Toolkits.Sql.MySql.MySqlHelper(GlobalSetting.DefaultConnectionString);
+            _MySqlHelper = new SD.Toolkits.Sql.MySql.MySqlHelper(GlobalSetting.ReadConnectionString);
         }
 
         #endregion

@@ -29,7 +29,7 @@ namespace SD.AOP.LogViewer.Repository.PostgreSQL.Implements
         static ExceptionLogRepository()
         {
             //初始化SQL工具
-            _SqlHelper = new PgSqlHelper(GlobalSetting.DefaultConnectionString);
+            _SqlHelper = new PgSqlHelper(GlobalSetting.ReadConnectionString);
         }
 
         #endregion

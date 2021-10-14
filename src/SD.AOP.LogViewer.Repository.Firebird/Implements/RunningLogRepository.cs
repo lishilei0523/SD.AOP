@@ -29,7 +29,7 @@ namespace SD.AOP.LogViewer.Repository.Firebird.Implements
         static RunningLogRepository()
         {
             //初始化SQL工具
-            _SqlHelper = new FbSqlHelper(GlobalSetting.DefaultConnectionString);
+            _SqlHelper = new FbSqlHelper(GlobalSetting.ReadConnectionString);
         }
 
         #endregion

@@ -29,7 +29,7 @@ namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
         static ExceptionLogRepository()
         {
             //初始化SQL工具
-            _SqlHelper = new SqlServerHelper(GlobalSetting.DefaultConnectionString);
+            _SqlHelper = new SqlServerHelper(GlobalSetting.ReadConnectionString);
         }
 
         #endregion
