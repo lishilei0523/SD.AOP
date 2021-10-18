@@ -5,7 +5,7 @@
 #dvHeader {
     height: 70px;
     padding: 0px;
-    background: url('../../images/banner-pic.gif') repeat;
+    background: url('/images/banner-pic.gif') repeat;
     background-size: 100% 100%;
     overflow: hidden;
 }
