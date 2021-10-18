@@ -100,8 +100,8 @@ namespace SD.AOP.LogViewer.Repository.MySql.Implements
             pageCount = (int)Math.Ceiling((rowCount * 1.0 / pageSize));
 
             //页索引处理
-            pageIndex = pageIndex < 1 ? 1 : pageIndex;
             pageIndex = pageIndex >= pageCount ? pageCount : pageIndex;
+            pageIndex = pageIndex < 1 ? 1 : pageIndex;
 
             string sql = "SELECT * FROM RunningLogs WHERE 0 = 0";
 

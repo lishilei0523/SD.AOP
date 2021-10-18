@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "运行日志管理";
+}
+
+@section header{
+    <link type="text/css" href="~/css/Common/Grid.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/scripts/RunningLog/Index.js"></script>
+}
+
+<div class="main">
+    @*工具栏*@
+    <div id="toolbar" class="datagrid-toolbar" style="padding: 5px; height: auto">
+        @*表单区*@
+        <div style="margin-left: 5px">
+            <form id="frmQueries">
+                日志Id：<input class="easyui-textbox" type="text" name="logId" style="width: 210px" data-options="prompt:'日志Id'" />
+                开始时间：
+                <input class="easyui-datetimebox" data-options="editable:false" name="startTime" style="width: 210px">
+                结束时间：
+                <input class="easyui-datetimebox" data-options="editable:false" name="endTime" style="width:210px">
+
+                <a href="#" class="easyui-linkbutton" iconcls="icon-search" onclick="searchRunningLogs();">搜索</a>
+            </form>
+        </div>
+    </div>
+
+    @*列表*@
+    <div id="dvGrid" class="gridDiv" style="height: 95%;">
+        <table id="tbGrid"></table>
+    </div>
+</div>
