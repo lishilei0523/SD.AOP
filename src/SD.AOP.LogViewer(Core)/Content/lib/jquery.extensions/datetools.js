@@ -1,6 +1,4 @@
-﻿/// <reference path="easyui/jquery-1.8.0.min.js" />
-/// <reference path="easyui/jquery.easyui.min.js" />
-$(function () {
+﻿$(function () {
     tick();
     setInterval("tick()", 900);
 });
