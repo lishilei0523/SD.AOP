@@ -133,13 +133,15 @@ namespace SD.AOP
             //初始化异常日志
             sqlBuilder.Append("IF OBJECT_ID('[dbo].[ExceptionLogs]') IS NULL ");
             sqlBuilder.Append("BEGIN ");
-            sqlBuilder.Append("CREATE TABLE [dbo].[ExceptionLogs] ([Id] [uniqueidentifier] PRIMARY KEY NOT NULL, [Namespace] [nvarchar](max) NULL, [ClassName] [nvarchar](max) NULL, [MethodName] [nvarchar](max) NULL, [MethodType] [nvarchar](max) NULL, [ArgsJson] [nvarchar](max) NULL, [ExceptionType] [nvarchar](max) NULL, [ExceptionMessage] [nvarchar](max) NULL, [ExceptionInfo] [nvarchar](max) NULL, [InnerException] [nvarchar](max) NULL, [OccurredTime] [datetime] NULL, [IPAddress] [nvarchar](max) NULL) ");
+            sqlBuilder.Append("CREATE TABLE [dbo].[ExceptionLogs] ([Id] [uniqueidentifier] NOT NULL, [Namespace] [nvarchar](max) NULL, [ClassName] [nvarchar](max) NULL, [MethodName] [nvarchar](max) NULL, [MethodType] [nvarchar](max) NULL, [ArgsJson] [nvarchar](max) NULL, [ExceptionType] [nvarchar](max) NULL, [ExceptionMessage] [nvarchar](max) NULL, [ExceptionInfo] [nvarchar](max) NULL, [InnerException] [nvarchar](max) NULL, [OccurredTime] [datetime] NULL, [IPAddress] [nvarchar](max) NULL, CONSTRAINT [PK_dbo.ExceptionLogs] PRIMARY KEY NONCLUSTERED ([Id])) ");
+            sqlBuilder.Append("CREATE CLUSTERED INDEX [IX_OccurredTime] ON [dbo].[ExceptionLogs]([OccurredTime]) ");
             sqlBuilder.Append("END ");
 
             //初始化程序运行日志
             sqlBuilder.Append("IF OBJECT_ID('[dbo].[RunningLogs]') IS NULL ");
             sqlBuilder.Append("BEGIN ");
-            sqlBuilder.Append("CREATE TABLE [dbo].[RunningLogs] ([Id] [uniqueidentifier] PRIMARY KEY NOT NULL, [Namespace] [nvarchar](max) NULL, [ClassName] [nvarchar](max) NULL, [MethodName] [nvarchar](max) NULL, [MethodType] [nvarchar](max) NULL, [ArgsJson] [nvarchar](max) NULL, [ReturnValue] [nvarchar](max) NULL, [ReturnValueType] [nvarchar](max) NULL, [OperatorAccount] [nvarchar](max) NULL, [StartTime] [datetime] NULL, [EndTime] [datetime] NULL, [IPAddress] [nvarchar](max) NULL) ");
+            sqlBuilder.Append("CREATE TABLE [dbo].[RunningLogs] ([Id] [uniqueidentifier] NOT NULL, [Namespace] [nvarchar](max) NULL, [ClassName] [nvarchar](max) NULL, [MethodName] [nvarchar](max) NULL, [MethodType] [nvarchar](max) NULL, [ArgsJson] [nvarchar](max) NULL, [ReturnValue] [nvarchar](max) NULL, [ReturnValueType] [nvarchar](max) NULL, [OperatorAccount] [nvarchar](max) NULL, [StartTime] [datetime] NULL, [EndTime] [datetime] NULL, [IPAddress] [nvarchar](max) NULL, CONSTRAINT [PK_dbo.RunningLogs] PRIMARY KEY NONCLUSTERED ([Id])) ");
+            sqlBuilder.Append("CREATE CLUSTERED INDEX [IX_StartTime] ON [dbo].[RunningLogs]([StartTime]) ");
             sqlBuilder.Append("END ");
 
             //执行创建表
