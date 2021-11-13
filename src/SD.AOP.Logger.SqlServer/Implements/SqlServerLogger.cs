@@ -6,8 +6,13 @@ using SD.Toolkits.Sql.SqlServer;
 using System;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Text;
+#if NET40_OR_GREATER
+using System.Data.SqlClient;
+#endif
+#if NETSTANDARD2_0_OR_GREATER
+using Microsoft.Data.SqlClient;
+#endif
 
 // ReSharper disable once CheckNamespace
 namespace SD.AOP

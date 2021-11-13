@@ -6,8 +6,13 @@ using SD.Toolkits.Sql.SqlServer;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
+#if NET40_OR_GREATER
+using System.Data.SqlClient;
+#endif
+#if NETSTANDARD2_0_OR_GREATER
+using Microsoft.Data.SqlClient;
+#endif
 
 namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
 {
