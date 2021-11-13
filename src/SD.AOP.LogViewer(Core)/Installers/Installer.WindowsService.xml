@@ -1,0 +1,6 @@
+<service>
+  <id>SD.AOP.LogViewer</id>
+  <name>SD.AOP.LogViewer</name>
+  <description>日志查看器</description>
+  <executable>%BASE%\..\SD.AOP.LogViewer.exe</executable>
+</service>
