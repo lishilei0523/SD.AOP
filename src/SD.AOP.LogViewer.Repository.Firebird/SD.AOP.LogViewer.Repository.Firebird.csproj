@@ -4,7 +4,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="8.0.0" />
     <PackageReference Include="SD.Toolkits.Sql" Version="1.0.3" />
     <PackageReference Include="SD.Toolkits.Sql.Firebird" Version="1.0.2" />
     <PackageReference Include="SD.Infrastructure" Version="3.1.4" />
