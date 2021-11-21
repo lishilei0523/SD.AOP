@@ -1,32 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
-		<Authors>Lee</Authors>
-		<Company>SD</Company>
-		<Description>SD.AOP - PostgreSQL日志记录提供者</Description>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+    <Authors>Lee</Authors>
+    <Company>SD</Company>
+    <Description>SD.AOP - 日志提供者 - PostgreSQL实现</Description>
+  </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>bin\Debug\$(TargetFramework)\SD.AOP.Logger.PostgreSQL.xml</DocumentationFile>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DocumentationFile>bin\Release\$(TargetFramework)\SD.AOP.Logger.PostgreSQL.xml</DocumentationFile>
-	</PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\$(TargetFramework)\SD.AOP.Logger.PostgreSQL.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\$(TargetFramework)\SD.AOP.Logger.PostgreSQL.xml</DocumentationFile>
+  </PropertyGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net461'">
-		<Reference Include="System.Configuration" />
-	</ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="SD.Toolkits.Sql" Version="1.0.3" />
+    <PackageReference Include="SD.Toolkits.Sql.PostgreSQL" Version="1.0.2" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="SD.Toolkits.Sql" Version="1.0.3" />
-		<PackageReference Include="SD.Toolkits.Sql.PostgreSQL" Version="1.0.2" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\SD.AOP.Core\SD.AOP.Core.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SD.AOP.Core\SD.AOP.Core.csproj" />
+  </ItemGroup>
 </Project>
