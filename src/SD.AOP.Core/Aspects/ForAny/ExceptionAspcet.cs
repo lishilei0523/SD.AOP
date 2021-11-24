@@ -64,7 +64,7 @@ namespace SD.AOP.Core.Aspects.ForAny
                 this._exceptionLog.BuildExceptionInfo(exception);
 
                 //无需事务
-                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
+                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
                 {
                     //插入数据库
                     Guid newId = LogMediator.Write(this._exceptionLog);

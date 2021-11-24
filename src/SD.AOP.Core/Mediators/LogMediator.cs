@@ -69,7 +69,7 @@ namespace SD.AOP.Core.Mediators
         public static async Task<Guid> WriteAsync(ExceptionLog log)
         {
             ILoggger loggger = (ILoggger)Activator.CreateInstance(_LoggerImplType);
-            Task<Guid> logId = Task.Run(() => loggger.Write(log));
+            Task<Guid> logId = Task.Factory.StartNew(() => loggger.Write(log));
 
             return await logId;
         }
@@ -84,7 +84,7 @@ namespace SD.AOP.Core.Mediators
         public static async Task<Guid> WriteAsync(RunningLog log)
         {
             ILoggger loggger = (ILoggger)Activator.CreateInstance(_LoggerImplType);
-            Task<Guid> logId = Task.Run(() => loggger.Write(log));
+            Task<Guid> logId = Task.Factory.StartNew(() => loggger.Write(log));
 
             return await logId;
         }

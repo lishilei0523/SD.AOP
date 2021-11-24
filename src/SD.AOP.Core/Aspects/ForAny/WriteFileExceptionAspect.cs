@@ -23,7 +23,7 @@ namespace SD.AOP.Core.Aspects.ForAny
             //日志记录到文件中
             string log = $"{AppDomain.CurrentDomain.BaseDirectory}Logs\\Log_{DateTime.Now.Date:yyyyMMdd}.txt";
 
-            Task.Run(() =>
+            Task.Factory.StartNew(() =>
             {
                 this.WriteFile(log, "=============================发生异常, 详细信息如下==================================="
                                     + Environment.NewLine + "［异常时间］" + DateTime.Now

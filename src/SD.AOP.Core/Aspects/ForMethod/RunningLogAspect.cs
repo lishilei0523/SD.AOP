@@ -41,7 +41,7 @@ namespace SD.AOP.Core.Aspects.ForMethod
             this._runningLog.BuildReturnValueInfo(context);
 
             //无需事务
-            using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
+            using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Suppress))
             {
                 //持久化
                 LogMediator.Write(this._runningLog);
