@@ -4,6 +4,10 @@
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Description>SD.AOP - 日志提供者 - MySQL实现</Description>
+    <Copyright>Copyright © SD 2021</Copyright>
+    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
