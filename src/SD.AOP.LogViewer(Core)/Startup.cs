@@ -1,5 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
+using SD.Toolkits.AspNet;
+using System;
+using System.IO;
 
 namespace SD.AOP.LogViewer
 {
@@ -24,6 +28,7 @@ namespace SD.AOP.LogViewer
         /// </summary>
         public void Configure(IApplicationBuilder appBuilder)
         {
+            //配置路由
             appBuilder.UseStaticFiles();
             appBuilder.UseRouting();
             appBuilder.UseEndpoints(endpoints =>
@@ -32,6 +37,15 @@ namespace SD.AOP.LogViewer
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //配置服务器
+            string staticFilesRoot = Path.Combine(AppContext.BaseDirectory, AspNetSetting.StaticFilesPath);
+            Directory.CreateDirectory(staticFilesRoot);
+            StaticFileOptions staticFileOptions = new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(staticFilesRoot)
+            };
+            appBuilder.UseStaticFiles(staticFileOptions);
         }
     }
 }
