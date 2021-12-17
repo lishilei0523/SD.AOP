@@ -6,7 +6,7 @@
   <ItemGroup>
     <PackageReference Include="SD.Toolkits.Sql" Version="1.0.3" />
     <PackageReference Include="SD.Toolkits.Sql.Firebird" Version="1.0.2" />
-    <PackageReference Include="SD.Infrastructure" Version="3.2.2" />
+    <PackageReference Include="SD.Infrastructure" Version="3.2.4" />
   </ItemGroup>
 
   <ItemGroup>
