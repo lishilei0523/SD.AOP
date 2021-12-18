@@ -1,13 +1,12 @@
 ﻿using ArxOne.MrAdvice.Advice;
 using System;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SD.AOP.Core.Aspects.ForAny
 {
     /// <summary>
-    /// 写入文件异常AOP特性类
+    /// 写入文件异常AOP特性
     /// </summary>
     [Serializable]
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
@@ -22,7 +21,6 @@ namespace SD.AOP.Core.Aspects.ForAny
         {
             //日志记录到文件中
             string log = $"{AppDomain.CurrentDomain.BaseDirectory}Logs\\Log_{DateTime.Now.Date:yyyyMMdd}.txt";
-
             Task.Factory.StartNew(() =>
             {
                 this.WriteFile(log, "=============================发生异常, 详细信息如下==================================="
@@ -32,40 +30,33 @@ namespace SD.AOP.Core.Aspects.ForAny
                                     + Environment.NewLine + "［应用程序］" + exception.Source
                                     + Environment.NewLine + "［当前方法］" + exception.TargetSite
                                     + Environment.NewLine + "［堆栈信息］" + exception.StackTrace
-                                    + Environment.NewLine, true);
+                                    + Environment.NewLine);
             });
         }
 
         /// <summary>
-        /// 写入文件方法
+        /// 写入文件
         /// </summary>
         /// <param name="path">路径</param>
         /// <param name="content">内容</param>
-        /// <param name="append">是否附加</param>
-        /// <exception cref="ArgumentNullException">路径为空</exception>
-        public void WriteFile(string path, string content, bool append = false)
+        public void WriteFile(string path, string content)
         {
-            #region # 验证参数
+            #region # 验证
 
             if (string.IsNullOrWhiteSpace(path))
             {
-                throw new ArgumentNullException(nameof(path), @"路径不可为空！");
+                throw new ArgumentNullException(nameof(path), "路径不可为空！");
             }
 
             #endregion
 
             FileInfo file = new FileInfo(path);
             StreamWriter writer = null;
-            if (file.Exists && !append)
-            {
-                file.Delete();
-            }
             try
             {
                 //获取文件目录并判断是否存在
                 string directory = Path.GetDirectoryName(path);
-
-                if (string.IsNullOrEmpty(directory))
+                if (string.IsNullOrWhiteSpace(directory))
                 {
                     throw new ArgumentNullException(nameof(path), "目录不可为空！");
                 }
@@ -74,7 +65,7 @@ namespace SD.AOP.Core.Aspects.ForAny
                     Directory.CreateDirectory(directory);
                 }
 
-                writer = append ? file.AppendText() : new StreamWriter(path, false, Encoding.UTF8);
+                writer = file.AppendText();
                 writer.Write(content);
             }
             finally

@@ -5,7 +5,7 @@ using System.Transactions;
 namespace SD.AOP.Core.Aspects.ForMethod
 {
     /// <summary>
-    /// 事务AOP特性类
+    /// 事务AOP特性
     /// </summary>
     [Serializable]
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
@@ -38,7 +38,7 @@ namespace SD.AOP.Core.Aspects.ForMethod
                 scope.Complete();
             }
 #endif
-#if NET451_OR_GREATER || NETSTANDARD2_0 || NET5_0
+#if NET451_OR_GREATER || NETSTANDARD2_0_OR_GREATER
             TransactionScopeAsyncFlowOption asyncFlowOption = TransactionScopeAsyncFlowOption.Enabled;
             using (TransactionScope scope = new TransactionScope(this._scopeOption, asyncFlowOption))
             {

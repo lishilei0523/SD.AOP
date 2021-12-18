@@ -14,7 +14,7 @@ namespace SD.AOP
     /// <summary>
     /// MySQL日志记录者实现
     /// </summary>
-    public class MySqlLogger : ILoggger
+    public class MySqlLogger : ILogger
     {
         #region # 常量、字段及构造器
 

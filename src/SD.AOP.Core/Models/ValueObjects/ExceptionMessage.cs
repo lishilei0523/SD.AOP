@@ -25,7 +25,7 @@ namespace SD.AOP.Core.Models.ValueObjects
         public string ErrorMessage;
 
         /// <summary>
-        /// 错误日志Id
+        /// 日志Id
         /// </summary>
         public Guid LogId;
     }

@@ -15,7 +15,7 @@ namespace SD.AOP
     /// <summary>
     /// Firebird日志记录者实现
     /// </summary>
-    public class FbSqlLogger : ILoggger
+    public class FbSqlLogger : ILogger
     {
         #region # 常量、字段及构造器
 

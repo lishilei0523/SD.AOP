@@ -20,7 +20,7 @@ namespace SD.AOP
     /// <summary>
     /// SQL Server日志记录者实现
     /// </summary>
-    public class SqlServerLogger : ILoggger
+    public class SqlServerLogger : ILogger
     {
         #region # 常量、字段及构造器
 

@@ -6,7 +6,7 @@ namespace SD.AOP.Core.Interfaces
     /// <summary>
     /// 日志记录者接口
     /// </summary>
-    public interface ILoggger
+    public interface ILogger
     {
         #region # 记录异常日志 —— Guid Write(ExceptionLog log)
         /// <summary>

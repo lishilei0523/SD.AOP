@@ -38,10 +38,25 @@ namespace SD.AOP.Core.Mediators
         /// <returns>日志Id</returns>
         public static Guid Write(ExceptionLog log)
         {
-            ILoggger loggger = (ILoggger)Activator.CreateInstance(_LoggerImplType);
-            Guid logId = loggger.Write(log);
+            ILogger logger = (ILogger)Activator.CreateInstance(_LoggerImplType);
+            Guid logId = logger.Write(log);
 
             return logId;
+        }
+        #endregion
+
+        #region # 记录异常日志 —— static async Task<Guid> WriteAsync(ExceptionLog log)
+        /// <summary>
+        /// 记录异常日志
+        /// </summary>
+        /// <param name="log">异常日志</param>
+        /// <returns>日志Id</returns>
+        public static async Task<Guid> WriteAsync(ExceptionLog log)
+        {
+            ILogger logger = (ILogger)Activator.CreateInstance(_LoggerImplType);
+            Task<Guid> logId = Task.Factory.StartNew(() => logger.Write(log));
+
+            return await logId;
         }
         #endregion
 
@@ -53,29 +68,14 @@ namespace SD.AOP.Core.Mediators
         /// <returns>日志Id</returns>
         public static Guid Write(RunningLog log)
         {
-            ILoggger loggger = (ILoggger)Activator.CreateInstance(_LoggerImplType);
-            Guid logId = loggger.Write(log);
+            ILogger logger = (ILogger)Activator.CreateInstance(_LoggerImplType);
+            Guid logId = logger.Write(log);
 
             return logId;
         }
         #endregion
 
-        #region # 异步记录异常日志 —— static Task<Guid> WriteAsync(ExceptionLog log)
-        /// <summary>
-        /// 异步记录异常日志
-        /// </summary>
-        /// <param name="log">异常日志</param>
-        /// <returns>日志Id</returns>
-        public static async Task<Guid> WriteAsync(ExceptionLog log)
-        {
-            ILoggger loggger = (ILoggger)Activator.CreateInstance(_LoggerImplType);
-            Task<Guid> logId = Task.Factory.StartNew(() => loggger.Write(log));
-
-            return await logId;
-        }
-        #endregion
-
-        #region # 异步记录运行日志 —— static async Task<Guid> WriteAsync(RunningLog log)
+        #region # 记录运行日志 —— static async Task<Guid> WriteAsync(RunningLog log)
         /// <summary>
         /// 异步记录运行日志
         /// </summary>
@@ -83,8 +83,8 @@ namespace SD.AOP.Core.Mediators
         /// <returns>日志Id</returns>
         public static async Task<Guid> WriteAsync(RunningLog log)
         {
-            ILoggger loggger = (ILoggger)Activator.CreateInstance(_LoggerImplType);
-            Task<Guid> logId = Task.Factory.StartNew(() => loggger.Write(log));
+            ILogger logger = (ILogger)Activator.CreateInstance(_LoggerImplType);
+            Task<Guid> logId = Task.Factory.StartNew(() => logger.Write(log));
 
             return await logId;
         }

@@ -7,14 +7,14 @@ using System.Transactions;
 namespace SD.AOP.Core.Aspects.ForMethod
 {
     /// <summary>
-    /// 程序日志AOP特性类
+    /// 运行日志AOP特性
     /// </summary>
     [Serializable]
     [AttributeUsage(AttributeTargets.Constructor | AttributeTargets.Method, AllowMultiple = true)]
     public class RunningLogAspect : Attribute, IMethodAdvice
     {
         /// <summary>
-        /// 程序日志字段
+        /// 运行日志
         /// </summary>
         protected readonly RunningLog _runningLog;
 

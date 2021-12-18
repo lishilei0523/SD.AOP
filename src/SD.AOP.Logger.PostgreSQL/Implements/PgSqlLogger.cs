@@ -15,7 +15,7 @@ namespace SD.AOP
     /// <summary>
     /// PostgreSQL日志记录者实现
     /// </summary>
-    public class PgSqlLogger : ILoggger
+    public class PgSqlLogger : ILogger
     {
         #region # 常量、字段及构造器
 

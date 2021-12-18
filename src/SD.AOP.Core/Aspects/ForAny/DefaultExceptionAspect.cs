@@ -5,7 +5,7 @@ using System;
 namespace SD.AOP.Core.Aspects.ForAny
 {
     /// <summary>
-    /// 默认异常AOP特性类
+    /// 默认异常AOP特性
     /// </summary>
     [Serializable]
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
