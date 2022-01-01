@@ -15,25 +15,36 @@ namespace SD.AOP.Core
         /// <summary>
         /// 单例
         /// </summary>
-        private static readonly AopSection _Setting;
+        private static AopSection _Setting;
 
         /// <summary>
         /// 静态构造器
         /// </summary>
         static AopSection()
         {
-            _Setting = (AopSection)ConfigurationManager.GetSection("sd.aop");
+            _Setting = null;
+        }
 
-            #region # 非空验证
+        #endregion
 
-            if (_Setting == null)
+        #region # 初始化 —— static void Initialize(Configuration configuration)
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="configuration">配置</param>
+        public static void Initialize(Configuration configuration)
+        {
+            #region # 验证
+
+            if (configuration == null)
             {
-                throw new ApplicationException("SD.AOP节点未配置，请检查程序！");
+                throw new ArgumentNullException(nameof(configuration), "配置不可为空！");
             }
 
             #endregion
-        }
 
+            _Setting = (AopSection)configuration.GetSection("sd.aop");
+        }
         #endregion
 
         #region # 访问器 —— static AopSection Setting
@@ -42,7 +53,19 @@ namespace SD.AOP.Core
         /// </summary>
         public static AopSection Setting
         {
-            get { return _Setting; }
+            get
+            {
+                if (_Setting == null)
+                {
+                    _Setting = (AopSection)ConfigurationManager.GetSection("sd.aop");
+                }
+                if (_Setting == null)
+                {
+                    throw new ApplicationException("SD.AOP节点未配置，请检查程序！");
+                }
+
+                return _Setting;
+            }
         }
         #endregion
 
