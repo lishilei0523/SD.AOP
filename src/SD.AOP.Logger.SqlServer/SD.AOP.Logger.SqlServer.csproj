@@ -26,8 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Toolkits.Sql" Version="1.0.3" />
-    <PackageReference Include="SD.Toolkits.Sql.SqlServer" Version="1.0.4" />
+    <PackageReference Include="SD.Toolkits.Sql" Version="1.0.4" />
+    <PackageReference Include="SD.Toolkits.Sql.SqlServer" Version="1.0.5" />
   </ItemGroup>
 
   <ItemGroup>
