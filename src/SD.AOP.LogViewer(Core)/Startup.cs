@@ -38,7 +38,7 @@ namespace SD.AOP.LogViewer
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            //配置服务器
+            //配置静态文件
             string staticFilesRoot = Path.Combine(AppContext.BaseDirectory, AspNetSetting.StaticFilesPath);
             Directory.CreateDirectory(staticFilesRoot);
             StaticFileOptions staticFileOptions = new StaticFileOptions

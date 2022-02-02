@@ -22,11 +22,11 @@ namespace SD.AOP.Core.Models.ValueObjects
         /// <summary>
         /// 异常消息
         /// </summary>
-        public string ErrorMessage;
+        public string ErrorMessage { get; set; }
 
         /// <summary>
         /// 日志Id
         /// </summary>
-        public Guid LogId;
+        public Guid LogId { get; set; }
     }
 }

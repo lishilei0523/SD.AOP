@@ -32,9 +32,9 @@ namespace SD.AOP.Core.Aspects.ForMethod
         /// <param name="context">方法元数据</param>
         public void Advise(MethodAdviceContext context)
         {
-            this._runningLog.BuildRuningInfo(context);
+            this._runningLog.BuildRunningInfo();
             this._runningLog.BuildBasicInfo(context);
-            this._runningLog.BuildMethodArgsInfo(context);
+            this._runningLog.BuildParametersInfo(context);
 
             context.Proceed();
 

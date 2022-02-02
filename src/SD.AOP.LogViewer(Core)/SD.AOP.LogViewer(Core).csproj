@@ -15,11 +15,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="favicon.ico" />
     <Content Include="Content\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="favicon.ico">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

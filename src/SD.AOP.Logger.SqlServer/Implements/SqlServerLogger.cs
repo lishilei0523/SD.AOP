@@ -22,7 +22,7 @@ namespace SD.AOP
     /// </summary>
     public class SqlServerLogger : ILogger
     {
-        #region # 常量、字段及构造器
+        #region # 字段及构造器
 
         /// <summary>
         /// SQL工具

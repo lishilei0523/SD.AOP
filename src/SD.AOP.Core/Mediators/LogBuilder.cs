@@ -33,28 +33,27 @@ namespace SD.AOP.Core.Mediators
         }
         #endregion
 
-        #region # 建造方法参数信息 —— static void BuildMethodArgsInfo(this BaseLog log, MethodAdviceContext context)
+        #region # 建造参数信息 —— static void BuildParametersInfo(this BaseLog log, MethodAdviceContext context)
         /// <summary>
-        /// 建造方法参数信息
+        /// 建造参数信息
         /// </summary>
         /// <param name="log">日志</param>
         /// <param name="context">方法元数据</param>
-        public static void BuildMethodArgsInfo(this BaseLog log, MethodAdviceContext context)
+        public static void BuildParametersInfo(this BaseLog log, MethodAdviceContext context)
         {
-            IList<object> arguments = context.Arguments;
+            IList<object> arguments = context.Arguments ?? new List<object>();
             ParameterInfo[] parameters = context.TargetMethod.GetParameters();
 
-            List<MethodArg> argList = new List<MethodArg>();
-
-            for (int i = 0; arguments != null && i < arguments.Count; i++)
+            IList<MethodArg> methodArgs = new List<MethodArg>();
+            for (int index = 0; index < arguments.Count; index++)
             {
-                string argTypeName = $"{parameters[i].ParameterType.Namespace}.{parameters[i].ParameterType.Name}";
-                MethodArg arg = new MethodArg(parameters[i].Name, argTypeName, arguments[i].ToJson());
+                string argTypeName = parameters[index].ParameterType.FullName;
+                MethodArg methodArg = new MethodArg(parameters[index].Name, argTypeName, arguments[index].ToJson());
 
-                argList.Add(arg);
+                methodArgs.Add(methodArg);
             }
 
-            log.ArgsJson = argList.ToJson();
+            log.ArgsJson = methodArgs.ToJson();
         }
         #endregion
 
@@ -76,13 +75,12 @@ namespace SD.AOP.Core.Mediators
         }
         #endregion
 
-        #region # 建造程序运行信息 —— static void BuildRuningInfo(this RunningLog log, MethodAdviceContext context)
+        #region # 建造运行信息 —— static void BuildRunningInfo(this RunningLog log)
         /// <summary>
-        /// 建造程序运行信息
+        /// 建造运行信息
         /// </summary>
-        /// <param name="log">程序运行日志</param>
-        /// <param name="context">方法元数据</param>
-        public static void BuildRuningInfo(this RunningLog log, MethodAdviceContext context)
+        /// <param name="log">运行日志</param>
+        public static void BuildRunningInfo(this RunningLog log)
         {
             log.StartTime = DateTime.Now;
             log.OperatorAccount = null;
@@ -98,7 +96,6 @@ namespace SD.AOP.Core.Mediators
         public static void BuildReturnValueInfo(this RunningLog log, MethodAdviceContext context)
         {
             log.EndTime = DateTime.Now;
-
             if (!context.HasReturnValue)
             {
                 log.ReturnValue = null;
@@ -107,27 +104,31 @@ namespace SD.AOP.Core.Mediators
             else
             {
                 log.ReturnValue = context.ReturnValue.ToJson();
-                log.ReturnValueType = $"{context.ReturnValue.GetType().Namespace}.{context.ReturnValue.GetType().Name}";
+                log.ReturnValueType = context.ReturnValue.GetType().FullName;
             }
         }
         #endregion
+
+
+        //Private
 
         #region # 建造内部异常 —— static string BuildInnerException(StringBuilder...
         /// <summary>
         /// 建造内部异常
         /// </summary>
-        /// <param name="exBuilder">异常建造者</param>
+        /// <param name="exceptionBuilder">异常建造者</param>
         /// <param name="exception">异常</param>
         /// <returns>内部异常</returns>
-        private static string BuildInnerException(StringBuilder exBuilder, Exception exception)
+        private static string BuildInnerException(StringBuilder exceptionBuilder, Exception exception)
         {
             if (exception.InnerException != null)
             {
-                exBuilder.Append(exception.InnerException);
-                exBuilder.Append(@"\r\n");
-                BuildInnerException(exBuilder, exception.InnerException);
+                exceptionBuilder.Append(exception.InnerException);
+                exceptionBuilder.Append(@"\r\n");
+                BuildInnerException(exceptionBuilder, exception.InnerException);
             }
-            return exBuilder.ToString();
+
+            return exceptionBuilder.ToString();
         }
         #endregion
 
@@ -153,9 +154,9 @@ namespace SD.AOP.Core.Mediators
                 }
             }
 
-            string ipsStr = ips.Aggregate((x, y) => $"{x},{y}");
+            string ipsText = ips.Aggregate((x, y) => $"{x},{y}");
 
-            return ipsStr;
+            return ipsText;
         }
         #endregion
     }

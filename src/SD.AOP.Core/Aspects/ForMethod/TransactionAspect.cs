@@ -33,19 +33,15 @@ namespace SD.AOP.Core.Aspects.ForMethod
         {
 #if NET40 || NET45
             using (TransactionScope scope = new TransactionScope(this._scopeOption))
-            {
-                context.Proceed();
-                scope.Complete();
-            }
 #endif
 #if NET451_OR_GREATER || NETSTANDARD2_0_OR_GREATER
-            TransactionScopeAsyncFlowOption asyncFlowOption = TransactionScopeAsyncFlowOption.Enabled;
-            using (TransactionScope scope = new TransactionScope(this._scopeOption, asyncFlowOption))
+            using (TransactionScope scope = new TransactionScope(this._scopeOption, TransactionScopeAsyncFlowOption.Enabled))
+#endif
             {
                 context.Proceed();
                 scope.Complete();
             }
-#endif
+
         }
     }
 }

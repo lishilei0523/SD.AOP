@@ -60,7 +60,7 @@ namespace SD.AOP.Core.Aspects.ForAny
             {
                 //初始化异常日志
                 this._exceptionLog.BuildBasicInfo(context);
-                this._exceptionLog.BuildMethodArgsInfo(context);
+                this._exceptionLog.BuildParametersInfo(context);
                 this._exceptionLog.BuildExceptionInfo(exception);
 
                 //无需事务

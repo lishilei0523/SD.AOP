@@ -1,8 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SD.AOP.Core.Aspects.ForMethod;
 using SD.AOP.Core.Tests.StubEntities;
+using SD.Common;
 using System;
+using System.Configuration;
 using System.Diagnostics;
+using System.Reflection;
 using System.Transactions;
 
 namespace SD.AOP.Core.Tests.TestCases
@@ -16,6 +19,12 @@ namespace SD.AOP.Core.Tests.TestCases
         [TestInitialize]
         public void Initialize()
         {
+#if NETCOREAPP3_1_OR_GREATER
+            //初始化配置文件
+            Assembly entryAssembly = Assembly.GetExecutingAssembly();
+            Configuration configuration = ConfigurationExtension.GetConfigurationFromAssembly(entryAssembly);
+            AopSection.Initialize(configuration);
+#endif
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             AppDomain.CurrentDomain.SetData("DataDirectory", baseDirectory);
         }
