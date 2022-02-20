@@ -7,7 +7,6 @@ namespace SD.AOP.LogViewer
     /// <summary>
     /// 全局应用程序类
     /// </summary>
-
     public class MvcApplication : HttpApplication
     {
         /// <summary>
