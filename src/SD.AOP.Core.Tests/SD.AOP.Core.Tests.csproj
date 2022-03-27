@@ -7,7 +7,7 @@
     <Copyright>Copyright © SD 2022</Copyright>
   </PropertyGroup>
 
-  <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
     <Reference Include="System.Transactions" />
   </ItemGroup>
 

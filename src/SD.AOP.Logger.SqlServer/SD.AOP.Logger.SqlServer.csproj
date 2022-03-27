@@ -17,7 +17,7 @@
     <DocumentationFile>bin\Release\$(TargetFramework)\SD.AOP.Logger.SqlServer.xml</DocumentationFile>
   </PropertyGroup>
 
-  <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
     <Reference Include="System.Configuration" />
   </ItemGroup>
 
