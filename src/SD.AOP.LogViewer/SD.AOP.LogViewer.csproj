@@ -70,7 +70,7 @@
     <Reference Include="System.Web.Routing" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.8" />
     <PackageReference Include="jQuery" Version="1.12.4" />
     <PackageReference Include="EasyUI" Version="1.4.5" />
     <PackageReference Include="SD.Toolkits.Mapper" Version="1.1.1" />
@@ -79,7 +79,7 @@
     <PackageReference Include="SD.Toolkits.JavaScript" Version="1.0.0" />
     <PackageReference Include="SD.IOC.Core" Version="2.1.6" />
     <PackageReference Include="SD.IOC.Integration.AspNetMvc" Version="1.0.2" />
-    <PackageReference Include="SD.Infrastructure" Version="3.4.3" />
+    <PackageReference Include="SD.Infrastructure" Version="3.5.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ExceptionLogController.cs" />
