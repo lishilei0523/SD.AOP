@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="SD.Toolkits.Sql" Version="1.0.4" />
     <PackageReference Include="SD.Toolkits.Sql.SqlServer" Version="1.0.6" />
-    <PackageReference Include="SD.Infrastructure" Version="3.5.0" />
+    <PackageReference Include="SD.Infrastructure" Version="3.5.1" />
   </ItemGroup>
 
   <ItemGroup>
