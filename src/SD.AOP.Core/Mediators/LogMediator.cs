@@ -26,7 +26,6 @@ namespace SD.AOP.Core.Mediators
             Assembly impAssembly = Assembly.Load(AopSection.Setting.LoggerProvider.Assembly);
             Type implType = impAssembly.GetType(AopSection.Setting.LoggerProvider.Type);
             _Logger = (ILogger)Activator.CreateInstance(implType);
-
         }
 
         #endregion

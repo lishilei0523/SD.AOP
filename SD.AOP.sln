@@ -37,6 +37,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.AOP.LogViewer.Repository
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.AOP.LogViewer(Core)", "src\SD.AOP.LogViewer(Core)\SD.AOP.LogViewer(Core).csproj", "{3CA86F79-A54B-443D-A6A0-0973EBE49619}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.AOP.Logger.Sqlite", "src\SD.AOP.Logger.Sqlite\SD.AOP.Logger.Sqlite.csproj", "{756772F0-96FE-42AA-8E62-FFB295EB658E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +97,10 @@ Global
 		{3CA86F79-A54B-443D-A6A0-0973EBE49619}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CA86F79-A54B-443D-A6A0-0973EBE49619}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CA86F79-A54B-443D-A6A0-0973EBE49619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{756772F0-96FE-42AA-8E62-FFB295EB658E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{756772F0-96FE-42AA-8E62-FFB295EB658E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{756772F0-96FE-42AA-8E62-FFB295EB658E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{756772F0-96FE-42AA-8E62-FFB295EB658E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -113,6 +119,7 @@ Global
 		{76186BFE-BBB1-4A41-8BA3-7F19A5402755} = {1584FD67-BCA0-48F5-B857-CF8BDC5CCF07}
 		{1FE2C2EE-F94A-44EE-9D98-1D53C2EBEDA9} = {DEB995E0-CBF6-4BB5-8D25-E57FFF7C35B1}
 		{3CA86F79-A54B-443D-A6A0-0973EBE49619} = {DEB995E0-CBF6-4BB5-8D25-E57FFF7C35B1}
+		{756772F0-96FE-42AA-8E62-FFB295EB658E} = {1584FD67-BCA0-48F5-B857-CF8BDC5CCF07}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {76C23E0F-CCE0-418E-95A8-89A2562FCA9D}
