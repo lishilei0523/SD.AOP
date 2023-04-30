@@ -1,9 +1,9 @@
-﻿using SD.AOP.LogViewer.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using SD.AOP.LogViewer.Models;
 using SD.Infrastructure;
 using SD.Infrastructure.Attributes;
 using SD.Toolkits.EasyUI;
 using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace SD.AOP.LogViewer.Controllers
 {
@@ -47,7 +47,7 @@ namespace SD.AOP.LogViewer.Controllers
 
             IEnumerable<Node> menuTree = menus.ToTree(null);
 
-            return base.Json(menuTree, JsonRequestBehavior.AllowGet);
+            return base.Json(menuTree);
         }
         #endregion
     }

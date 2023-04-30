@@ -1,11 +1,11 @@
-﻿using SD.AOP.Core.Models.Entities;
+﻿using Microsoft.AspNetCore.Mvc;
+using SD.AOP.Core.Models.Entities;
 using SD.AOP.LogViewer.Models;
 using SD.AOP.LogViewer.Repository.Interfaces;
 using SD.Toolkits.EasyUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
 
 namespace SD.AOP.LogViewer.Controllers
 {
@@ -104,7 +104,7 @@ namespace SD.AOP.LogViewer.Controllers
 
             Grid<RunningLogModel> grid = new Grid<RunningLogModel>(rowCount, runningLogViews);
 
-            return base.Json(grid, JsonRequestBehavior.AllowGet);
+            return base.Json(grid);
         }
         #endregion
     }

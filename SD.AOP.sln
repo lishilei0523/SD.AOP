@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.AOP.LogViewer", "src\SD.AOP.LogViewer\SD.AOP.LogViewer.csproj", "{559FB9AF-5323-4C1E-A67C-3700DDFF5CA3}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.AOP.Core.Tests", "src\SD.AOP.Core.Tests\SD.AOP.Core.Tests.csproj", "{6A6D87D6-2BD0-4EA0-968F-A68A1F27E8A8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.AOP.Core", "src\SD.AOP.Core\SD.AOP.Core.csproj", "{B0C050DD-6F32-4FAC-98D0-E06502927B16}"
@@ -35,9 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.AOP.Logger.Firebird", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.AOP.LogViewer.Repository.Firebird", "src\SD.AOP.LogViewer.Repository.Firebird\SD.AOP.LogViewer.Repository.Firebird.csproj", "{1FE2C2EE-F94A-44EE-9D98-1D53C2EBEDA9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.AOP.LogViewer(Core)", "src\SD.AOP.LogViewer(Core)\SD.AOP.LogViewer(Core).csproj", "{98995F58-2399-40DE-BEB2-E6C98F52A421}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.AOP.LogViewer", "src\SD.AOP.LogViewer\SD.AOP.LogViewer.csproj", "{98995F58-2399-40DE-BEB2-E6C98F52A421}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.AOP.Logger.Sqlite", "src\SD.AOP.Logger.Sqlite\SD.AOP.Logger.Sqlite.csproj", "{756772F0-96FE-42AA-8E62-FFB295EB658E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.AOP.Logger.Sqlite", "src\SD.AOP.Logger.Sqlite\SD.AOP.Logger.Sqlite.csproj", "{756772F0-96FE-42AA-8E62-FFB295EB658E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +43,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{559FB9AF-5323-4C1E-A67C-3700DDFF5CA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{559FB9AF-5323-4C1E-A67C-3700DDFF5CA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{559FB9AF-5323-4C1E-A67C-3700DDFF5CA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{559FB9AF-5323-4C1E-A67C-3700DDFF5CA3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6A6D87D6-2BD0-4EA0-968F-A68A1F27E8A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6A6D87D6-2BD0-4EA0-968F-A68A1F27E8A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A6D87D6-2BD0-4EA0-968F-A68A1F27E8A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -106,7 +100,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{559FB9AF-5323-4C1E-A67C-3700DDFF5CA3} = {DEB995E0-CBF6-4BB5-8D25-E57FFF7C35B1}
 		{6A6D87D6-2BD0-4EA0-968F-A68A1F27E8A8} = {E2C1579F-BA41-4F02-9874-C7C11DC22AF9}
 		{B0C050DD-6F32-4FAC-98D0-E06502927B16} = {042EF7E0-A266-44CB-B467-0AC170AA927B}
 		{02622FCE-E2DC-4132-8007-6535FC5693B6} = {1584FD67-BCA0-48F5-B857-CF8BDC5CCF07}
