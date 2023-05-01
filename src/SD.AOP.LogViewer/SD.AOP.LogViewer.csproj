@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <NoDefaultLaunchSettingsFile>True</NoDefaultLaunchSettingsFile>
     <AssemblyName>SD.AOP.LogViewer</AssemblyName>
     <RootNamespace>SD.AOP.LogViewer</RootNamespace>
