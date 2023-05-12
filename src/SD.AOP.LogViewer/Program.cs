@@ -4,9 +4,9 @@ using SD.Toolkits.AspNet;
 
 namespace SD.AOP.LogViewer
 {
-    public class Program
+    class Program
     {
-        public static void Main(string[] args)
+        static void Main()
         {
             IHostBuilder hostBuilder = Host.CreateDefaultBuilder();
 
