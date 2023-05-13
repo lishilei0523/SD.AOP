@@ -11,7 +11,6 @@
     <link type="text/css" href="~/lib/jquery.easyui/themes/default/easyui.css" rel="stylesheet" />
     <link type="text/css" href="~/lib/jquery.easyui/themes/color.css" rel="stylesheet" />
     <link type="text/css" href="~/lib/jquery.easyui/themes/icon.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Scripts/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="~/lib/jquery/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="~/lib/jquery.easyui/jquery.easyui-1.4.5.min.js"></script>
     <script type="text/javascript" src="~/lib/jquery.easyui/locale/easyui-lang-zh_CN.js"></script>
@@ -36,7 +35,6 @@
             </div>
         </div>
     </div>
-
     @*网站中部，内容部分*@
     <div data-options="region:'center'" id="dvContent">
         <div class="easyui-tabs" id="tabs" data-options="headerWidth:200,fit:true">
@@ -45,12 +43,10 @@
             </div>
         </div>
     </div>
-
     @*网站左部，菜单部分*@
     <div data-options="region:'west',split:false" title="功能选项" id="dvMenu">
         <ul id="menuTree"></ul>
     </div>
-
     @*网站底部*@
     <div data-options="region:'south',border:false" id="dvFooter">
         <div class="currentUser">当前登录用户：<span id="spLoginId"></span></div>
@@ -58,11 +54,9 @@
             <span>开发及技术支持&nbsp;——&nbsp;</span><a href="http://git.oschina.net/lishilei0523" target="_blank">SlamDunk co.,ltd.</a>&nbsp;&nbsp;<span id="nowDate"></span>
         </div>
     </div>
-
     @*修改密码对话框*@
     <div id="dvUpdatePwd" class="easyui-window" title="修改密码" style="padding: 5px;" data-options="width:360,height:230,maximizable: false,resizable: false,draggable: false,modal: true,minimizable: false,collapsible: false,closed: true,footer: '#footer'">
     </div>
-
     @*公共窗口*@
     <div id="commonWindow">
         <iframe style="width: 100%; height: 98%; border: 0;"></iframe>
