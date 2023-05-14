@@ -1,9 +1,10 @@
-﻿using SD.Toolkits.EasyUI;
+﻿using SD.AOP.LogViewer.Models;
+using SD.Toolkits.EasyUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SD.AOP.LogViewer.Models
+namespace SD.AOP.LogViewer.Maps
 {
     /// <summary>
     /// 菜单映射工具类
@@ -38,7 +39,7 @@ namespace SD.AOP.LogViewer.Models
         public static ICollection<Node> ToTree(this IEnumerable<MenuModel> menus, Guid? parentId)
         {
             //验证
-            menus = menus == null ? new MenuModel[0] : menus.ToArray();
+            menus = menus?.ToArray() ?? Array.Empty<MenuModel>();
 
             //声明容器
             ICollection<Node> tree = new HashSet<Node>();

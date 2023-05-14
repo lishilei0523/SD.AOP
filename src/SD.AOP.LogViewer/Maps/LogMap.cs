@@ -1,8 +1,9 @@
 ﻿using SD.AOP.Core.Models.Entities;
+using SD.AOP.LogViewer.Models;
 using SD.Infrastructure.Constants;
 using SD.Toolkits.Mapper;
 
-namespace SD.AOP.LogViewer.Models
+namespace SD.AOP.LogViewer.Maps
 {
     /// <summary>
     /// 日志相关映射工具类
@@ -16,7 +17,7 @@ namespace SD.AOP.LogViewer.Models
         public static ExceptionLogModel ToModel(this ExceptionLog log)
         {
             ExceptionLogModel logModel = log.Map<ExceptionLog, ExceptionLogModel>(null, null, x => x.OccurredTime);
-            logModel.OccurredTime = log.OccurredTime.ToString(CommonConstants.TimeFormat);
+            logModel.OccurredTime = log.OccurredTime.ToString(CommonConstants.DateTimeFormat);
 
             return logModel;
         }
@@ -29,8 +30,8 @@ namespace SD.AOP.LogViewer.Models
         public static RunningLogModel ToModel(this RunningLog log)
         {
             RunningLogModel logModel = log.Map<RunningLog, RunningLogModel>(null, null, x => x.StartTime, x => x.EndTime);
-            logModel.StartTime = log.StartTime.ToString(CommonConstants.TimeFormat);
-            logModel.EndTime = log.EndTime.ToString(CommonConstants.TimeFormat);
+            logModel.StartTime = log.StartTime.ToString(CommonConstants.DateTimeFormat);
+            logModel.EndTime = log.EndTime.ToString(CommonConstants.DateTimeFormat);
 
             return logModel;
         }

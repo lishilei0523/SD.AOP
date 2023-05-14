@@ -1,7 +1,6 @@
 ﻿(function (object) {
     //1.定义一个 局部函数变量
     function MessageBox(href) {
-
         //系统默认显示时间
         var secondConst = 2000;
 
@@ -234,7 +233,7 @@
     //因为MessageBox方法中创建了一个文本框，并添加到了body元素中，所以需要等DOM树加载完毕后执行
     object(document).ready(function () {
         object.extend(object, {
-            messageBox: new MessageBox({ imghref: "/Content/images/" })
+            messageBox: new MessageBox({ imghref: "/images/" })
         });
     });
 })($);

@@ -1,5 +1,4 @@
 ﻿//{imghref:图片文件夹所在路径,waitImg:等待图片名,bgImg:背景图片名}
-
 (function (jqObj) {
     //1.定义一个 局部函数变量
     function MsgBox(s) {
@@ -193,8 +192,7 @@
     //  因为 MsbBox方法中 创建了一个文本框，并 添加到 了 body 元素中，所以需要等dom树加载完毕后执行
     jqObj(document).ready(function () {
         jqObj.extend(jqObj, {
-            messageBox: new MsgBox({ imghref: "/Content/images/" })
+            messageBox: new MsgBox({ imghref: "/images/" })
         });
     });
 })($);
-

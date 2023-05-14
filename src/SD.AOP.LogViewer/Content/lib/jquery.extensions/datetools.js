@@ -2,11 +2,13 @@
     tick();
     setInterval("tick()", 900);
 });
+
 function tick() {
     var today;
     today = new Date();
     $("#nowDate").html(format(today));
 }
+
 function format(date) {
     //年
     var yy = date.getYear() + 1900;
