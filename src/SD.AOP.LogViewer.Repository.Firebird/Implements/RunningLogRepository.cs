@@ -12,7 +12,7 @@ using System.Linq;
 namespace SD.AOP.LogViewer.Repository.Firebird.Implements
 {
     /// <summary>
-    /// 程序日志仓储Firebird实现
+    /// 运行日志仓储Firebird实现
     /// </summary>
     public class RunningLogRepository : IRunningLogRepository
     {

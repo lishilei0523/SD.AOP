@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace SD.AOP.LogViewer.Repository.Interfaces
 {
     /// <summary>
-    /// 程序日志仓储接口
+    /// 运行日志仓储接口
     /// </summary>
     public interface IRunningLogRepository
     {

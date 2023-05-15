@@ -17,7 +17,7 @@ using Microsoft.Data.SqlClient;
 namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
 {
     /// <summary>
-    /// 程序日志仓储SQL Server实现
+    /// 运行日志仓储SQL Server实现
     /// </summary>
     public class RunningLogRepository : IRunningLogRepository
     {
