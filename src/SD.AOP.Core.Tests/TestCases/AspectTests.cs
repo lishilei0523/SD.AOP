@@ -10,9 +10,13 @@ using System.Transactions;
 
 namespace SD.AOP.Core.Tests.TestCases
 {
+    /// <summary>
+    /// 切面测试
+    /// </summary>
     [TestClass]
-    public class StudentTests
+    public class AspectTests
     {
+        #region # 测试初始化 —— void Initialize()
         /// <summary>
         /// 测试初始化
         /// </summary>
@@ -28,12 +32,14 @@ namespace SD.AOP.Core.Tests.TestCases
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             AppDomain.CurrentDomain.SetData("DataDirectory", baseDirectory);
         }
+        #endregion
 
+        #region # 测试异常日志 —— void TestExceptionLog()
         /// <summary>
-        /// 创建学生测试 - 测试异常日志
+        /// 测试异常日志
         /// </summary>
         [TestMethod]
-        public void CreateStudentTest_TestExceptionLog()
+        public void TestExceptionLog()
         {
             for (int i = 0; i < 1000; i++)
             {
@@ -48,12 +54,14 @@ namespace SD.AOP.Core.Tests.TestCases
                 }
             }
         }
+        #endregion
 
+        #region # 测试运行日志 —— void TestRunningLog()
         /// <summary>
-        /// 创建学生测试 - 测试运行日志
+        /// 测试运行日志
         /// </summary>
         [TestMethod]
-        public void CreateStudentTest_TestRunningLog()
+        public void TestRunningLog()
         {
             for (int i = 0; i < 1000; i++)
             {
@@ -61,19 +69,21 @@ namespace SD.AOP.Core.Tests.TestCases
                 Trace.WriteLine(student);
             }
         }
+        #endregion
 
+        #region # 测试跳过异常日志 —— void TestSkipException()
         /// <summary>
-        /// 修改学生测试 - 测试跳过异常日志
+        /// 测试跳过异常日志
         /// </summary>
         [TestMethod]
-        public void UpdateStudentTest_TestSkipException()
+        public void TestSkipException()
         {
             for (int i = 0; i < 1000; i++)
             {
                 try
                 {
                     Student student = new Student("Tom", true, 20);
-                    student.UpdateInfo(Guid.NewGuid(), null, false, 25);
+                    student.UpdateInfo(null, false, 25);
                 }
                 catch (Exception exception)
                 {
@@ -81,15 +91,18 @@ namespace SD.AOP.Core.Tests.TestCases
                 }
             }
         }
+        #endregion
 
+        #region # 测试事务切面 —— void TestTransaction()
         /// <summary>
-        /// 事务测试
+        /// 测试事务切面
         /// </summary>
         [TestMethod]
         [TransactionAspect(TransactionScopeOption.RequiresNew)]
-        public void TransactionTest()
+        public void TestTransaction()
         {
             Trace.WriteLine("OK");
         }
+        #endregion
     }
 }

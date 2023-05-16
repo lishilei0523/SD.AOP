@@ -13,10 +13,6 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
-    <Reference Include="System.Transactions" />
-  </ItemGroup>
-
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1' Or '$(TargetFramework)' == 'net6.0'">
     <EmbeddedResource Include="App.config" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.1" />

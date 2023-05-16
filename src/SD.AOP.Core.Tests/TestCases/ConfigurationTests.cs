@@ -6,22 +6,33 @@ using System.Reflection;
 
 namespace SD.AOP.Core.Tests.TestCases
 {
+    /// <summary>
+    /// 配置文件测试
+    /// </summary>
     [TestClass]
     public class ConfigurationTests
     {
+        #region # 测试初始化 —— void Initialize()
+        /// <summary>
+        /// 测试初始化
+        /// </summary>
         [TestInitialize]
-        public void Init()
+        public void Initialize()
         {
 #if NETCOREAPP3_1_OR_GREATER
-            //初始化配置文件
             Assembly entryAssembly = Assembly.GetExecutingAssembly();
             Configuration configuration = ConfigurationExtension.GetConfigurationFromAssembly(entryAssembly);
             AopSection.Initialize(configuration);
 #endif
         }
+        #endregion
 
+        #region # 测试配置文件 —— void TestConfiguration()
+        /// <summary>
+        /// 测试配置文件
+        /// </summary>
         [TestMethod]
-        public void TestConfigurations()
+        public void TestConfiguration()
         {
             string loggerProviderType = AopSection.Setting.LoggerProvider.Type;
             string loggerProviderAssembly = AopSection.Setting.LoggerProvider.Assembly;
@@ -33,5 +44,6 @@ namespace SD.AOP.Core.Tests.TestCases
             Trace.WriteLine(connectionStringName);
             Trace.WriteLine(connectionString);
         }
+        #endregion
     }
 }
