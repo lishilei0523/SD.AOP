@@ -98,6 +98,7 @@ namespace SD.AOP.LogViewer.Controllers
         /// 获取异常日志列表
         /// </summary>
         /// <returns>异常日志列表</returns>
+        [HttpGet]
         public JsonResult GetExceptionLogs(Guid? logId, DateTime? startTime, DateTime? endTime, int page, int rows)
         {
             ICollection<ExceptionLog> exceptionLogs = this._exceptionLogRep.GetExceptionLogs(logId, startTime, endTime, page, rows, out int _, out int rowCount);

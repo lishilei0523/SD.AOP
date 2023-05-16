@@ -2,7 +2,6 @@
 using SD.AOP.LogViewer.Maps;
 using SD.AOP.LogViewer.Models;
 using SD.Infrastructure;
-using SD.Infrastructure.Attributes;
 using SD.Toolkits.EasyUI;
 using System.Collections.Generic;
 
@@ -33,7 +32,7 @@ namespace SD.AOP.LogViewer.Controllers
         /// 获取菜单树
         /// </summary>
         /// <returns>菜单树</returns>
-        [RequireAuthorization("获取菜单树")]
+        [HttpGet]
         public JsonResult GetMenuTree()
         {
             //初始化菜单

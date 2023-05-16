@@ -6,7 +6,7 @@ using SD.Toolkits.Mapper;
 namespace SD.AOP.LogViewer.Maps
 {
     /// <summary>
-    /// 日志相关映射工具类
+    /// 日志相关映射
     /// </summary>
     public static class LogMap
     {

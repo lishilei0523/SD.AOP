@@ -22,7 +22,7 @@
 </head>
 <body class="easyui-layout">
     @*网站头部*@
-    <div data-options="region:'north',split:false,border:false" id="dvHeader">
+    <div data-options="region: 'north',split: false,border: false" id="dvHeader">
         @*左侧logo*@
         <div class="logo">@ViewBag.WebName 日志管理后台</div>
         @*右侧内容*@
@@ -37,7 +37,7 @@
     </div>
     @*网站中部，内容部分*@
     <div data-options="region:'center'" id="dvContent">
-        <div class="easyui-tabs" id="tabs" data-options="headerWidth:200,fit:true">
+        <div class="easyui-tabs" id="tabs" data-options="headerWidth: 200,fit: true">
             <div data-options="title:'首页'" class="tabHome">
                 <iframe src="https://cn.bing.com" style="width: 100%; height: 99%; border: 0;"></iframe>
             </div>
@@ -55,7 +55,7 @@
         </div>
     </div>
     @*修改密码对话框*@
-    <div id="dvUpdatePwd" class="easyui-window" title="修改密码" style="padding: 5px;" data-options="width:360,height:230,maximizable: false,resizable: false,draggable: false,modal: true,minimizable: false,collapsible: false,closed: true,footer: '#footer'">
+    <div id="dvUpdatePwd" class="easyui-window" title="修改密码" style="padding: 5px;" data-options="width: 360,height: 230,maximizable: false,resizable: false,draggable: false,modal: true,minimizable: false,collapsible: false,closed: true,footer: '#footer'">
     </div>
     @*公共窗口*@
     <div id="commonWindow">

@@ -98,6 +98,7 @@ namespace SD.AOP.LogViewer.Controllers
         /// 获取运行日志列表
         /// </summary>
         /// <returns>运行日志列表</returns>
+        [HttpGet]
         public JsonResult GetRunningLogs(Guid? logId, DateTime? startTime, DateTime? endTime, int page, int rows)
         {
             ICollection<RunningLog> runningLogs = this._runningLogRep.GetRunningLogs(logId, startTime, endTime, page, rows, out int _, out int rowCount);

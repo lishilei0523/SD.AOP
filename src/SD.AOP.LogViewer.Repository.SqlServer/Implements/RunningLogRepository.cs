@@ -1,4 +1,5 @@
-﻿using SD.AOP.Core.Models.Entities;
+﻿using Microsoft.Data.SqlClient;
+using SD.AOP.Core.Models.Entities;
 using SD.AOP.LogViewer.Repository.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Toolkits.Sql;
@@ -7,12 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-#if NET40_OR_GREATER
-using System.Data.SqlClient;
-#endif
-#if NETSTANDARD2_0_OR_GREATER
-using Microsoft.Data.SqlClient;
-#endif
 
 namespace SD.AOP.LogViewer.Repository.SqlServer.Implements
 {

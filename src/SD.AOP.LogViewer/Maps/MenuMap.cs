@@ -7,7 +7,7 @@ using System.Linq;
 namespace SD.AOP.LogViewer.Maps
 {
     /// <summary>
-    /// 菜单映射工具类
+    /// 菜单映射
     /// </summary>
     public static class MenuMap
     {
@@ -67,31 +67,6 @@ namespace SD.AOP.LogViewer.Maps
             }
 
             return tree;
-        }
-        #endregion
-
-
-        //Private
-
-        #region # 填充子节点 —— static void FillChildren(this MenuModel menu...
-        /// <summary>
-        /// 填充子节点
-        /// </summary>
-        /// <param name="menu">菜单视图模型</param>
-        /// <param name="menus">菜单视图模型集</param>
-        private static void FillChildren(this MenuModel menu, ICollection<MenuModel> menus)
-        {
-            foreach (MenuModel menuView in menus)
-            {
-                if (menuView.Parent != null && menuView.Parent.Id == menu.Id)
-                {
-                    menu.children.Add(menuView);
-                    menu.type = menu.IsLeaf ? "pack" : "folder";
-                    menuView.Parent = null;
-
-                    menuView.FillChildren(menus);
-                }
-            }
         }
         #endregion
     }
