@@ -22,20 +22,20 @@
     <Reference Include="System.Transactions" />
   </ItemGroup>
 
-  <ItemGroup Condition=" $(TargetFramework.Equals('net40')) ">
+  <ItemGroup Condition="$(TargetFramework.Equals('net40'))">
     <PackageReference Include="Microsoft.Bcl.Async" Version="1.0.168" />
     <PackageReference Include="MrAdvice" Version="2.9.9" />
   </ItemGroup>
 
-  <ItemGroup Condition=" $(TargetFramework.Equals('net45')) ">
+  <ItemGroup Condition="$(TargetFramework.Equals('net45'))">
     <PackageReference Include="MrAdvice" Version="2.9.9" />
   </ItemGroup>
 
-  <ItemGroup Condition=" $(TargetFramework.Equals('net461')) ">
+  <ItemGroup Condition="$(TargetFramework.Equals('net461'))">
     <PackageReference Include="MrAdvice" Version="2.12.0" />
   </ItemGroup>
 
-  <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard2')) ">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard2'))">
     <PackageReference Include="MrAdvice" Version="2.12.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
   </ItemGroup>
