@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net462;netcoreapp3.1;net6.0</TargetFrameworks>
+    <TargetFrameworks>net462;net6.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
     <Authors>Lee</Authors>
     <Company>SD</Company>
@@ -13,7 +13,7 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup Condition="$(TargetFramework.Equals('netcoreapp3.1')) Or $(TargetFramework.Equals('net6.0'))">
+  <ItemGroup Condition="$(TargetFramework.Equals('net6.0'))">
     <EmbeddedResource Include="App.config" />
   </ItemGroup>
 
