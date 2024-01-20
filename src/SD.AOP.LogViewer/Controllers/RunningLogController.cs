@@ -99,11 +99,11 @@ namespace SD.AOP.LogViewer.Controllers
         /// </summary>
         /// <returns>运行日志列表</returns>
         [HttpGet]
+        [HttpPost]
         public JsonResult GetRunningLogs(Guid? logId, DateTime? startTime, DateTime? endTime, int page, int rows)
         {
             ICollection<RunningLog> runningLogs = this._runningLogRep.GetRunningLogs(logId, startTime, endTime, page, rows, out int _, out int rowCount);
             IEnumerable<RunningLogModel> runningLogViews = runningLogs.Select(x => x.ToModel());
-
             Grid<RunningLogModel> grid = new Grid<RunningLogModel>(rowCount, runningLogViews);
 
             return base.Json(grid);

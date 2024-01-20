@@ -99,11 +99,11 @@ namespace SD.AOP.LogViewer.Controllers
         /// </summary>
         /// <returns>异常日志列表</returns>
         [HttpGet]
+        [HttpPost]
         public JsonResult GetExceptionLogs(Guid? logId, DateTime? startTime, DateTime? endTime, int page, int rows)
         {
             ICollection<ExceptionLog> exceptionLogs = this._exceptionLogRep.GetExceptionLogs(logId, startTime, endTime, page, rows, out int _, out int rowCount);
             IEnumerable<ExceptionLogModel> exceptionLogViews = exceptionLogs.Select(x => x.ToModel());
-
             Grid<ExceptionLogModel> grid = new Grid<ExceptionLogModel>(rowCount, exceptionLogViews);
 
             return base.Json(grid);

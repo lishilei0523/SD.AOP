@@ -6,6 +6,7 @@ $(function () {
     //初始化用户菜单
     $("#menuTree").tree({
         url: "/Home/GetMenuTree",
+        method: "GET",
         animate: true,
         lines: true,
         onClick: function (node) {
