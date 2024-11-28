@@ -31,17 +31,11 @@ namespace SD.AOP.Core.Aspects.ForMethod
         /// <param name="context">方法元数据</param>
         public void Advise(MethodAdviceContext context)
         {
-#if NET40 || NET45
-            using (TransactionScope scope = new TransactionScope(this._scopeOption))
-#endif
-#if NET451_OR_GREATER || NETSTANDARD2_0_OR_GREATER
             using (TransactionScope scope = new TransactionScope(this._scopeOption, TransactionScopeAsyncFlowOption.Enabled))
-#endif
             {
                 context.Proceed();
                 scope.Complete();
             }
-
         }
     }
 }

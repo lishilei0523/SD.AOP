@@ -7,7 +7,7 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Text;
-#if NET40_OR_GREATER
+#if NET462_OR_GREATER
 using System.Data.SqlClient;
 #endif
 #if NETSTANDARD2_0_OR_GREATER

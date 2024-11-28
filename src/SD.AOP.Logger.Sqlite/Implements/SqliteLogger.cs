@@ -1,4 +1,5 @@
-﻿using SD.AOP.Core;
+﻿using Microsoft.Data.Sqlite;
+using SD.AOP.Core;
 using SD.AOP.Core.Interfaces;
 using SD.AOP.Core.Models.Entities;
 using SD.Toolkits.Sql;
@@ -7,12 +8,6 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Text;
-#if NET40 || NET45
-using System.Data.SQLite;
-#endif
-#if NET461_OR_GREATER || NETSTANDARD2_0_OR_GREATER
-using Microsoft.Data.Sqlite;
-#endif
 
 // ReSharper disable once CheckNamespace
 namespace SD.AOP
@@ -78,21 +73,6 @@ namespace SD.AOP
             //02.初始化参数
             IDbDataParameter[] parameters =
             {
-#if NET40 || NET45
-                new SQLiteParameter("@Id", log.Id.ToDbValue()),
-                new SQLiteParameter("@Namespace", log.Namespace.ToDbValue()),
-                new SQLiteParameter("@ClassName", log.ClassName.ToDbValue()),
-                new SQLiteParameter("@MethodName", log.MethodName.ToDbValue()),
-                new SQLiteParameter("@MethodType", log.MethodType.ToDbValue()),
-                new SQLiteParameter("@ArgsJson", log.ArgsJson.ToDbValue()),
-                new SQLiteParameter("@ExceptionType", log.ExceptionType.ToDbValue()),
-                new SQLiteParameter("@ExceptionMessage", log.ExceptionMessage.ToDbValue()),
-                new SQLiteParameter("@ExceptionInfo", log.ExceptionInfo.ToDbValue()),
-                new SQLiteParameter("@InnerException", log.InnerException.ToDbValue()),
-                new SQLiteParameter("@OccurredTime", log.OccurredTime.ToDbValue()),
-                new SQLiteParameter("@IPAddress", log.IPAddress.ToDbValue())
-#endif
-#if NET461_OR_GREATER || NETSTANDARD2_0_OR_GREATER
                 new SqliteParameter("@Id", log.Id.ToDbValue()),
                 new SqliteParameter("@Namespace", log.Namespace.ToDbValue()),
                 new SqliteParameter("@ClassName", log.ClassName.ToDbValue()),
@@ -105,7 +85,6 @@ namespace SD.AOP
                 new SqliteParameter("@InnerException", log.InnerException.ToDbValue()),
                 new SqliteParameter("@OccurredTime", log.OccurredTime.ToDbValue()),
                 new SqliteParameter("@IPAddress", log.IPAddress.ToDbValue())
-#endif
             };
 
             //03.执行sql
@@ -131,21 +110,6 @@ namespace SD.AOP
             //02.初始化参数
             IDbDataParameter[] parameters =
             {
-#if NET40 || NET45
-                new SQLiteParameter("@Id", log.Id.ToDbValue()),
-                new SQLiteParameter("@Namespace", log.Namespace.ToDbValue()),
-                new SQLiteParameter("@ClassName", log.ClassName.ToDbValue()),
-                new SQLiteParameter("@MethodName", log.MethodName.ToDbValue()),
-                new SQLiteParameter("@MethodType", log.MethodType.ToDbValue()),
-                new SQLiteParameter("@ArgsJson", log.ArgsJson.ToDbValue()),
-                new SQLiteParameter("@ReturnValue", log.ReturnValue.ToDbValue()),
-                new SQLiteParameter("@ReturnValueType", log.ReturnValueType.ToDbValue()),
-                new SQLiteParameter("@OperatorAccount", log.OperatorAccount.ToDbValue()),
-                new SQLiteParameter("@StartTime", log.StartTime.ToDbValue()),
-                new SQLiteParameter("@EndTime", log.EndTime.ToDbValue()),
-                new SQLiteParameter("@IPAddress", log.IPAddress.ToDbValue())
-#endif
-#if NET461_OR_GREATER || NETSTANDARD2_0_OR_GREATER
                 new SqliteParameter("@Id", log.Id.ToDbValue()),
                 new SqliteParameter("@Namespace", log.Namespace.ToDbValue()),
                 new SqliteParameter("@ClassName", log.ClassName.ToDbValue()),
@@ -158,7 +122,6 @@ namespace SD.AOP
                 new SqliteParameter("@StartTime", log.StartTime.ToDbValue()),
                 new SqliteParameter("@EndTime", log.EndTime.ToDbValue()),
                 new SqliteParameter("@IPAddress", log.IPAddress.ToDbValue())
-#endif
             };
 
             //03.执行sql

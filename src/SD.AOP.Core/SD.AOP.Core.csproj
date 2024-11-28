@@ -25,10 +25,10 @@
 
   <ItemGroup Condition="$(TargetFramework.Equals('netstandard2.0'))">
     <PackageReference Include="MrAdvice" Version="2.16.0" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Toolkits.Json" Version="1.0.3" />
+    <PackageReference Include="SD.Toolkits.Json" Version="1.1.0" />
   </ItemGroup>
 </Project>

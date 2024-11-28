@@ -23,7 +23,7 @@ namespace SD.AOP.Core.Tests.TestCases
         [TestInitialize]
         public void Initialize()
         {
-#if NETCOREAPP3_1_OR_GREATER
+#if NET8_0_OR_GREATER
             //初始化配置文件
             Assembly entryAssembly = Assembly.GetExecutingAssembly();
             Configuration configuration = ConfigurationExtension.GetConfigurationFromAssembly(entryAssembly);
