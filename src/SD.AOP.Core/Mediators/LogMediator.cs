@@ -52,9 +52,9 @@ namespace SD.AOP.Core.Mediators
         /// <returns>日志Id</returns>
         public static async Task<Guid> WriteAsync(ExceptionLog log)
         {
-            Task<Guid> logId = Task.Factory.StartNew(() => _Logger.Write(log));
+            Guid logId = await Task.Run(() => _Logger.Write(log));
 
-            return await logId;
+            return logId;
         }
         #endregion
 
@@ -80,9 +80,9 @@ namespace SD.AOP.Core.Mediators
         /// <returns>日志Id</returns>
         public static async Task<Guid> WriteAsync(RunningLog log)
         {
-            Task<Guid> logId = Task.Factory.StartNew(() => _Logger.Write(log));
+            Guid logId = await Task.Run(() => _Logger.Write(log));
 
-            return await logId;
+            return logId;
         }
         #endregion
     }

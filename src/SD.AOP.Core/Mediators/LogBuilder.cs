@@ -123,8 +123,7 @@ namespace SD.AOP.Core.Mediators
         {
             if (exception.InnerException != null)
             {
-                exceptionBuilder.Append(exception.InnerException);
-                exceptionBuilder.Append(@"\r\n");
+                exceptionBuilder.AppendLine(exception.InnerException.ToString());
                 BuildInnerException(exceptionBuilder, exception.InnerException);
             }
 
