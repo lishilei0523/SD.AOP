@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/01 - Core/">
+    <Project Path="src/SD.AOP.Core/SD.AOP.Core.csproj" />
+  </Folder>
+  <Folder Name="/02 - Loggers/">
+    <Project Path="src/SD.AOP.Logger.MySql/SD.AOP.Logger.MySql.csproj" />
+    <Project Path="src/SD.AOP.Logger.PostgreSQL/SD.AOP.Logger.PostgreSQL.csproj" />
+    <Project Path="src/SD.AOP.Logger.Sqlite/SD.AOP.Logger.Sqlite.csproj" />
+    <Project Path="src/SD.AOP.Logger.SqlServer/SD.AOP.Logger.SqlServer.csproj" />
+  </Folder>
+  <Folder Name="/03 - Tests/">
+    <Project Path="src/SD.AOP.Core.Tests/SD.AOP.Core.Tests.csproj" />
+  </Folder>
+  <Folder Name="/04 - 日志查看器/">
+    <Project Path="src/SD.AOP.LogViewer.Repository.MySql/SD.AOP.LogViewer.Repository.MySql.csproj" />
+    <Project Path="src/SD.AOP.LogViewer.Repository.PostgreSQL/SD.AOP.LogViewer.Repository.PostgreSQL.csproj" />
+    <Project Path="src/SD.AOP.LogViewer.Repository.SqlServer/SD.AOP.LogViewer.Repository.SqlServer.csproj" />
+    <Project Path="src/SD.AOP.LogViewer.Repository/SD.AOP.LogViewer.Repository.csproj" />
+    <Project Path="src/SD.AOP.LogViewer/SD.AOP.LogViewer.csproj" />
+  </Folder>
+</Solution>
