@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net462;net8.0</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Description>SD.AOP - 日志提供者 - SQL Server实现</Description>
     <Copyright>Copyright © SD 2025</Copyright>
-    <Version>2.4.0</Version>
-    <AssemblyVersion>2.4.0</AssemblyVersion>
-    <FileVersion>2.4.0.0</FileVersion>
+    <Version>2.4.2</Version>
+    <AssemblyVersion>2.4.2</AssemblyVersion>
+    <FileVersion>2.4.2.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -19,13 +19,13 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
 
-  <ItemGroup Condition="$(TargetFramework.Equals('netstandard2.0'))">
+  <ItemGroup Condition="$(TargetFramework.Equals('net8.0'))">
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.11" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="SD.Toolkits.Sql" Version="1.1.0" />
-    <PackageReference Include="SD.Toolkits.Sql.SqlServer" Version="1.1.0" />
+    <PackageReference Include="SD.Toolkits.Sql.SqlServer" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -5,9 +5,9 @@
     <Company>SD</Company>
     <Description>SD.AOP 面向方面编程基础</Description>
     <Copyright>Copyright © SD 2025</Copyright>
-    <Version>2.4.1</Version>
-    <AssemblyVersion>2.4.1</AssemblyVersion>
-    <FileVersion>2.4.1.0</FileVersion>
+    <Version>2.4.2</Version>
+    <AssemblyVersion>2.4.2</AssemblyVersion>
+    <FileVersion>2.4.2.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -26,6 +26,6 @@
 
   <ItemGroup>
     <PackageReference Include="MrAdvice" Version="2.19.1" />
-    <PackageReference Include="SD.Toolkits.Json" Version="2.1.0" />
+    <PackageReference Include="SD.Toolkits.Json" Version="2.1.1" />
   </ItemGroup>
 </Project>
