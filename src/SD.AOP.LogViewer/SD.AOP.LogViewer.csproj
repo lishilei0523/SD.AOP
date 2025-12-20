@@ -21,9 +21,9 @@
     <PackageReference Include="SD.Toolkits.EasyUI" Version="1.0.1" />
     <PackageReference Include="SD.Toolkits.Mapper" Version="4.0.0" />
     <PackageReference Include="SD.Toolkits.Recursion" Version="4.0.0" />
-    <PackageReference Include="SD.IOC.Core" Version="2.3.3" />
-    <PackageReference Include="SD.IOC.Extension.NetCore" Version="2.3.3" />
-    <PackageReference Include="SD.Infrastructure" Version="3.8.3" />
+    <PackageReference Include="SD.IOC.Core" Version="3.0.0" />
+    <PackageReference Include="SD.IOC.Extension.NetCore" Version="3.0.0" />
+    <PackageReference Include="SD.Infrastructure" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
