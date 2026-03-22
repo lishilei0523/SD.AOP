@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net462;net8.0;net10.0</TargetFrameworks>
     <Description>SD.AOP 面向方面编程基础</Description>
   </PropertyGroup>
 
@@ -9,12 +9,12 @@
     <Reference Include="System.Transactions" />
   </ItemGroup>
 
-  <ItemGroup Condition="$(TargetFramework.Equals('netstandard2.0'))">
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.1" />
+  <ItemGroup Condition="$(TargetFramework.Equals('net8.0')) Or $(TargetFramework.Equals('net10.0'))">
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.5" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MrAdvice" Version="2.19.1" />
-    <PackageReference Include="SD.Toolkits.Json" Version="4.0.0" />
+    <PackageReference Include="MrAdvice" Version="2.20.5" />
+    <PackageReference Include="SD.Toolkits.Json" Version="4.0.1" />
   </ItemGroup>
 </Project>
