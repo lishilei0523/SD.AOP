@@ -9,12 +9,12 @@
   </ItemGroup>
 
   <ItemGroup Condition="$(TargetFramework.Equals('net8.0')) Or $(TargetFramework.Equals('net10.0'))">
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.5" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.9" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Toolkits.Sql" Version="4.0.1" />
-    <PackageReference Include="SD.Toolkits.Sql.Sqlite" Version="4.0.1" />
+    <PackageReference Include="SD.Toolkits.Sql" Version="4.0.2" />
+    <PackageReference Include="SD.Toolkits.Sql.Sqlite" Version="4.0.2" />
   </ItemGroup>
 
   <ItemGroup>
